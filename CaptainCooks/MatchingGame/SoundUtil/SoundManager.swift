@@ -8,16 +8,21 @@
 import Foundation
 import AVFoundation
 
-class SoundManager {
+final class SoundManager {
+    
+    static let sharedInstance = SoundManager()
     
     var audioPlayer: AVAudioPlayer?
-    
+        
     enum SoundEffect {
         case flip
         case match
         case nomatch
         case shuffle
         case sad
+        case main
+        case slots
+//        case harp
     }
     
     func playSound(effect: SoundEffect) {
@@ -40,6 +45,13 @@ class SoundManager {
         case .sad:
             soundFileName = "sad"
             break
+        case .main:
+            soundFileName = "main"
+            break
+        case .slots:
+            soundFileName = "slots"
+//        case .harp:
+//            soundFileName = "harp"
         }
         
         //get the path to resource
@@ -55,14 +67,21 @@ class SoundManager {
         
         do {
             //create the audio player
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setActive(true)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             
             //play the audio player
             audioPlayer?.play()
             
         } catch {
-            print("Could not create an audio player")
+            print(error.localizedDescription)
             return
         }
     }
+    
+    func stop() {
+        audioPlayer?.stop()
+    }
 }
+

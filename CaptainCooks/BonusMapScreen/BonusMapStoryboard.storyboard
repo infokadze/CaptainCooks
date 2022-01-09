@@ -1,46 +1,244 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Y6W-OH-hqX">
-    <device id="retina6_1" orientation="landscape" appearance="light"/>
+    <device id="retina6_0" orientation="landscape" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Chewy-Regular.ttf">
+            <string>Chewy-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
+        <!--Not Enough CoinsVC-->
+        <scene sceneID="XuY-Se-4ps">
+            <objects>
+                <viewController id="swb-Fv-3kH" customClass="NotEnoughCoinsVC" customModule="CaptainCooks" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xgl-2C-O6M">
+                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="irU-dh-Eo3">
+                                <rect key="frame" x="244" y="20" width="356" height="350"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="TXR-j9-eF6">
+                                        <rect key="frame" x="0.0" y="0.0" width="356" height="286"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust text in code" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w8Z-Xc-QRi">
+                                        <rect key="frame" x="40" y="70" width="286" height="33.666666666666657"/>
+                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="26"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qo8-cL-OOV">
+                                        <rect key="frame" x="93" y="286" width="170" height="64.333333333333314"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="gotItImage"/>
+                                        <connections>
+                                            <action selector="gotItAction:" destination="swb-Fv-3kH" eventType="touchUpInside" id="FTW-37-iG6"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="qo8-cL-OOV" firstAttribute="leading" secondItem="irU-dh-Eo3" secondAttribute="leading" constant="93" id="9n9-1e-lIp"/>
+                                    <constraint firstItem="w8Z-Xc-QRi" firstAttribute="top" secondItem="irU-dh-Eo3" secondAttribute="top" constant="70" id="9rM-AR-vTJ"/>
+                                    <constraint firstAttribute="bottom" secondItem="TXR-j9-eF6" secondAttribute="bottom" constant="64" id="HX7-HB-0cS"/>
+                                    <constraint firstItem="qo8-cL-OOV" firstAttribute="centerX" secondItem="irU-dh-Eo3" secondAttribute="centerX" id="HYl-Ta-O9m"/>
+                                    <constraint firstItem="w8Z-Xc-QRi" firstAttribute="leading" secondItem="irU-dh-Eo3" secondAttribute="leading" constant="40" id="IZA-df-hko"/>
+                                    <constraint firstItem="TXR-j9-eF6" firstAttribute="leading" secondItem="irU-dh-Eo3" secondAttribute="leading" id="Jie-4s-6GH"/>
+                                    <constraint firstItem="TXR-j9-eF6" firstAttribute="top" secondItem="irU-dh-Eo3" secondAttribute="top" id="PnR-mC-lKV"/>
+                                    <constraint firstAttribute="trailing" secondItem="w8Z-Xc-QRi" secondAttribute="trailing" constant="30" id="UPQ-0N-kv9"/>
+                                    <constraint firstItem="qo8-cL-OOV" firstAttribute="top" secondItem="TXR-j9-eF6" secondAttribute="bottom" id="cbV-gQ-AwV"/>
+                                    <constraint firstAttribute="trailing" secondItem="TXR-j9-eF6" secondAttribute="trailing" id="pcr-md-mMa"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="59s-Hb-Kew"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="irU-dh-Eo3" firstAttribute="leading" secondItem="59s-Hb-Kew" secondAttribute="leading" constant="200" id="87V-pK-Amw"/>
+                            <constraint firstItem="59s-Hb-Kew" firstAttribute="trailing" secondItem="irU-dh-Eo3" secondAttribute="trailing" constant="200" id="Nfa-CP-fOB"/>
+                            <constraint firstItem="irU-dh-Eo3" firstAttribute="centerY" secondItem="xgl-2C-O6M" secondAttribute="centerY" id="QCm-Bh-ybN"/>
+                            <constraint firstItem="irU-dh-Eo3" firstAttribute="top" secondItem="59s-Hb-Kew" secondAttribute="top" constant="20" id="XJu-X5-yHU"/>
+                            <constraint firstItem="irU-dh-Eo3" firstAttribute="centerX" secondItem="xgl-2C-O6M" secondAttribute="centerX" id="tXS-aL-tYg"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="labelText" destination="w8Z-Xc-QRi" id="D0s-SJ-9q7"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pcJ-ve-9se" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-225" y="-823"/>
+        </scene>
+        <!--MatchGameBoard-->
+        <scene sceneID="zsc-E7-aUp">
+            <objects>
+                <viewControllerPlaceholder storyboardName="MatchGameBoard" id="anp-EM-xlF" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JGw-lV-5Tg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-14" y="674"/>
+        </scene>
+        <!--Main-->
+        <scene sceneID="cGz-Co-Faw">
+            <objects>
+                <viewControllerPlaceholder storyboardIdentifier="MainVC" storyboardName="Main" id="c5A-ys-Ws6" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QlO-y6-Jd3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-300" y="674"/>
+        </scene>
         <!--Bonus Map Controller-->
         <scene sceneID="s0d-6b-0kx">
             <objects>
                 <viewController storyboardIdentifier="BonusMapStoryboard" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Y6W-OH-hqX" customClass="BonusMapController" customModule="CaptainCooks" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                    <view key="view" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5EZ-qb-Rvc">
                         <rect key="frame" x="0.0" y="0.0" width="1200" height="414"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buB-u2-4cK">
-                                <rect key="frame" x="0.0" y="0.0" width="1200" height="393"/>
+                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="buB-u2-4cK">
+                                <rect key="frame" x="0.0" y="0.0" width="1200" height="414"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nqR-Xb-lxq" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="1500" height="417"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1653" height="414"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bonusBackground" translatesAutoresizingMaskIntoConstraints="NO" id="0rZ-Te-Kbj">
-                                                <rect key="frame" x="0.0" y="0.0" width="1500" height="417"/>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bonusMapBackground" translatesAutoresizingMaskIntoConstraints="NO" id="0rZ-Te-Kbj" userLabel="bonusMapBackground ">
+                                                <rect key="frame" x="0.0" y="0.0" width="1653" height="414"/>
                                             </imageView>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="iiG-Y5-wnC" userLabel="firstLevelBonusView">
+                                                <rect key="frame" x="353" y="8" width="240" height="218"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActive" translatesAutoresizingMaskIntoConstraints="NO" id="wdl-eT-Opk">
+                                                        <rect key="frame" x="73" y="157" width="95" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5z-XP-vKx" userLabel="firstLevelBonusButton">
+                                                        <rect key="frame" x="30" y="34" width="180" height="129"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="treasure1000"/>
+                                                        <connections>
+                                                            <action selector="firstLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sh1-dB-Adk"/>
+                                                            <segue destination="anp-EM-xlF" kind="popoverPresentation" identifier="goToMatchGame" popoverAnchorView="O5z-XP-vKx" id="CZp-4F-ra2">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-TY-62n" userLabel="menuButton">
+                                                <rect key="frame" x="14" y="8" width="78" height="72"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="menuButton"/>
+                                                <connections>
+                                                    <action selector="menuButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="J5W-cW-SUk"/>
+                                                    <segue destination="c5A-ys-Ws6" kind="presentation" identifier="unwindToMain" id="Gs3-ej-0j6"/>
+                                                </connections>
+                                            </button>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNk-DL-ScZ" userLabel="secondLevelBonusView">
+                                                <rect key="frame" x="715" y="60" width="190" height="242"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qqd-p0-E5S" userLabel="secondLevelBonusButton">
+                                                        <rect key="frame" x="-7" y="38" width="197" height="150"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="tryYourLuckActiveRight"/>
+                                                        <connections>
+                                                            <action selector="secondLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wjm-aQ-DAf"/>
+                                                            <segue destination="swb-Fv-3kH" kind="popoverPresentation" identifier="goToNotEnoughCoinsVC" popoverAnchorView="qqd-p0-E5S" id="HIv-pc-1DL">
+                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                                            </segue>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActiveTurnedRight" translatesAutoresizingMaskIntoConstraints="NO" id="gWM-DE-f0t">
+                                                        <rect key="frame" x="8" y="162" width="95" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UlN-TV-5PG" userLabel="thirdLevelBonusView">
+                                                <rect key="frame" x="933" y="111" width="240" height="218"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActive" translatesAutoresizingMaskIntoConstraints="NO" id="lLo-Dw-0bZ">
+                                                        <rect key="frame" x="73" y="157" width="95" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGh-1g-iry" userLabel="thirdLevelBonusButton">
+                                                        <rect key="frame" x="30" y="20" width="180" height="129"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="treasure2500"/>
+                                                        <connections>
+                                                            <action selector="thirdLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cyu-3m-ing"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kti-RM-2lq" userLabel="forthLevelBonusView">
+                                                <rect key="frame" x="1208" y="24" width="190" height="249"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActiveTurnedLeft" translatesAutoresizingMaskIntoConstraints="NO" id="mfs-hI-niF">
+                                                        <rect key="frame" x="69" y="176" width="95" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cnN-Y7-WkM" userLabel="forthLevelBonusButton">
+                                                        <rect key="frame" x="-15" y="57" width="197" height="150"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="tryYourLuckActiveLeft"/>
+                                                        <connections>
+                                                            <action selector="forthLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aCk-U9-bI0"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Kb-ml-32J" userLabel="fifthLevelBonusView">
+                                                <rect key="frame" x="1433" y="8" width="240" height="218"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sJF-Pa-Z55" userLabel="fifthLevelBonusButton">
+                                                        <rect key="frame" x="30" y="-7" width="180" height="129"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="treasure5000"/>
+                                                        <connections>
+                                                            <action selector="fifthLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vet-e6-Ay0"/>
+                                                        </connections>
+                                                    </button>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActive" translatesAutoresizingMaskIntoConstraints="NO" id="4pd-6u-Mre">
+                                                        <rect key="frame" x="73" y="119" width="95" height="80"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    </imageView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
-                                            <constraint firstItem="0rZ-Te-Kbj" firstAttribute="leading" secondItem="nqR-Xb-lxq" secondAttribute="leading" id="9CI-Ba-V3a"/>
-                                            <constraint firstItem="0rZ-Te-Kbj" firstAttribute="top" secondItem="nqR-Xb-lxq" secondAttribute="top" id="DUx-kn-6Qz"/>
-                                            <constraint firstAttribute="trailing" secondItem="0rZ-Te-Kbj" secondAttribute="trailing" id="hlm-MO-JXN"/>
-                                            <constraint firstAttribute="bottom" secondItem="0rZ-Te-Kbj" secondAttribute="bottom" id="hrR-tF-oN8"/>
+                                            <constraint firstItem="0rZ-Te-Kbj" firstAttribute="top" secondItem="nqR-Xb-lxq" secondAttribute="top" id="4wv-ex-bNG"/>
+                                            <constraint firstAttribute="bottom" secondItem="0rZ-Te-Kbj" secondAttribute="bottom" id="DHq-CT-tzL"/>
+                                            <constraint firstAttribute="trailing" secondItem="0rZ-Te-Kbj" secondAttribute="trailing" id="lV1-RO-XbK"/>
+                                            <constraint firstItem="0rZ-Te-Kbj" firstAttribute="leading" secondItem="nqR-Xb-lxq" secondAttribute="leading" id="tRt-ob-IJq"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="width" secondItem="mHo-J0-nrR" secondAttribute="width" constant="300" id="0AW-ai-jjy"/>
-                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="top" secondItem="b7E-Rb-gAw" secondAttribute="top" id="3mj-K7-Zcf"/>
-                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="trailing" secondItem="b7E-Rb-gAw" secondAttribute="trailing" constant="300" id="Xrm-kN-wmB"/>
-                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="bottom" secondItem="b7E-Rb-gAw" secondAttribute="bottom" id="hYd-yd-BOh"/>
-                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="leading" secondItem="b7E-Rb-gAw" secondAttribute="leading" id="y9d-Ah-5hq"/>
+                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="bottom" secondItem="b7E-Rb-gAw" secondAttribute="bottom" id="2nl-8q-s1j"/>
+                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="top" secondItem="b7E-Rb-gAw" secondAttribute="top" id="GsJ-ar-2LT"/>
+                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="height" secondItem="mHo-J0-nrR" secondAttribute="height" id="mGE-UR-BXr"/>
+                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="trailing" secondItem="b7E-Rb-gAw" secondAttribute="trailing" id="pU9-54-enX"/>
+                                    <constraint firstItem="nqR-Xb-lxq" firstAttribute="leading" secondItem="b7E-Rb-gAw" secondAttribute="leading" id="yb0-sT-nOU"/>
                                 </constraints>
                                 <viewLayoutGuide key="contentLayoutGuide" id="b7E-Rb-gAw"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="mHo-J0-nrR"/>
@@ -49,23 +247,48 @@
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="buB-u2-4cK" secondAttribute="bottom" id="EgI-V2-NSd"/>
-                            <constraint firstAttribute="trailing" secondItem="buB-u2-4cK" secondAttribute="trailing" id="Peu-o1-fv6"/>
-                            <constraint firstItem="nqR-Xb-lxq" firstAttribute="height" secondItem="5EZ-qb-Rvc" secondAttribute="height" multiplier="1.00725" id="XEI-e1-gwt"/>
-                            <constraint firstItem="buB-u2-4cK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" id="cf0-oA-bQc"/>
-                            <constraint firstItem="buB-u2-4cK" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="zwk-Cy-b8A"/>
+                            <constraint firstAttribute="trailing" secondItem="buB-u2-4cK" secondAttribute="trailing" id="41R-Ff-vdB"/>
+                            <constraint firstItem="buB-u2-4cK" firstAttribute="bottom" secondItem="5EZ-qb-Rvc" secondAttribute="bottom" id="L63-AO-mcK"/>
+                            <constraint firstItem="buB-u2-4cK" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="bGj-F9-vbm"/>
+                            <constraint firstItem="buB-u2-4cK" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="q1M-uo-5HV"/>
+                            <constraint firstAttribute="trailing" secondItem="buB-u2-4cK" secondAttribute="trailing" id="zeQ-mg-C7Y"/>
                         </constraints>
                     </view>
                     <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
                     <size key="freeformSize" width="1200" height="414"/>
+                    <connections>
+                        <outlet property="bonusMapBackground" destination="0rZ-Te-Kbj" id="AOR-Ym-R9b"/>
+                        <outlet property="scrollView" destination="buB-u2-4cK" id="42v-Uo-h13"/>
+                        <outletCollection property="levelButtons" destination="O5z-XP-vKx" collectionClass="NSMutableArray" id="JFA-Nd-dqN"/>
+                        <outletCollection property="levelButtons" destination="qqd-p0-E5S" collectionClass="NSMutableArray" id="4Sv-7b-6Qk"/>
+                        <outletCollection property="levelButtons" destination="uGh-1g-iry" collectionClass="NSMutableArray" id="fNX-uR-6GF"/>
+                        <outletCollection property="levelButtons" destination="cnN-Y7-WkM" collectionClass="NSMutableArray" id="iVJ-lM-wXw"/>
+                        <outletCollection property="levelButtons" destination="sJF-Pa-Z55" collectionClass="NSMutableArray" id="ELK-N4-9Q2"/>
+                        <outletCollection property="levelCrosses" destination="wdl-eT-Opk" collectionClass="NSMutableArray" id="OtA-Xh-8Gs"/>
+                        <outletCollection property="levelCrosses" destination="gWM-DE-f0t" collectionClass="NSMutableArray" id="68I-0X-QUU"/>
+                        <outletCollection property="levelCrosses" destination="lLo-Dw-0bZ" collectionClass="NSMutableArray" id="vXD-LU-O7T"/>
+                        <outletCollection property="levelCrosses" destination="mfs-hI-niF" collectionClass="NSMutableArray" id="Ael-9R-to6"/>
+                        <outletCollection property="levelCrosses" destination="4pd-6u-Mre" collectionClass="NSMutableArray" id="rce-h6-wuw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="95.758928571428569" y="91.304347826086968"/>
+            <point key="canvasLocation" x="-121.56398104265402" y="64.615384615384613"/>
         </scene>
     </scenes>
     <resources>
-        <image name="bonusBackground" width="1653" height="414"/>
+        <image name="background" width="416" height="307"/>
+        <image name="bonusMapBackground" width="1653" height="414"/>
+        <image name="crossNotActive" width="101.33333587646484" height="86.666664123535156"/>
+        <image name="crossNotActiveTurnedLeft" width="121.66666412353516" height="117"/>
+        <image name="crossNotActiveTurnedRight" width="119" height="112"/>
+        <image name="gotItImage" width="174.66667175292969" height="64.333335876464844"/>
+        <image name="menuButton" width="54" height="58"/>
+        <image name="treasure1000" width="156" height="115"/>
+        <image name="treasure2500" width="156" height="115"/>
+        <image name="treasure5000" width="156" height="115"/>
+        <image name="tryYourLuckActiveLeft" width="187.33332824707031" height="163.66667175292969"/>
+        <image name="tryYourLuckActiveRight" width="184" height="157.66667175292969"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

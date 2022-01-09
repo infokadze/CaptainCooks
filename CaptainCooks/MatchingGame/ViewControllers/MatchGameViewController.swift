@@ -7,19 +7,15 @@
 
 import UIKit
 
-class MatchGameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
+final class MatchGameViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     //MARK: - outlets
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var getButton: UIButton! 
     @IBOutlet weak var textLabel: UILabel!
     
-    
     let cardModel = CardModel()
     var cardArray = [Card]()
-    
-    var cardOne: Card?
-    var cardTwo: Card?
-        
+
     var firstFlippedCardIndex: IndexPath?
     var secondFlippedCardIndex: IndexPath?
     
@@ -30,35 +26,44 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "MainVC")
         self.present(controller, animated: true, completion: nil)
+        self.view.window?.rootViewController?.dismiss(animated: false) {
+        }
         
     }
     
-    func setButtonImage(button: UIButton, result: Int) {
+    private func setButtonImage(button: UIButton, result: Int) {
         let buttonForImage = button
         switch result {
         case 0:
-            buttonForImage.setImage(UIImage(named: "gotItImage"), for: .normal)
+            UIView.animate(withDuration: 0.6) {
+                buttonForImage.setImage(UIImage(named: "gotItImage"), for: .normal)
+            }
         default:
+            UIView.animate(withDuration: 0.6) {
             buttonForImage.setImage(UIImage(named: "getImage"), for: .normal)
         }
     }
+}
     
-    func setLabelText(label: UILabel, result: Int) {
+    private func setLabelText(label: UILabel, result: Int) {
         let labelText = label
         switch result {
         case 0:
+            UIView.animate(withDuration: 0.6) {
             labelText.text = "Better luck next time!"
+            }
         default:
+            UIView.animate(withDuration: 0.6) {
             labelText.text = "You earn \(result) coins! Congrats!"
         }
-        
     }
-    
+}
     override func viewDidLoad() {
         super.viewDidLoad()
+                
         getButton.isHidden = true
-        
         textLabel.text = "Play and find 3 identical cards to win coins"
+        
         // Do any additional setup after loading the view.
         cardArray = cardModel.getCards()
         
@@ -69,10 +74,13 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // https://stevenpcurtis.medium.com/the-uiviewcontroller-lifecycle-b964cf18256b
-        
         // Play shuffle sound
         soundPlayer.playSound(effect: .shuffle)
+        
+        #warning("Important to follow the logic of a-b-c below -> play sound, then adjust anything else")
+//        SoundManager.sharedInstance.playSound(effect: .harp)
+        SoundManager.sharedInstance.audioPlayer?.numberOfLoops = -1
+        SoundManager.sharedInstance.audioPlayer?.volume = 1
     }
     
     
@@ -135,7 +143,7 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     // MARK: - Game Logic Methods
-    func checkForMatchForTwoCards(_ secondFlippedCardIndex2: IndexPath) {
+    private func checkForMatchForTwoCards(_ secondFlippedCardIndex2: IndexPath) {
         
         //get the two card object and check indices and see if they match
         let cardOne = cardArray[firstFlippedCardIndex!.row]
@@ -168,7 +176,7 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     // MARK: - Game Logic Methods
-    func checkForMatchForThreeCards(_ thirdFlippedCardIndex: IndexPath) {
+    private func checkForMatchForThreeCards(_ thirdFlippedCardIndex: IndexPath) {
         
         //get the two card object and check indices and see if they match
         let cardOne = cardArray[firstFlippedCardIndex!.row]
@@ -197,7 +205,6 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
             
         } else {
             //it not match
-            
             // Play nomatch sound
             soundPlayer.playSound(effect: .nomatch)
             
@@ -216,7 +223,7 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
     }
     
     //assume the user has won
-    func checkForGameEnd(_ card: Card) {
+    private func checkForGameEnd(_ card: Card) {
         let cardToCheck = card
         var result = 0
         
@@ -224,8 +231,8 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
         case "card1":
             result = 100
             soundPlayer.playSound(effect: .match)
-//            showAlert(title: "Congratulations!", message: "You've won \(result) coins!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            
+            UIView.animate(withDuration: 1.1) {
                 self.getButton.isHidden = false
                 self.setButtonImage(button: self.getButton, result: result)
                 self.setLabelText(label: self.textLabel, result: result)
@@ -233,8 +240,8 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
         case "card2":
             result = 200
             soundPlayer.playSound(effect: .match)
-//            showAlert(title: "Congratulations!", message: "You've won \(result) coins!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+
+            UIView.animate(withDuration: 1.1) {
                 self.getButton.isHidden = false
                 self.setButtonImage(button: self.getButton, result: result)
                 self.setLabelText(label: self.textLabel, result: result)
@@ -242,8 +249,8 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
         case "card3":
             result = 500
             soundPlayer.playSound(effect: .match)
-//            showAlert(title: "Congratulations!", message: "You've won \(result) coins!")
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+
+            UIView.animate(withDuration: 1.1)  {
                 self.getButton.isHidden = false
                 self.setButtonImage(button: self.getButton, result: result)
                 self.setLabelText(label: self.textLabel, result: result)
@@ -251,22 +258,19 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
         case "card4":
             result = 0
             soundPlayer.playSound(effect: .sad)
-//            showAlert(title: "Not today", message: "Better luck next time")
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+
+            UIView.animate(withDuration: 1.1) {
                 self.getButton.isHidden = false
                 self.setButtonImage(button: self.getButton, result: result)
                 self.setLabelText(label: self.textLabel, result: result)
             }
-            
-            
-            
+ 
         default:
             print("switch went wrong")
         }
     }
         
-    func showAlert(title: String, message: String) {
+    private func showAlert(title: String, message: String) {
         //create alert
         let alert = UIAlertController(
             title: title,
@@ -298,30 +302,9 @@ class MatchGameViewController: UIViewController, UICollectionViewDataSource, UIC
 
 extension MatchGameViewController: UICollectionViewDelegateFlowLayout {
     
-    //https://stackoverflow.com/questions/14674986/uicollectionview-set-number-of-columns
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 //        let width = collectionView.frame.width * 0.2857
         let width = 36
         return CGSize(width: width, height: width)
     }
 }
-
-extension UIView {
-    func fadeTo(_ alpha: CGFloat, duration: TimeInterval = 0.3) {
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: duration) {
-                self.alpha = alpha
-            }
-        }
-    }
-    
-    func fadeIn(_ duration: TimeInterval = 0.3) {
-        fadeTo(1.0, duration: duration)
-    }
-    
-    func fadeOut(_ duration: TimeInterval = 0.3) {
-        fadeTo(0.0, duration: duration)
-    }
-}
-

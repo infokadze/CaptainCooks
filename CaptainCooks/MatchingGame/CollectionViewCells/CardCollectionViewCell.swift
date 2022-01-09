@@ -62,7 +62,6 @@ class CardCollectionViewCell: UICollectionViewCell {
             options: [.showHideTransitionViews,.transitionFlipFromLeft],
             completion: nil
         )
-        
         //set the status of card
         card?.isFlipped = true
     }

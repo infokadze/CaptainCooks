@@ -14,7 +14,7 @@
 		2DC98D422784407E00CC9C4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D412784407E00CC9C4C /* Assets.xcassets */; };
 		2DC98D452784407E00CC9C4C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D432784407E00CC9C4C /* LaunchScreen.storyboard */; };
 		2DC98D52278446A100CC9C4C /* Chewy-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D4E2784447F00CC9C4C /* Chewy-Regular.ttf */; };
-		2DC98D6027848C0D00CC9C4C /* MatchingGameBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D5F27848C0D00CC9C4C /* MatchingGameBoard.storyboard */; };
+		2DC98D6027848C0D00CC9C4C /* MatchGameBoard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D5F27848C0D00CC9C4C /* MatchGameBoard.storyboard */; };
 		2DC98D6F27848C8300CC9C4C /* SoundManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D6227848C8300CC9C4C /* SoundManager.swift */; };
 		2DC98D7027848C8300CC9C4C /* CardCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D6427848C8300CC9C4C /* CardCollectionViewCell.swift */; };
 		2DC98D7127848C8300CC9C4C /* dingcorrect.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D6627848C8300CC9C4C /* dingcorrect.wav */; };
@@ -25,10 +25,14 @@
 		2DC98D7627848C8300CC9C4C /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D6D27848C8300CC9C4C /* CardModel.swift */; };
 		2DC98D7727848C8300CC9C4C /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D6E27848C8300CC9C4C /* Card.swift */; };
 		2DC98D7A2785E6B300CC9C4C /* BonusMapController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D792785E6B300CC9C4C /* BonusMapController.swift */; };
-		2DC98D7C2785E6C000CC9C4C /* BonusMapViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D7B2785E6C000CC9C4C /* BonusMapViews.swift */; };
-		2DC98D7E2785E6E500CC9C4C /* BonusMapModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D7D2785E6E500CC9C4C /* BonusMapModel.swift */; };
 		2DC98D802785EA7700CC9C4C /* BonusMapStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2DC98D7F2785EA7700CC9C4C /* BonusMapStoryboard.storyboard */; };
+		2DC98D852786E6A500CC9C4C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D842786E6A500CC9C4C /* SettingsController.swift */; };
+		2DC98D872786E78E00CC9C4C /* NotEnoughCoinsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D862786E78E00CC9C4C /* NotEnoughCoinsVC.swift */; };
+		4A473C622788C3C60005059F /* Links.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A473C612788C3C60005059F /* Links.rtf */; };
+		4A473C6B2788FCBB0005059F /* main.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A473C692788FCB90005059F /* main.wav */; };
+		4A473C6C2788FCBB0005059F /* slots.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A473C6A2788FCBB0005059F /* slots.wav */; };
 		4AA534C1278518BE00CE53DC /* sad.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4AA534C0278518BE00CE53DC /* sad.wav */; };
+		4AAC0D6F2789C81200B3E79B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC0D6E2789C81200B3E79B /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +45,7 @@
 		2DC98D442784407E00CC9C4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2DC98D462784407E00CC9C4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2DC98D4E2784447F00CC9C4C /* Chewy-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Chewy-Regular.ttf"; sourceTree = "<group>"; };
-		2DC98D5F27848C0D00CC9C4C /* MatchingGameBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MatchingGameBoard.storyboard; sourceTree = "<group>"; };
+		2DC98D5F27848C0D00CC9C4C /* MatchGameBoard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MatchGameBoard.storyboard; sourceTree = "<group>"; };
 		2DC98D6227848C8300CC9C4C /* SoundManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundManager.swift; sourceTree = "<group>"; };
 		2DC98D6427848C8300CC9C4C /* CardCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardCollectionViewCell.swift; sourceTree = "<group>"; };
 		2DC98D6627848C8300CC9C4C /* dingcorrect.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = dingcorrect.wav; sourceTree = "<group>"; };
@@ -52,10 +56,14 @@
 		2DC98D6D27848C8300CC9C4C /* CardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
 		2DC98D6E27848C8300CC9C4C /* Card.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2DC98D792785E6B300CC9C4C /* BonusMapController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusMapController.swift; sourceTree = "<group>"; };
-		2DC98D7B2785E6C000CC9C4C /* BonusMapViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusMapViews.swift; sourceTree = "<group>"; };
-		2DC98D7D2785E6E500CC9C4C /* BonusMapModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BonusMapModel.swift; sourceTree = "<group>"; };
 		2DC98D7F2785EA7700CC9C4C /* BonusMapStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = BonusMapStoryboard.storyboard; sourceTree = "<group>"; };
+		2DC98D842786E6A500CC9C4C /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		2DC98D862786E78E00CC9C4C /* NotEnoughCoinsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotEnoughCoinsVC.swift; sourceTree = "<group>"; };
+		4A473C612788C3C60005059F /* Links.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Links.rtf; sourceTree = "<group>"; };
+		4A473C692788FCB90005059F /* main.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = main.wav; sourceTree = "<group>"; };
+		4A473C6A2788FCBB0005059F /* slots.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slots.wav; sourceTree = "<group>"; };
 		4AA534C0278518BE00CE53DC /* sad.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = sad.wav; sourceTree = "<group>"; };
+		4AAC0D6E2789C81200B3E79B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -88,12 +96,14 @@
 		2DC98D372784407C00CC9C4C /* CaptainCooks */ = {
 			isa = PBXGroup;
 			children = (
+				2DC98D4D2784446F00CC9C4C /* Fonts */,
+				2DC98D812786E67100CC9C4C /* Settings */,
 				2DC98D53278446CF00CC9C4C /* WelcomeScreen */,
 				2DC98D3E2784407C00CC9C4C /* Main.storyboard */,
 				2DC98D782785E69700CC9C4C /* BonusMapScreen */,
-				2DC98D4D2784446F00CC9C4C /* Fonts */,
 				2DC98D512784458400CC9C4C /* Resources */,
 				2DC98D4C2784438400CC9C4C /* MatchingGame */,
+				4A473C612788C3C60005059F /* Links.rtf */,
 			);
 			path = CaptainCooks;
 			sourceTree = "<group>";
@@ -106,7 +116,7 @@
 				2DC98D6527848C8300CC9C4C /* Sounds */,
 				2DC98D6127848C8300CC9C4C /* SoundUtil */,
 				2DC98D6A27848C8300CC9C4C /* ViewControllers */,
-				2DC98D5F27848C0D00CC9C4C /* MatchingGameBoard.storyboard */,
+				2DC98D5F27848C0D00CC9C4C /* MatchGameBoard.storyboard */,
 			);
 			path = MatchingGame;
 			sourceTree = "<group>";
@@ -124,9 +134,10 @@
 			children = (
 				2DC98D382784407C00CC9C4C /* AppDelegate.swift */,
 				2DC98D3A2784407C00CC9C4C /* SceneDelegate.swift */,
-				2DC98D412784407E00CC9C4C /* Assets.xcassets */,
 				2DC98D432784407E00CC9C4C /* LaunchScreen.storyboard */,
+				2DC98D412784407E00CC9C4C /* Assets.xcassets */,
 				2DC98D462784407E00CC9C4C /* Info.plist */,
+				4AAC0D6E2789C81200B3E79B /* Extensions.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -158,6 +169,8 @@
 		2DC98D6527848C8300CC9C4C /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				4A473C692788FCB90005059F /* main.wav */,
+				4A473C6A2788FCBB0005059F /* slots.wav */,
 				4AA534C0278518BE00CE53DC /* sad.wav */,
 				2DC98D6627848C8300CC9C4C /* dingcorrect.wav */,
 				2DC98D6727848C8300CC9C4C /* cardflip.wav */,
@@ -188,11 +201,18 @@
 			isa = PBXGroup;
 			children = (
 				2DC98D792785E6B300CC9C4C /* BonusMapController.swift */,
-				2DC98D7B2785E6C000CC9C4C /* BonusMapViews.swift */,
-				2DC98D7D2785E6E500CC9C4C /* BonusMapModel.swift */,
+				2DC98D862786E78E00CC9C4C /* NotEnoughCoinsVC.swift */,
 				2DC98D7F2785EA7700CC9C4C /* BonusMapStoryboard.storyboard */,
 			);
 			path = BonusMapScreen;
+			sourceTree = "<group>";
+		};
+		2DC98D812786E67100CC9C4C /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				2DC98D842786E6A500CC9C4C /* SettingsController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -253,16 +273,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A473C622788C3C60005059F /* Links.rtf in Resources */,
 				2DC98D52278446A100CC9C4C /* Chewy-Regular.ttf in Resources */,
 				2DC98D452784407E00CC9C4C /* LaunchScreen.storyboard in Resources */,
 				2DC98D7427848C8300CC9C4C /* dingwrong.wav in Resources */,
 				2DC98D422784407E00CC9C4C /* Assets.xcassets in Resources */,
 				2DC98D7227848C8300CC9C4C /* cardflip.wav in Resources */,
+				4A473C6B2788FCBB0005059F /* main.wav in Resources */,
 				4AA534C1278518BE00CE53DC /* sad.wav in Resources */,
 				2DC98D7327848C8300CC9C4C /* shuffle.wav in Resources */,
-				2DC98D6027848C0D00CC9C4C /* MatchingGameBoard.storyboard in Resources */,
+				2DC98D6027848C0D00CC9C4C /* MatchGameBoard.storyboard in Resources */,
 				2DC98D802785EA7700CC9C4C /* BonusMapStoryboard.storyboard in Resources */,
 				2DC98D402784407C00CC9C4C /* Main.storyboard in Resources */,
+				4A473C6C2788FCBB0005059F /* slots.wav in Resources */,
 				2DC98D7127848C8300CC9C4C /* dingcorrect.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -275,14 +298,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				2DC98D7527848C8300CC9C4C /* MatchGameViewController.swift in Sources */,
+				2DC98D852786E6A500CC9C4C /* SettingsController.swift in Sources */,
 				2DC98D7A2785E6B300CC9C4C /* BonusMapController.swift in Sources */,
 				2DC98D3D2784407C00CC9C4C /* InitialViewController.swift in Sources */,
 				2DC98D6F27848C8300CC9C4C /* SoundManager.swift in Sources */,
+				2DC98D872786E78E00CC9C4C /* NotEnoughCoinsVC.swift in Sources */,
 				2DC98D7627848C8300CC9C4C /* CardModel.swift in Sources */,
+				4AAC0D6F2789C81200B3E79B /* Extensions.swift in Sources */,
 				2DC98D392784407C00CC9C4C /* AppDelegate.swift in Sources */,
-				2DC98D7E2785E6E500CC9C4C /* BonusMapModel.swift in Sources */,
 				2DC98D7027848C8300CC9C4C /* CardCollectionViewCell.swift in Sources */,
-				2DC98D7C2785E6C000CC9C4C /* BonusMapViews.swift in Sources */,
 				2DC98D3B2784407C00CC9C4C /* SceneDelegate.swift in Sources */,
 				2DC98D7727848C8300CC9C4C /* Card.swift in Sources */,
 			);
@@ -431,9 +455,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79CZRZ64F8;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptainCooks/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -448,6 +473,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.igorp.CaptainCooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -459,9 +485,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 79CZRZ64F8;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CaptainCooks/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -476,6 +503,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.igorp.CaptainCooks;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

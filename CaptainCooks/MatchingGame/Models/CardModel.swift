@@ -8,7 +8,7 @@
 import Foundation
 
 
-class CardModel {
+final class CardModel {
     
     func getCards() -> [Card] {
         

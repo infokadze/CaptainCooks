@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Card {
+final class Card {
     
     var imageName = ""
     var isMatched = false
