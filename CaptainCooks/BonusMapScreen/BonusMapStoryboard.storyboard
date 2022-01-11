@@ -111,7 +111,7 @@
                                                 <rect key="frame" x="353" y="8" width="240" height="218"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <subviews>
-                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActive" translatesAutoresizingMaskIntoConstraints="NO" id="wdl-eT-Opk">
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="crossNotActive" translatesAutoresizingMaskIntoConstraints="NO" id="wdl-eT-Opk">
                                                         <rect key="frame" x="73" y="157" width="95" height="80"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>

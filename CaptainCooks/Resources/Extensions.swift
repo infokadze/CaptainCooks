@@ -8,12 +8,52 @@
 import UIKit
 import AVFoundation
 
+
+extension UIViewController {
+    func makeLabelChewyColor(label: UILabel, text: String, size: CGFloat) -> UILabel {
+        let labelChanged = label
+        let color = UIColor.rgbColor(red: 136, green: 50, blue: 54, alpha: 1)
+        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -5.0,
+                                                          .strokeColor: UIColor.white,
+                                                          .foregroundColor: color]
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
+        labelChanged.attributedText = attributedString
+        labelChanged.font = UIFont(name: "Chewy-Regular", size: size)
+        return labelChanged
+    }
+    
+    func makeSettingsButtonImage(button: UIButton, image: UIImage, needsRendering: Bool) -> UIButton {
+        let buttonChanged = button
+        switch needsRendering {
+        case true:
+            let buttonChanged = button
+            buttonChanged.setImage(image.withRenderingMode(.alwaysTemplate), for: .normal)
+            buttonChanged.tintColor = UIColor.rgbColor(red: 232, green: 164, blue: 69, alpha: 1)
+    case false:
+        let buttonChanged = button
+            buttonChanged.setImage(image, for: .normal)
+    }
+    return buttonChanged
+    }
+}
+
+extension UILabel {
+    func updateAttributedText(_ text: String) {
+        if let attributedText = attributedText {
+            let mutableAttributedText = NSMutableAttributedString(attributedString: attributedText)
+            mutableAttributedText.mutableString.setString(text)
+            self.attributedText = mutableAttributedText
+        }
+    }
+}
+
 extension UIColor {
     
     static func rgbColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
     }
 }
+
 
 extension UIButton {
     
@@ -30,6 +70,9 @@ extension UIButton {
         imageView.layer.add(crossFade, forKey: "animateContents")
     }
     
+}
+
+extension UIButton {
     func shake() {
         let animation = CAKeyframeAnimation(keyPath: "transform.translation.x")
         animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.linear)
@@ -59,23 +102,27 @@ extension UIImage {
 
 extension UIViewController {
     
-    func setupBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
-        let player = playerClassInstance
-        player.playSound(effect: sound)
-        player.audioPlayer?.numberOfLoops = -1
-        player.audioPlayer?.volume = 1
-    }
-    
-    func createIconShakeAnimation(fromValue: Float, toValue: Float, speed: Float? = nil) -> CABasicAnimation {
+    func createIconShakeAnimation(fromValue: Float, toValue: Float, speed: Float? = nil, duration: CFTimeInterval? = nil) -> CABasicAnimation {
         var iconShake = CABasicAnimation()
         iconShake = CABasicAnimation(keyPath: "transform.rotation.z")
         iconShake.fromValue = fromValue
         iconShake.toValue = toValue
         iconShake.autoreverses = true
-        iconShake.duration = 1
+        iconShake.isRemovedOnCompletion = false
+        iconShake.duration = duration ?? 1
         iconShake.speed = speed ?? 1
         iconShake.repeatCount = Float.greatestFiniteMagnitude
         return iconShake
+    }
+}
+
+extension UIViewController {
+    
+    func setupBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
+        let player = playerClassInstance
+        player.playSound(effect: sound)
+        player.audioPlayer?.numberOfLoops = -1
+        player.audioPlayer?.volume = 1
     }
 }
 
@@ -197,3 +244,128 @@ extension UIView {
     }
     
 }
+
+extension UIView {
+    enum GlowEffect: Float {
+        case small = 4, normal = 8, big = 15
+    }
+
+    func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal) {
+        layer.masksToBounds = false
+        layer.shadowColor = color.cgColor
+        layer.shadowRadius = 0
+        layer.shadowOpacity = 1
+        layer.shadowOffset = .zero
+
+        let glowAnimation = CABasicAnimation(keyPath: "shadowRadius")
+        glowAnimation.fromValue = 0
+        glowAnimation.toValue = effect.rawValue
+        glowAnimation.beginTime = CACurrentMediaTime()+0.3
+        glowAnimation.duration = CFTimeInterval(1)
+        glowAnimation.isRemovedOnCompletion = false
+        glowAnimation.repeatCount = .infinity
+        glowAnimation.fillMode = .removed
+        glowAnimation.autoreverses = true
+        layer.add(glowAnimation, forKey: "shadowGlowingAnimation")
+    }
+}
+
+extension UIButton {
+
+    #warning("needs testing")
+    func flash() {
+        // Take as snapshot of the button and render as a template
+        let snapshot = self.snapshot?.withRenderingMode(.alwaysTemplate)
+        let imageView = UIImageView(image: snapshot)
+        // Add it image view and render close to white
+        imageView.tintColor = UIColor(white: 0.9, alpha: 1.0)
+        guard let image = imageView.snapshot  else { return }
+        let width = image.size.width
+        let height = image.size.height
+        // Create CALayer and add light content to it
+        let shineLayer = CALayer()
+        shineLayer.contents = image.cgImage
+        shineLayer.frame = bounds
+
+        // create CAGradientLayer that will act as mask clear = not shown, opaque = rendered
+        // Adjust gradient to increase width and angle of highlight
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.clear.cgColor,
+                                UIColor.clear.cgColor,
+                                UIColor.black.cgColor,
+                                UIColor.clear.cgColor,
+                                UIColor.clear.cgColor]
+        gradientLayer.locations = [0.0, 0.35, 0.50, 0.65, 0.0]
+        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+
+        gradientLayer.frame = CGRect(x: -width, y: 0, width: width, height: height)
+        // Create CA animation that will move mask from outside bounds left to outside bounds right
+        let animation = CABasicAnimation(keyPath: "position.x")
+        animation.byValue = width * 2
+        // How long it takes for glare to move across button
+        animation.duration = 3
+        // Repeat forever
+        animation.repeatCount = Float.greatestFiniteMagnitude
+        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+
+        layer.addSublayer(shineLayer)
+        shineLayer.mask = gradientLayer
+
+        // Add animation
+        gradientLayer.add(animation, forKey: "shine")
+    }
+
+    func stopFlash() {
+        // Search all sublayer masks for "shine" animation and remove
+        layer.sublayers?.forEach {
+            $0.mask?.removeAnimation(forKey: "shine")
+        }
+    }
+}
+
+extension UIView {
+    // Helper to snapshot a view
+    var snapshot: UIImage? {
+        let renderer = UIGraphicsImageRenderer(size: bounds.size)
+
+        let image = renderer.image { context in
+            layer.render(in: context.cgContext)
+        }
+        return image
+    }
+}
+
+extension UIView{
+     func blink() {
+         self.alpha = 0.8
+         UIView.animate(withDuration: 0.4, delay: 0.0, options: [.curveEaseInOut], animations: {self.alpha = 1.0}, completion: nil)
+     }
+}
+
+
+
+#warning("check")
+fileprivate enum Storyboard : String {
+        case main = "Main"
+    }
+
+    fileprivate extension UIStoryboard {
+        static func loadFromMain(_ identifier: String) -> UIViewController {
+            return load(from: .main, identifier: identifier)
+        }
+
+        static func load(from storyboard: Storyboard, identifier: String) -> UIViewController {
+            let uiStoryboard = UIStoryboard(name: storyboard.rawValue, bundle: nil)
+            return uiStoryboard.instantiateViewController(withIdentifier: identifier)
+        }
+    }
+
+    // MARK: App View Controllers
+
+    extension UIStoryboard {
+        class func loadHomeViewController() ->  InitialViewController {
+            return loadFromMain("HomeViewController") as! InitialViewController
+        }
+    }
+

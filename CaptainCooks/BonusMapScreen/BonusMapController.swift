@@ -8,9 +8,7 @@
 import UIKit
 
 final class BonusMapController: UIViewController {
-    
-    let cardAudioEffect = SoundManager()
-    
+        
     var particle1 = CAEmitterCell()
     var particle2 = CAEmitterCell()
     var particle3 = CAEmitterCell()
@@ -95,23 +93,28 @@ final class BonusMapController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        createParticles()
-        levelCrosses.forEach {
-            $0.layer.add(createIconShakeAnimation(fromValue: -0.1, toValue: 0.1), forKey: "iconShakeAnimation")
-        }
-
+        scrollView.contentInsetAdjustmentBehavior = .never
+        
         levelButtons.forEach {
-            
-            $0.layer.add(createIconShakeAnimation(fromValue: -0.1, toValue: 0.1), forKey: "iconShakeAnimation")
-            
             levelButtons[0].tag = 1
-            if $0.tag == 1 { return }
+            if $0.tag == 1 { $0.layer.add(createIconShakeAnimation(fromValue: 0.0, toValue: 0.0), forKey: "iconShakeAnimation")
+            } else {
+                $0.layer.add(createIconShakeAnimation(fromValue: 0.0, toValue: 0.025), forKey: "iconShakeAnimation")
+            }
             
-            $0.startShimmeringAnimation(animationSpeed: 2, direction: .leftToRight, repeatCount: .infinity)
-            
-            
+            levelCrosses.forEach {
+                levelCrosses[0].tag = 1
+                if $0.tag == 1 { $0.layer.add(createIconShakeAnimation(fromValue: 0.0, toValue: 0.0), forKey: "iconShakeAnimation")
+                } else {
+                    $0.layer.add(createIconShakeAnimation(fromValue: 0.0, toValue: 0.025), forKey: "iconShakeAnimation")
+                }
+                
+                levelButtons[0].doGlowAnimation(withColor: .yellow, withEffect: .big)
+                //        levelButtons[0].startShimmeringAnimation(animationSpeed: 2, direction: .leftToRight, repeatCount: .infinity)
+            }
         }
     }
+    
     
     @IBAction func firstLevelBonusButton(_ sender: UIButton) {
         buttonImageOpacityChange(button: levelButtons[0], toOpacity: 0.75)
@@ -134,7 +137,7 @@ final class BonusMapController: UIViewController {
         
         transitionCrossImageAnimation(fromImageView: levelCrosses[1], toImageView: UIImageView.init(image: UIImage(named: "crossActiveRight"))
         )
-        
+    
         inactivateButtonAndImageViewAnimations(button: levelButtons, index: 1, imageView: levelCrosses)
         _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 1, to: 0, duration: 2, completion: nil)
         
@@ -155,12 +158,14 @@ final class BonusMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        createParticles()
         setupBackgroundAudio(playerClassInstance: SoundManager.sharedInstance, sound: .slots)
-
-        scrollView.contentInsetAdjustmentBehavior = .never
+        
     }
     
 }
+
+
 
 
 

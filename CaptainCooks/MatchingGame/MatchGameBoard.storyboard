@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,7 +25,7 @@
                                 <rect key="frame" x="240" y="66" width="416" height="282"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="o0l-r4-ID7">
-                                        <rect key="frame" x="0.0" y="0.0" width="416" height="282"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="416" height="307"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLb-ZN-WgW">
                                         <rect key="frame" x="40" y="71" width="140" height="140"/>
@@ -91,14 +90,14 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="eLb-ZN-WgW" firstAttribute="leading" secondItem="MVG-ch-xPo" secondAttribute="leading" constant="40" id="61e-L2-V53"/>
                                     <constraint firstItem="BSn-be-cil" firstAttribute="top" secondItem="eLb-ZN-WgW" secondAttribute="top" id="Evz-i9-rNU"/>
                                     <constraint firstItem="eLb-ZN-WgW" firstAttribute="centerY" secondItem="MVG-ch-xPo" secondAttribute="centerY" id="HQB-33-r85"/>
                                     <constraint firstItem="eLb-ZN-WgW" firstAttribute="height" secondItem="MVG-ch-xPo" secondAttribute="height" multiplier="0.496454" id="TdY-aB-Rue"/>
                                     <constraint firstAttribute="trailing" secondItem="o0l-r4-ID7" secondAttribute="trailing" id="XFV-C3-L1a"/>
-                                    <constraint firstItem="o0l-r4-ID7" firstAttribute="bottom" secondItem="MVG-ch-xPo" secondAttribute="bottom" id="aef-op-b5L"/>
+                                    <constraint firstItem="o0l-r4-ID7" firstAttribute="bottom" secondItem="MVG-ch-xPo" secondAttribute="bottom" constant="25" id="aef-op-b5L"/>
                                     <constraint firstItem="o0l-r4-ID7" firstAttribute="leading" secondItem="MVG-ch-xPo" secondAttribute="leading" id="b2Q-WO-LSa"/>
                                     <constraint firstItem="Yhb-jQ-GAU" firstAttribute="bottom" secondItem="eLb-ZN-WgW" secondAttribute="bottom" constant="21" id="hSp-25-004"/>
                                     <constraint firstItem="BSn-be-cil" firstAttribute="trailing" secondItem="Yhb-jQ-GAU" secondAttribute="trailing" id="oHa-dR-KDF"/>
@@ -132,8 +131,5 @@
         <image name="card1" width="40" height="40"/>
         <image name="empty" width="40" height="40"/>
         <image name="get" width="174.5" height="64.5"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>

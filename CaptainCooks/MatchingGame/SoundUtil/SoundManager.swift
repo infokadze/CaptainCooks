@@ -5,7 +5,6 @@
 //  Created by LiewSyetChau on 16/12/21.
 //
 
-import Foundation
 import AVFoundation
 
 final class SoundManager {
@@ -67,7 +66,7 @@ final class SoundManager {
         
         do {
             //create the audio player
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.soloAmbient)
             try AVAudioSession.sharedInstance().setActive(true)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
             
