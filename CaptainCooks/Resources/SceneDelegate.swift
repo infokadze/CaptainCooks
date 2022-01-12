@@ -17,6 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        setupUser(coins: UserDefault.coins, sound: UserDefault.isMutedSound, backMusic: UserDefault.isMutedBackgroundMusic)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -45,6 +46,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+    }
+    
+    private func setupUser(coins: Int, sound: Bool, backMusic: Bool) {
+        if !UserDefault.launchedFirstTime {
+            UserDefault.coins = coins
+            UserDefault.launchedFirstTime = true
+            UserDefault.isMutedSound = sound
+            UserDefault.isMutedBackgroundMusic = backMusic
+            UserDefault.currentDate = Date()
+            #warning("setup level if user already played")
+            
+        } else {
+            #warning("setup coins if user already played")
+            UserDefault.coins = 10_000
+            UserDefault.isMutedBackgroundMusic = true
+            UserDefault.isMutedSound = true
+            UserDefault.bonusLevelNumber = 1
+            UserDefault.mainLevelNumber = 1
+        }
     }
 
 

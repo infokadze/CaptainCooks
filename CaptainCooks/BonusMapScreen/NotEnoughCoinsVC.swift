@@ -14,7 +14,7 @@ class NotEnoughCoinsVC: UIViewController {
     @IBAction func gotItAction(_ sender: UIButton) {
         dismiss(animated: true) {
             
-            _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 0, to: 1, duration: 2, completion: nil)
+//            _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 0, to: 1, duration: 2, completion: nil)
             
         }
     }
@@ -22,8 +22,6 @@ class NotEnoughCoinsVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        labelText.text = """
-To play this location you need to earn 1500 coins. Try again when you've got enough coins
-"""
+        labelText.text = K.Text.notEnoughCoins
     }
 }

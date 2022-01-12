@@ -13,6 +13,14 @@
         </array>
     </customFonts>
     <scenes>
+        <!--Main-->
+        <scene sceneID="GhL-JL-N2V">
+            <objects>
+                <viewControllerPlaceholder storyboardName="Main" id="smQ-S7-g62" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="clu-TU-B3x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="41" y="-403"/>
+        </scene>
         <!--Match Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -87,6 +95,7 @@
                                         <state key="normal" image="get"/>
                                         <connections>
                                             <action selector="goToMainScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aFt-Bl-AHd"/>
+                                            <segue destination="smQ-S7-g62" kind="presentation" identifier="unwindToMain" id="tVu-G5-ei9"/>
                                         </connections>
                                     </button>
                                 </subviews>

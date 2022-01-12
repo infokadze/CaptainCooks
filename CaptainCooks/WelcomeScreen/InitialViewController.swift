@@ -14,11 +14,19 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
+    @IBOutlet weak var getYourBonusView: UIView!
+    
     @IBOutlet var mainVCLevelButtons: [UIButton]!
     
     @IBOutlet weak var levelLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: levelLabel, text: "Level 1", size: 20)
+            _ = makeLabelChewyColor(label: levelLabel, text: "Level", size: 20)
+        }
+    }
+    
+    @IBOutlet weak var levelNumberLabel: UILabel! {
+        didSet {
+            _ = makeLabelChewyColor(label: levelNumberLabel, text: "1", size: 31)
         }
     }
     
@@ -27,6 +35,7 @@ class InitialViewController: UIViewController {
             _ = makeLabelChewyColor(label: balanceLabel, text: "Balance", size: 20)
         }
     }
+
     
     @IBOutlet weak var getYourBonusButton: UIButton! {
         didSet {
@@ -37,45 +46,45 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var amountLabel: UILabel! {
         didSet {
             amountLabel.textColor = .yellow
+            amountLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
             amountLabel.doGlowAnimation(withColor: .yellow, withEffect: .normal)
         }
+    }
+    
+    @IBAction func unwind( _ segue: UIStoryboardSegue) {
     }
     
     @IBAction func settingsOrInfoButtonTapped(_ sender: UIButton) {
         
         sender.blink()
-        performSegue(withIdentifier: "goToSettingsOrInfo", sender: sender)
+        performSegue(withIdentifier: K.segueID.settingsOrInfoVC, sender: sender)
     }
     
     @IBAction func getYourBonusButton(_ sender: Any) {
-        performSegue(withIdentifier: "goToMatchGameBoard", sender: sender)
-    }
-    
-    @IBAction func goToBonusMap(_ sender: UIButton) {
-        performSegue(withIdentifier: "goToBonusMap", sender: sender)
+        performSegue(withIdentifier: K.segueID.bonusMapVC, sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == "goToMatchGameBoard" {
+        if segue.identifier == K.segueID.bonusGameVC {
             guard segue.destination is MatchGameViewController else { return }
             
-            _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 1, to: 0, duration: 5, completion: nil)
+//            _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 1, to: 0, duration: 5, completion: nil)
         }
         
-        else if segue.identifier == "goToBonusMap" {
+        else if segue.identifier == K.segueID.bonusMapVC {
             guard segue.destination is BonusMapController else { return }
         }
         
-        else if segue.identifier == "goToSettingsOrInfo" && sender as? NSObject == settingsButton {
+        else if segue.identifier == K.segueID.settingsOrInfoVC && sender as? NSObject == settingsButton {
             guard segue.destination is SettingsController else { return }
             if let vc = segue.destination as? SettingsController {
                 vc.mainVCSettingsButtonState = true
 
             }
             
-        }  else if  segue.identifier == "goToSettingsOrInfo" && sender as? NSObject == infoButton {
+        }  else if  segue.identifier == K.segueID.settingsOrInfoVC && sender as? NSObject == infoButton {
             if let vc = segue.destination as? SettingsController {
                 vc.mainVCSettingsButtonState = false
 
@@ -83,17 +92,61 @@ class InitialViewController: UIViewController {
         }
     }
     
-    @IBAction func unwind( _ segue: UIStoryboardSegue) {
+
+    
+    #warning("update coins func + not enough coins")
+    func checkCoins() {
+        switch UserDefault.coins {
+        case 10_000..<12_000:
+            print("level 1")
+                //change progress image + level number
+        case 12_000..<14_000:
+            print("level 2")
+            //change progress image + level number
+        case 14_000..<16_000:
+            print("level 3")
+            //change progress image + level number
+        case 16_000..<18_000:
+            print("level 4")
+            //change progress image + level number
+        case 18_000..<20_000:
+            print("level 5")
+            //change progress image + level number
+        default: break
+        }
     }
+    
+    #warning("update level")
+    func checkLevel() {
+        switch UserDefault.mainLevelNumber {
+        default:
+            break
+        }
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+#warning("update checkDate to present bonuses")
+        if let date = UserDefault.currentDate as? Date {
+            if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff > 24 {
+                //do something
+            } else {
+                getYourBonusView.isHidden = true
+                
+            }
+        }
         
         setupBackgroundAudio(playerClassInstance: SoundManager.sharedInstance, sound: .main)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        checkLevel()
+        checkCoins()
+        
         mainVCLevelButtons.forEach {
             
             mainVCLevelButtons[0].tag = 1

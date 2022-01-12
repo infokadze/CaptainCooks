@@ -116,7 +116,7 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O5z-XP-vKx" userLabel="firstLevelBonusButton">
-                                                        <rect key="frame" x="30" y="34" width="180" height="129"/>
+                                                        <rect key="frame" x="30" y="35" width="180" height="129"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
                                                         <buttonConfiguration key="configuration" style="plain" image="treasure1000"/>
@@ -148,7 +148,7 @@
                                                         <rect key="frame" x="-7" y="38" width="197" height="150"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="tryYourLuckActiveRight"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="tryYourLuckPassiveRight"/>
                                                         <connections>
                                                             <action selector="secondLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="wjm-aQ-DAf"/>
                                                             <segue destination="swb-Fv-3kH" kind="popoverPresentation" identifier="goToNotEnoughCoinsVC" popoverAnchorView="qqd-p0-E5S" id="HIv-pc-1DL">
@@ -172,10 +172,10 @@
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                     </imageView>
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGh-1g-iry" userLabel="thirdLevelBonusButton">
-                                                        <rect key="frame" x="30" y="20" width="180" height="129"/>
+                                                        <rect key="frame" x="30" y="21" width="180" height="129"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="treasure2500"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="treasure2500blured"/>
                                                         <connections>
                                                             <action selector="thirdLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="cyu-3m-ing"/>
                                                         </connections>
@@ -195,7 +195,7 @@
                                                         <rect key="frame" x="-15" y="57" width="197" height="150"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="tryYourLuckActiveLeft"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="tryYourLuckPassiveLeft"/>
                                                         <connections>
                                                             <action selector="forthLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aCk-U9-bI0"/>
                                                         </connections>
@@ -211,7 +211,7 @@
                                                         <rect key="frame" x="30" y="-7" width="180" height="129"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                         <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="treasure5000"/>
+                                                        <buttonConfiguration key="configuration" style="plain" image="treasure5000blured"/>
                                                         <connections>
                                                             <action selector="fifthLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Vet-e6-Ay0"/>
                                                         </connections>
@@ -285,10 +285,10 @@
         <image name="gotItImage" width="174.66667175292969" height="64.333335876464844"/>
         <image name="menuButton" width="54" height="58"/>
         <image name="treasure1000" width="156" height="115"/>
-        <image name="treasure2500" width="156" height="115"/>
-        <image name="treasure5000" width="156" height="115"/>
-        <image name="tryYourLuckActiveLeft" width="187.33332824707031" height="163.66667175292969"/>
-        <image name="tryYourLuckActiveRight" width="184" height="157.66667175292969"/>
+        <image name="treasure2500blured" width="156" height="115"/>
+        <image name="treasure5000blured" width="156" height="115"/>
+        <image name="tryYourLuckPassiveLeft" width="187" height="163.33332824707031"/>
+        <image name="tryYourLuckPassiveRight" width="184" height="157.66667175292969"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

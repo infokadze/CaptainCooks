@@ -23,13 +23,10 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
     
     //MARK: - @objc + helpers
     @IBAction func goToMainScreen(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let controller = storyboard.instantiateViewController(withIdentifier: "MainVC")
-        self.present(controller, animated: true, completion: nil)
-        self.view.window?.rootViewController?.dismiss(animated: false) {
-        }
-        
+        performSegue(withIdentifier: K.segueID.mainVC, sender: sender)
+        self.view.window?.rootViewController?.dismiss(animated: false)
     }
+    
     
     private func setButtonImage(button: UIButton, result: Int) {
         let buttonForImage = button

@@ -25,7 +25,6 @@ final class SoundManager {
     }
     
     func playSound(effect: SoundEffect) {
-        
         var soundFileName = ""
         
         switch effect {
@@ -49,23 +48,18 @@ final class SoundManager {
             break
         case .slots:
             soundFileName = "slots"
-//        case .harp:
-//            soundFileName = "harp"
+
         }
         
-        //get the path to resource
         let bundlePath = Bundle.main.path(forResource: soundFileName, ofType: ".wav")
-        
-        //check that if not nil
+   
         guard bundlePath != nil else {
-            //could not find resource
             return
         }
         
         let url = URL(fileURLWithPath: bundlePath!)
         
         do {
-            //create the audio player
             try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.soloAmbient)
             try AVAudioSession.sharedInstance().setActive(true)
             audioPlayer = try AVAudioPlayer(contentsOf: url)
@@ -81,6 +75,7 @@ final class SoundManager {
     
     func stop() {
         audioPlayer?.stop()
+        UserDefault.isMutedBackgroundMusic = true
     }
 }
 

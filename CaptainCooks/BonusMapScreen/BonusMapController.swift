@@ -24,7 +24,8 @@ final class BonusMapController: UIViewController {
     
     //MARK: - Button Actions
     @IBAction func menuButtonAction(_ sender: UIButton) {
-        performSegue(withIdentifier: "unwindToMain", sender: self)
+        sender.blink()
+        performSegue(withIdentifier: K.segueID.mainVC, sender: self)
         self.view.window?.rootViewController?.dismiss(animated: false) {
         }
     }
@@ -127,7 +128,7 @@ final class BonusMapController: UIViewController {
 
 #warning("write coins conditions")
 //        strange if commented - still performs segue
-        performSegue(withIdentifier: "goToMatchGame", sender: sender)
+        performSegue(withIdentifier: K.segueID.bonusGameVC, sender: sender)
         
     }
     
@@ -143,7 +144,7 @@ final class BonusMapController: UIViewController {
         
 #warning("write coins conditions")
         
-        performSegue(withIdentifier: "goToNotEnoughCoinsVC", sender: sender)
+        performSegue(withIdentifier: K.segueID.notEnoughCoinsVC, sender: sender)
     }
     
     @IBAction func thirdLevelBonusButton(_ sender: UIButton) {
