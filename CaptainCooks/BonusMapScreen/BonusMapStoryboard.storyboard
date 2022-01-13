@@ -122,9 +122,6 @@
                                                         <buttonConfiguration key="configuration" style="plain" image="treasure1000"/>
                                                         <connections>
                                                             <action selector="firstLevelBonusButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="sh1-dB-Adk"/>
-                                                            <segue destination="anp-EM-xlF" kind="popoverPresentation" identifier="goToMatchGame" popoverAnchorView="O5z-XP-vKx" id="CZp-4F-ra2">
-                                                                <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                                            </segue>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -137,7 +134,7 @@
                                                 <buttonConfiguration key="configuration" style="plain" image="menuButton"/>
                                                 <connections>
                                                     <action selector="menuButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="J5W-cW-SUk"/>
-                                                    <segue destination="c5A-ys-Ws6" kind="presentation" identifier="unwindToMain" id="Gs3-ej-0j6"/>
+                                                    <segue destination="c5A-ys-Ws6" kind="presentation" identifier="goToMain" id="Gs3-ej-0j6"/>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SNk-DL-ScZ" userLabel="secondLevelBonusView">
@@ -269,6 +266,7 @@
                         <outletCollection property="levelCrosses" destination="lLo-Dw-0bZ" collectionClass="NSMutableArray" id="vXD-LU-O7T"/>
                         <outletCollection property="levelCrosses" destination="mfs-hI-niF" collectionClass="NSMutableArray" id="Ael-9R-to6"/>
                         <outletCollection property="levelCrosses" destination="4pd-6u-Mre" collectionClass="NSMutableArray" id="rce-h6-wuw"/>
+                        <segue destination="anp-EM-xlF" kind="presentation" identifier="goToMatchGame" id="bwd-nA-mS1"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

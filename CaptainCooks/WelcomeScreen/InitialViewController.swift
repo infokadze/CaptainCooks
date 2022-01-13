@@ -14,7 +14,23 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     
-    @IBOutlet weak var getYourBonusView: UIView!
+    
+    #warning("testing")
+    @IBOutlet weak var getYourBonusView: UIView! {
+        didSet {
+            getYourBonusView.isHidden = true
+        }
+    }
+    @IBOutlet weak var mainAdviceScreen: UIView!
+       
+    @IBOutlet weak var adviceTextView: UILabel! {
+        didSet {
+            adviceTextView.text = Key.Text.mainScreenText.randomElement()
+            adviceTextView.font = UIFont(name: "Chewy-Regular", size: 20)
+            adviceTextView.textColor = .white
+            adviceTextView.textAlignment = .justified
+        }
+    }
     
     @IBOutlet var mainVCLevelButtons: [UIButton]!
     
@@ -36,7 +52,6 @@ class InitialViewController: UIViewController {
         }
     }
 
-    
     @IBOutlet weak var getYourBonusButton: UIButton! {
         didSet {
             getYourBonusButton.startShimmeringAnimation(animationSpeed: 3, direction: .leftToRight, repeatCount: .infinity)
@@ -51,48 +66,49 @@ class InitialViewController: UIViewController {
         }
     }
     
-    @IBAction func unwind( _ segue: UIStoryboardSegue) {
+    
+    @IBAction func gotItAction(_ sender: UIButton) {
+        print(sender)
+        performSegue(withIdentifier: Key.segueID.bonusMapVC, sender: sender)
+//        performSegue(withIdentifier: Key.segueID.slots, sender: sender)
     }
     
     @IBAction func settingsOrInfoButtonTapped(_ sender: UIButton) {
-        
-        sender.blink()
-        performSegue(withIdentifier: K.segueID.settingsOrInfoVC, sender: sender)
+                performSegue(withIdentifier: Key.segueID.settingsOrInfoVC, sender: sender)
     }
     
     @IBAction func getYourBonusButton(_ sender: Any) {
-        performSegue(withIdentifier: K.segueID.bonusMapVC, sender: sender)
+        performSegue(withIdentifier: Key.segueID.bonusMapVC, sender: sender)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
         
-        if segue.identifier == K.segueID.bonusGameVC {
+        if segue.identifier == Key.segueID.bonusGameVC {
             guard segue.destination is MatchGameViewController else { return }
             
 //            _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 1, to: 0, duration: 5, completion: nil)
         }
         
-        else if segue.identifier == K.segueID.bonusMapVC {
+        else if segue.identifier == Key.segueID.bonusMapVC {
             guard segue.destination is BonusMapController else { return }
+        
         }
         
-        else if segue.identifier == K.segueID.settingsOrInfoVC && sender as? NSObject == settingsButton {
+        else if segue.identifier == Key.segueID.settingsOrInfoVC && sender as? NSObject == settingsButton {
             guard segue.destination is SettingsController else { return }
             if let vc = segue.destination as? SettingsController {
                 vc.mainVCSettingsButtonState = true
 
             }
             
-        }  else if  segue.identifier == K.segueID.settingsOrInfoVC && sender as? NSObject == infoButton {
+        }  else if  segue.identifier == Key.segueID.settingsOrInfoVC && sender as? NSObject == infoButton {
             if let vc = segue.destination as? SettingsController {
                 vc.mainVCSettingsButtonState = false
 
             }
         }
     }
-    
-
     
     #warning("update coins func + not enough coins")
     func checkCoins() {
@@ -128,6 +144,7 @@ class InitialViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
 #warning("update checkDate to present bonuses")
         if let date = UserDefault.currentDate as? Date {
             if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff > 24 {
@@ -138,7 +155,7 @@ class InitialViewController: UIViewController {
             }
         }
         
-        setupBackgroundAudio(playerClassInstance: SoundManager.sharedInstance, sound: .main)
+//        setupBackgroundAudio(playerClassInstance: SoundManager.sharedInstance, sound: .main)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,21 +165,20 @@ class InitialViewController: UIViewController {
         checkCoins()
         
         mainVCLevelButtons.forEach {
-            
-            mainVCLevelButtons[0].tag = 1
-            if $0.tag == 1 { $0.layer.add(createIconShakeAnimation(fromValue: -0.5, toValue: 0.5, speed: 0.8), forKey: "iconShakeAnimation")
-            } else {
                 $0.layer.add(createIconShakeAnimation(fromValue: -0.5, toValue: 0.5, speed: 0.8), forKey: "iconShakeAnimation")
             }
-        }
-        
+    
         treasureImageView.doGlowAnimation(withColor: .yellow, withEffect: .big)
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        
-    }
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//
+//        if self.isBeingPresented == true {
+//            self.dismiss(animated: false)
+//                    }
+//             }
+    
 }
 
 

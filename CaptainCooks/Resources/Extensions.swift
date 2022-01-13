@@ -25,13 +25,26 @@ extension UIViewController {
     func makeLabelChewyColor(label: UILabel, text: String, size: CGFloat) -> UILabel {
         let labelChanged = label
         let color = UIColor.rgbColor(red: 136, green: 50, blue: 54, alpha: 1)
-        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -5.0,
+        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -4.0,
                                                           .strokeColor: UIColor.white,
                                                           .foregroundColor: color]
         let attributedString = NSAttributedString(string: text, attributes: attributes)
         labelChanged.attributedText = attributedString
         labelChanged.font = UIFont(name: "Chewy-Regular", size: size)
         return labelChanged
+    }
+    
+    func makeChewyTextView(textView: UITextView, text: String, size: CGFloat) -> UITextView {
+        let textForView = textView
+//        let color = UIColor.rgbColor(red: 136, green: 50, blue: 54, alpha: 1)
+        let color = UIColor.black
+        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -4.0,
+                                                          .strokeColor: UIColor.white,
+                                                          .foregroundColor: color]
+        let attributedString = NSAttributedString(string: text, attributes: attributes)
+        textView.attributedText = attributedString
+        textView.font = UIFont(name: "Chewy-Regular", size: size)
+        return textForView
     }
     
     func makeSettingsButtonImage(button: UIButton, image: UIImage, needsRendering: Bool) -> UIButton {
@@ -130,11 +143,19 @@ extension UIViewController {
 
 extension UIViewController {
     
-    func setupBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
+    func playBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
         let player = playerClassInstance
         player.playSound(effect: sound)
         player.audioPlayer?.numberOfLoops = -1
         player.audioPlayer?.volume = 1
+    }
+    
+    func playSoundOneTimer(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
+        let player = playerClassInstance
+        player.playSound(effect: sound)
+        player.audioPlayer?.numberOfLoops = 1
+        player.audioPlayer?.volume = 1
+    
     }
 }
 
@@ -262,7 +283,7 @@ extension UIView {
         case small = 4, normal = 8, big = 15
     }
 
-    func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal) {
+    func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal, duration: CFTimeInterval? = nil) {
         layer.masksToBounds = false
         layer.shadowColor = color.cgColor
         layer.shadowRadius = 0
@@ -273,7 +294,7 @@ extension UIView {
         glowAnimation.fromValue = 0
         glowAnimation.toValue = effect.rawValue
         glowAnimation.beginTime = CACurrentMediaTime()+0.3
-        glowAnimation.duration = CFTimeInterval(1)
+        glowAnimation.duration = duration ?? 1.5
         glowAnimation.isRemovedOnCompletion = false
         glowAnimation.repeatCount = .infinity
         glowAnimation.fillMode = .removed

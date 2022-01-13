@@ -13,14 +13,6 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Main-->
-        <scene sceneID="GhL-JL-N2V">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Main" id="smQ-S7-g62" sceneMemberID="viewController"/>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="clu-TU-B3x" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="41" y="-403"/>
-        </scene>
         <!--Match Game View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -81,7 +73,7 @@
                                         </cells>
                                     </collectionView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play and find 3 identical cards to win coins" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-be-cil">
-                                        <rect key="frame" x="215" y="71" width="170" height="88.5"/>
+                                        <rect key="frame" x="206" y="71" width="170" height="88.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="170" id="KgS-vz-SNG"/>
                                         </constraints>
@@ -90,12 +82,11 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhb-jQ-GAU">
-                                        <rect key="frame" x="210.5" y="167" width="174.5" height="65"/>
+                                        <rect key="frame" x="201.5" y="167" width="174.5" height="65"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="get"/>
                                         <connections>
                                             <action selector="goToMainScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aFt-Bl-AHd"/>
-                                            <segue destination="smQ-S7-g62" kind="presentation" identifier="unwindToMain" id="tVu-G5-ei9"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -110,9 +101,8 @@
                                     <constraint firstItem="o0l-r4-ID7" firstAttribute="leading" secondItem="MVG-ch-xPo" secondAttribute="leading" id="b2Q-WO-LSa"/>
                                     <constraint firstItem="Yhb-jQ-GAU" firstAttribute="bottom" secondItem="eLb-ZN-WgW" secondAttribute="bottom" constant="21" id="hSp-25-004"/>
                                     <constraint firstItem="BSn-be-cil" firstAttribute="trailing" secondItem="Yhb-jQ-GAU" secondAttribute="trailing" id="oHa-dR-KDF"/>
-                                    <constraint firstAttribute="trailing" secondItem="BSn-be-cil" secondAttribute="trailing" constant="31" id="ujL-or-bbH"/>
                                     <constraint firstItem="o0l-r4-ID7" firstAttribute="top" secondItem="MVG-ch-xPo" secondAttribute="top" id="vWq-WB-JdB"/>
-                                    <constraint firstAttribute="trailing" secondItem="Yhb-jQ-GAU" secondAttribute="trailing" constant="31" id="xjm-k9-Ff1"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yhb-jQ-GAU" secondAttribute="trailing" constant="40" id="xjm-k9-Ff1"/>
                                 </constraints>
                             </view>
                         </subviews>

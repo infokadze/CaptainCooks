@@ -24,20 +24,20 @@ final class BonusMapController: UIViewController {
     
     //MARK: - Button Actions
     @IBAction func menuButtonAction(_ sender: UIButton) {
-        sender.blink()
-        performSegue(withIdentifier: K.segueID.mainVC, sender: self)
-        self.view.window?.rootViewController?.dismiss(animated: false) {
-        }
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: "MainVC") as! InitialViewController
+        present(vc, animated: true)
+//        performSegue(withIdentifier: Key.segueID.mainVC, sender: sender)
     }
     
     private func transitionCrossImageAnimation(fromImageView: UIImageView, toImageView: UIImageView) {
-        UIView.transition(with: fromImageView, duration: 0.5, options: .transitionCrossDissolve, animations: {
+        UIView.transition(with: fromImageView, duration: 1, options: .transitionCrossDissolve, animations: {
             fromImageView.image = toImageView.image
         }, completion: nil)
     }
     
     private func buttonImageOpacityChange(button: UIButton, toOpacity: Float)  {
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 1) {
             button.layer.opacity = toOpacity
         }
     }
@@ -82,15 +82,7 @@ final class BonusMapController: UIViewController {
         
         return cell
     }
-    
-    #warning("Segue test")
-//    override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
-//        if identifier == "goToMatchGame" {
-//            return false
-//        }
-//        return false
-//    }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -124,11 +116,10 @@ final class BonusMapController: UIViewController {
         )
         
         inactivateButtonAndImageViewAnimations(button: levelButtons, index: 0, imageView: levelCrosses)
-        _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 1, to: 0, duration: 2, completion: nil)
 
 #warning("write coins conditions")
 //        strange if commented - still performs segue
-        performSegue(withIdentifier: K.segueID.bonusGameVC, sender: sender)
+        performSegue(withIdentifier: Key.segueID.bonusGameVC, sender: sender)
         
     }
     
@@ -140,11 +131,10 @@ final class BonusMapController: UIViewController {
         )
     
         inactivateButtonAndImageViewAnimations(button: levelButtons, index: 1, imageView: levelCrosses)
-        _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 1, to: 0, duration: 2, completion: nil)
         
 #warning("write coins conditions")
         
-        performSegue(withIdentifier: K.segueID.notEnoughCoinsVC, sender: sender)
+        performSegue(withIdentifier: Key.segueID.notEnoughCoinsVC, sender: sender)
     }
     
     @IBAction func thirdLevelBonusButton(_ sender: UIButton) {
@@ -160,7 +150,7 @@ final class BonusMapController: UIViewController {
         super.viewDidLoad()
         
         createParticles()
-        setupBackgroundAudio(playerClassInstance: SoundManager.sharedInstance, sound: .slots)
+//        setupBackgroundAudio(playerClassInstance: SoundManager.sharedInstance, sound: .slots)
         
     }
     
