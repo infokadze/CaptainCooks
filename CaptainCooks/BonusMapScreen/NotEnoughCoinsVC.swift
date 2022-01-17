@@ -21,6 +21,6 @@ class NotEnoughCoinsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        labelText.text = Key.Text.notEnoughCoins
+        labelText.text = Constants.Text.notEnoughCoins
     }
 }

@@ -36,9 +36,8 @@ extension UIViewController {
     
     func makeChewyTextView(textView: UITextView, text: String, size: CGFloat) -> UITextView {
         let textForView = textView
-//        let color = UIColor.rgbColor(red: 136, green: 50, blue: 54, alpha: 1)
         let color = UIColor.black
-        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -4.0,
+        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -5.0,
                                                           .strokeColor: UIColor.white,
                                                           .foregroundColor: color]
         let attributedString = NSAttributedString(string: text, attributes: attributes)
@@ -73,7 +72,6 @@ extension UILabel {
 }
 
 extension UIColor {
-    
     static func rgbColor(red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) -> UIColor {
         return UIColor(red: red/255.0, green: green/255.0, blue: blue/255.0, alpha: alpha)
     }
@@ -81,8 +79,7 @@ extension UIColor {
 
 
 extension UIButton {
-    
-    func changeImageAnimated(image: UIImage?) {
+        func changeImageAnimated(image: UIImage?) {
         guard let imageView = self.imageView, let currentImage = imageView.image, let newImage = image else {
             return
         }
@@ -94,7 +91,6 @@ extension UIButton {
         crossFade.fillMode = CAMediaTimingFillMode.forwards
         imageView.layer.add(crossFade, forKey: "animateContents")
     }
-    
 }
 
 extension UIButton {
@@ -108,7 +104,6 @@ extension UIButton {
 }
 
 extension UIImage {
-    
     func resizeImage(targetSize: CGSize) -> UIImage {
         let size = self.size
         let widthRatio  = targetSize.width  / size.width
@@ -120,13 +115,11 @@ extension UIImage {
         self.draw(in: rect)
         let newImage = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        
         return newImage!
     }
 }
 
 extension UIViewController {
-    
     func createIconShakeAnimation(fromValue: Float, toValue: Float, speed: Float? = nil, duration: CFTimeInterval? = nil) -> CABasicAnimation {
         var iconShake = CABasicAnimation()
         iconShake = CABasicAnimation(keyPath: "transform.rotation.z")
@@ -138,79 +131,6 @@ extension UIViewController {
         iconShake.speed = speed ?? 1
         iconShake.repeatCount = Float.greatestFiniteMagnitude
         return iconShake
-    }
-}
-
-extension UIViewController {
-    
-    func playBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
-        let player = playerClassInstance
-        player.playSound(effect: sound)
-        player.audioPlayer?.numberOfLoops = -1
-        player.audioPlayer?.volume = 1
-    }
-    
-    func playSoundOneTimer(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
-        let player = playerClassInstance
-        player.playSound(effect: sound)
-        player.audioPlayer?.numberOfLoops = 1
-        player.audioPlayer?.volume = 1
-    
-    }
-}
-
-extension AVAudioPlayer {
-    
-    /// Fades player volume FROM any volume TO any volume
-    /// - Parameters:
-    ///   - from: initial volume
-    ///   - to: target volume
-    ///   - duration: duration in seconds for the fade
-    ///   - completion: callback indicating completion
-    /// - Returns: Timer?
-    func fadeVolume(from: Float, to: Float, duration: Float, completion: (() -> Void)? = nil) -> Timer? {
-        
-        // 1. Set Initial volume
-        volume = from
-        // 2. There's no point in continuing if target volume is the same as initial
-        guard from != to else { return nil }
-        // 3. We define the time interval the interaction will loop into (fraction of a second)
-        let interval: Float = 0.1
-        // 4. Set the range the volume will move
-        let range = to-from
-        // 5. Based on the range, the interval and duration, we calculate how big is the step we need to take in order to reach the target in the given duration
-        let step = (range*interval)/duration
-        
-        // internal function whether the target has been reached or not
-        func reachedTarget() -> Bool {
-            // volume passed max/min
-            guard volume >= 0, volume <= 1 else {
-                volume = to
-                return true
-            }
-            
-            // checks whether the volume is going forward or backward and compare current volume to target
-            if to > from {
-                return volume >= to
-            }
-            return volume <= to
-        }
-        
-        // 6. We create a timer that will repeat itself with the given interval
-        return Timer.scheduledTimer(withTimeInterval: Double(interval), repeats: true, block: { [weak self] (timer) in
-            guard let self = self else { return }
-            
-            DispatchQueue.main.async {
-                // 7. Check if we reached the target, otherwise we add the volume
-                if !reachedTarget() {
-                    // note that if the step is negative, meaning that the to value is lower than the from value, the volume will be decreased instead
-                    self.volume += step
-                } else {
-                    timer.invalidate()
-                    completion?()
-                }
-            }
-        })
     }
 }
 
@@ -303,72 +223,6 @@ extension UIView {
     }
 }
 
-extension UIButton {
-
-    #warning("needs testing")
-    func flash() {
-        // Take as snapshot of the button and render as a template
-        let snapshot = self.snapshot?.withRenderingMode(.alwaysTemplate)
-        let imageView = UIImageView(image: snapshot)
-        // Add it image view and render close to white
-        imageView.tintColor = UIColor(white: 0.9, alpha: 1.0)
-        guard let image = imageView.snapshot  else { return }
-        let width = image.size.width
-        let height = image.size.height
-        // Create CALayer and add light content to it
-        let shineLayer = CALayer()
-        shineLayer.contents = image.cgImage
-        shineLayer.frame = bounds
-
-        // create CAGradientLayer that will act as mask clear = not shown, opaque = rendered
-        // Adjust gradient to increase width and angle of highlight
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.clear.cgColor,
-                                UIColor.clear.cgColor,
-                                UIColor.black.cgColor,
-                                UIColor.clear.cgColor,
-                                UIColor.clear.cgColor]
-        gradientLayer.locations = [0.0, 0.35, 0.50, 0.65, 0.0]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
-
-        gradientLayer.frame = CGRect(x: -width, y: 0, width: width, height: height)
-        // Create CA animation that will move mask from outside bounds left to outside bounds right
-        let animation = CABasicAnimation(keyPath: "position.x")
-        animation.byValue = width * 2
-        // How long it takes for glare to move across button
-        animation.duration = 3
-        // Repeat forever
-        animation.repeatCount = Float.greatestFiniteMagnitude
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-
-        layer.addSublayer(shineLayer)
-        shineLayer.mask = gradientLayer
-
-        // Add animation
-        gradientLayer.add(animation, forKey: "shine")
-    }
-
-    func stopFlash() {
-        // Search all sublayer masks for "shine" animation and remove
-        layer.sublayers?.forEach {
-            $0.mask?.removeAnimation(forKey: "shine")
-        }
-    }
-}
-
-extension UIView {
-    // Helper to snapshot a view
-    var snapshot: UIImage? {
-        let renderer = UIGraphicsImageRenderer(size: bounds.size)
-
-        let image = renderer.image { context in
-            layer.render(in: context.cgContext)
-        }
-        return image
-    }
-}
-
 extension UIView{
      func blink() {
          self.alpha = 0.8
@@ -376,29 +230,59 @@ extension UIView{
      }
 }
 
-
-
-#warning("check")
-fileprivate enum Storyboard : String {
-        case main = "Main"
+extension UIViewController {
+    
+    func playBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
+        if UserDefault.isBackgroundMusicOn {
+        let player = playerClassInstance
+        player.playSoundEffect(effect: sound)
+        player.audioEffectsPlayer?.volume = 1
+        player.audioEffectsPlayer?.numberOfLoops = -1
     }
-
-    fileprivate extension UIStoryboard {
-        static func loadFromMain(_ identifier: String) -> UIViewController {
-            return load(from: .main, identifier: identifier)
-        }
-
-        static func load(from storyboard: Storyboard, identifier: String) -> UIViewController {
-            let uiStoryboard = UIStoryboard(name: storyboard.rawValue, bundle: nil)
-            return uiStoryboard.instantiateViewController(withIdentifier: identifier)
-        }
+}
+    
+    func stopBackgroundAudio(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
+        let player = playerClassInstance
+        player.stop()
     }
-
-    // MARK: App View Controllers
-
-    extension UIStoryboard {
-        class func loadHomeViewController() ->  InitialViewController {
-            return loadFromMain("HomeViewController") as! InitialViewController
+    
+    func playSoundOneTimer(playerClassInstance: SoundManager, sound: SoundManager.SoundEffect) {
+        if UserDefault.isSoundOn {
+        let player = playerClassInstance
+        player.playSoundEffect(effect: sound)
+        player.audioEffectsPlayer?.volume = 1
         }
     }
+    
+}
+
+extension UIViewController {
+    
+    func setOrientation(orientation: UIInterfaceOrientationMask) {
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.orientationLock = orientation
+    }
+}
+
+extension UIView {
+    
+    func setAnchorPoint(_ point: CGPoint) {
+        var newPoint = CGPoint(x: bounds.size.width * point.x, y: bounds.size.height * point.y)
+        var oldPoint = CGPoint(x: bounds.size.width * layer.anchorPoint.x, y: bounds.size.height * layer.anchorPoint.y);
+
+        newPoint = newPoint.applying(transform)
+        oldPoint = oldPoint.applying(transform)
+
+        var position = layer.position
+
+        position.x -= oldPoint.x
+        position.x += newPoint.x
+
+        position.y -= oldPoint.y
+        position.y += newPoint.y
+
+        layer.position = position
+        layer.anchorPoint = point
+    }
+}
 

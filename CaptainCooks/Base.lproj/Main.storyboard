@@ -167,14 +167,14 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="progressBarEmpty" translatesAutoresizingMaskIntoConstraints="NO" id="U6R-1g-Wiw">
                                         <rect key="frame" x="102" y="22" width="182" height="22"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9So-9d-IvS" userLabel="levelNumber">
-                                        <rect key="frame" x="85.333333333333371" y="6.9999999999999964" width="9.6666666666666714" height="53.666666666666657"/>
-                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="35"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9So-9d-IvS" userLabel="levelNumber">
+                                        <rect key="frame" x="87.333333333333371" y="6.9999999999999964" width="7.6666666666666714" height="53.666666666666657"/>
+                                        <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Level " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7w7-zG-4gL" userLabel="levelLabel">
-                                        <rect key="frame" x="32" y="21" width="47.333333333333343" height="25.666666666666671"/>
+                                        <rect key="frame" x="34" y="21" width="47.333333333333343" height="25.666666666666671"/>
                                         <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="20"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -186,7 +186,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Balance:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O91-Wg-C6u" userLabel="balanceLabel">
-                                        <rect key="frame" x="22" y="49" width="73" height="23"/>
+                                        <rect key="frame" x="24" y="49" width="73" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -233,32 +233,26 @@
                                     <constraint firstAttribute="trailing" secondItem="TaQ-MU-GMv" secondAttribute="trailing" constant="30" id="oIf-ak-2Em"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXL-Tz-VfV" userLabel="levelButton0">
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KXL-Tz-VfV" userLabel="levelButton0">
                                 <rect key="frame" x="225" y="79" width="61" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="skullOnMap"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxB-01-GgF" userLabel="levelButton1">
-                                <rect key="frame" x="373" y="310" width="44" height="31"/>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxB-01-GgF" userLabel="levelButton1">
+                                <rect key="frame" x="312" y="143" width="44" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8l-Hx-qqO" userLabel="levelButton2">
-                                <rect key="frame" x="274" y="300" width="44" height="51"/>
+                            <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8l-Hx-qqO" userLabel="levelButton2">
+                                <rect key="frame" x="252" y="210" width="44" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jip-O9-Lzp" userLabel="levelButton3">
-                                <rect key="frame" x="254" y="204" width="44" height="51"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqM-ZM-oPb" userLabel="levelButton4">
-                                <rect key="frame" x="304" y="140" width="61" height="31"/>
+                            <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jip-O9-Lzp" userLabel="levelButton3">
+                                <rect key="frame" x="288" y="306" width="44" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
@@ -333,6 +327,12 @@
                                     <action selector="gotItAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S7X-vV-xCW"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqM-ZM-oPb" userLabel="levelButton4">
+                                <rect key="frame" x="371" y="309" width="61" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -369,7 +369,7 @@
                         <outlet property="getYourBonusView" destination="5V5-Bz-RFb" id="rrF-Hz-YPU"/>
                         <outlet property="infoButton" destination="RCP-BG-5Im" id="8pc-v6-Lo0"/>
                         <outlet property="levelLabel" destination="7w7-zG-4gL" id="Qp0-F6-Jf7"/>
-                        <outlet property="levelNumberLabel" destination="9So-9d-IvS" id="uYz-Xl-WaT"/>
+                        <outlet property="levelNumberLabel" destination="9So-9d-IvS" id="lPl-kk-iJL"/>
                         <outlet property="mainAdviceScreen" destination="hYi-jz-SW1" id="d7A-33-Kh9"/>
                         <outlet property="progressImageView" destination="U6R-1g-Wiw" id="5z4-Rt-cad"/>
                         <outlet property="settingsButton" destination="lWJ-Bk-wL7" id="4BL-dW-dgA"/>
@@ -427,20 +427,23 @@
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="39E-Gi-C6T"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1bg-Zy-2Nh" firstAttribute="top" secondItem="nea-32-x2n" secondAttribute="bottom" constant="30" id="8aM-5N-pWl"/>
                             <constraint firstItem="1bg-Zy-2Nh" firstAttribute="trailing" secondItem="nea-32-x2n" secondAttribute="trailing" id="FKe-C9-tsh"/>
                             <constraint firstItem="LPJ-px-NPr" firstAttribute="bottom" secondItem="DYW-OP-4U2" secondAttribute="bottom" id="Lo4-xN-Wpd"/>
+                            <constraint firstItem="1bg-Zy-2Nh" firstAttribute="centerY" secondItem="DYW-OP-4U2" secondAttribute="centerY" id="MP4-xT-cW6"/>
                             <constraint firstItem="1bg-Zy-2Nh" firstAttribute="leading" secondItem="nea-32-x2n" secondAttribute="leading" id="OFW-TW-Jp4"/>
                             <constraint firstAttribute="centerY" secondItem="nea-32-x2n" secondAttribute="centerY" constant="70" id="RH5-hn-Poo"/>
                             <constraint firstItem="LPJ-px-NPr" firstAttribute="top" secondItem="DYW-OP-4U2" secondAttribute="top" id="Xyd-36-0k3"/>
                             <constraint firstItem="LPJ-px-NPr" firstAttribute="leading" secondItem="DYW-OP-4U2" secondAttribute="leading" id="euH-Rb-0ia"/>
+                            <constraint firstItem="1bg-Zy-2Nh" firstAttribute="centerX" secondItem="DYW-OP-4U2" secondAttribute="centerX" id="igd-cv-ReQ"/>
                             <constraint firstItem="LPJ-px-NPr" firstAttribute="trailing" secondItem="DYW-OP-4U2" secondAttribute="trailing" id="jWg-tV-16h"/>
                             <constraint firstItem="nea-32-x2n" firstAttribute="centerX" secondItem="DYW-OP-4U2" secondAttribute="centerX" id="qls-yI-pDj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImage" destination="LPJ-px-NPr" id="LDm-CS-qj8"/>
                         <outlet property="mainLabel" destination="nea-32-x2n" id="3DE-B7-nar"/>
                         <outlet property="progressBar" destination="1bg-Zy-2Nh" id="X08-E3-emQ"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="fromPreloader" id="fnp-bH-Igb"/>
@@ -453,7 +456,7 @@
         <!--Privacy Policy And TermsVC-->
         <scene sceneID="8zh-Yi-oR9">
             <objects>
-                <viewController id="9DH-XW-Vf2" customClass="PrivacyPolicyAndTermsVC" customModule="CaptainCooks" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PrivacyPolicy" id="9DH-XW-Vf2" customClass="PrivacyPolicyAndTermsVC" customModule="CaptainCooks" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mx8-Po-0bu">
                         <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -519,7 +522,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="odv-Yv-zBj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="463" y="-251"/>
+            <point key="canvasLocation" x="1227" y="362"/>
         </scene>
         <!--BonusMapStoryboard-->
         <scene sceneID="Aqr-lC-MMr">

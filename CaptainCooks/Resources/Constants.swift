@@ -7,19 +7,37 @@
 
 import UIKit
 
-struct Key {
+struct Constants {
+    
     struct segueID {
         static let mainVC = "goToMain"
         static let settingsOrInfoVC = "goToSettingsOrInfo"
         static let bonusGameVC = "goToMatchGame"
         static let bonusMapVC = "goToBonusMap"
         static let notEnoughCoinsVC = "goToNotEnoughCoinsVC"
-        static let privacyAndTerms = "goToPolicyAndTerms"
-        static let fromPreloader = "fromPreloader"
-        static let slots = "goToSlots"
+        static let privacyAndTermsVC = "goToPolicyAndTerms"
+        static let fromPreloaderVC = "fromPreloader"
+        static let slotsVC = "goToSlots"
     }
     
-    struct  Text {
+    struct storyboardID {
+        static let preloader = "Preloader"
+        static let main = "MainVC"
+        static let settings = "SettingsController"
+        static let privacyPolicy = "PrivacyPolicy"
+        static let bonusMap = "BonusMapStoryboard"
+        static let matchGame = "MatchingGameBoard"
+        static let slots = "SlotsVC"
+    }
+    
+    struct storyboardName {
+        static let mainName = "Main"
+        static let bonusName = "BonusMapStoryboard"
+        static let matchName = "MatchGameBoard"
+        static let slotsName = "Slots"
+    }
+    
+    struct Text {
         
         static let privacyPolicyText = """
 
@@ -51,5 +69,7 @@ This EULA (“User License Agreement”, “License Agreement”, “Terms of Us
 To play this location you need to earn \(UserDefault.coins) coins. Try again when you've got enough coins
 """
     }
+    
+    static let goldColor = UIColor.rgbColor(red: 234, green: 180, blue: 55, alpha: 1)
 }
 

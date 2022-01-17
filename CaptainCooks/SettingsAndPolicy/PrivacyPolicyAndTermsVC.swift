@@ -40,11 +40,11 @@ class PrivacyPolicyAndTermsVC: UIViewController {
         
         case true:
             _ = makeLabelChewyColor(label: privacyLabel, text: "Privacy Policy", size: 41)
-            _ = makeChewyTextView(textView: textView, text: Key.Text.privacyPolicyText, size: 16)
+            _ = makeChewyTextView(textView: textView, text: Constants.Text.privacyPolicyText, size: 16)
 
         case false:
             _ = makeLabelChewyColor(label: privacyLabel, text: "Terms of Use", size: 41)
-            _ = makeChewyTextView(textView: textView, text: Key.Text.termsOfUseText, size: 16)
+            _ = makeChewyTextView(textView: textView, text: Constants.Text.termsOfUseText, size: 16)
 
         
         default:

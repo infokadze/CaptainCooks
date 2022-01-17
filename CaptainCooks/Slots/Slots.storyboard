@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NhS-p9-4EC">
-                                <rect key="frame" x="565" y="279" width="67" height="31"/>
+                                <rect key="frame" x="482" y="279" width="67" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Button"/>
@@ -28,26 +28,59 @@
                                     <action selector="testButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="b4s-Dx-jaB"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ffg-T1-QMd">
+                                <rect key="frame" x="698" y="189" width="130" height="150"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MqH-6h-hMd">
+                                        <rect key="frame" x="0.0" y="0.0" width="130" height="150"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vvf-cS-uuY">
+                                        <rect key="frame" x="-3.6666666666666288" y="50" width="137.33333333333334" height="63"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" image="spin"/>
+                                        <connections>
+                                            <action selector="spinAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="GYo-E5-KOh"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="MqH-6h-hMd" secondAttribute="bottom" id="Jog-D1-tfX"/>
+                                    <constraint firstAttribute="bottom" secondItem="vvf-cS-uuY" secondAttribute="bottom" constant="37" id="PRh-bV-jUI"/>
+                                    <constraint firstItem="vvf-cS-uuY" firstAttribute="top" secondItem="ffg-T1-QMd" secondAttribute="top" constant="50" id="WpR-75-UAb"/>
+                                    <constraint firstAttribute="height" constant="150" id="aOl-Ck-Wwe"/>
+                                    <constraint firstAttribute="width" constant="130" id="hc0-jS-0Yt"/>
+                                    <constraint firstItem="MqH-6h-hMd" firstAttribute="centerY" secondItem="ffg-T1-QMd" secondAttribute="centerY" id="kiF-ti-4Co"/>
+                                    <constraint firstItem="MqH-6h-hMd" firstAttribute="leading" secondItem="ffg-T1-QMd" secondAttribute="leading" id="ofX-n2-aix"/>
+                                    <constraint firstItem="MqH-6h-hMd" firstAttribute="top" secondItem="ffg-T1-QMd" secondAttribute="top" id="qB0-NJ-7Mq"/>
+                                    <constraint firstAttribute="trailing" secondItem="MqH-6h-hMd" secondAttribute="trailing" id="rEH-jj-m7d"/>
+                                    <constraint firstItem="vvf-cS-uuY" firstAttribute="centerX" secondItem="MqH-6h-hMd" secondAttribute="centerX" id="uau-kW-0QY"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="U5D-ab-hSJ" firstAttribute="top" secondItem="5EZ-qb-Rvc" secondAttribute="top" id="33g-Yq-kQ7"/>
                             <constraint firstAttribute="trailing" secondItem="U5D-ab-hSJ" secondAttribute="trailing" id="WVM-JL-jWu"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ffg-T1-QMd" secondAttribute="bottom" constant="30" id="bIG-CO-o3V"/>
+                            <constraint firstAttribute="trailing" secondItem="ffg-T1-QMd" secondAttribute="trailing" constant="16" id="bVJ-p6-RR7"/>
                             <constraint firstItem="U5D-ab-hSJ" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="gDQ-Pg-2Df"/>
                             <constraint firstAttribute="bottom" secondItem="U5D-ab-hSJ" secondAttribute="bottom" id="qPy-dG-OXA"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="slotsImage" destination="U5D-ab-hSJ" id="6Im-So-RGE"/>
+                        <outlet property="wheelImageView" destination="MqH-6h-hMd" id="VAc-J8-yLM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="139" y="110"/>
+            <point key="canvasLocation" x="138.6255924170616" y="109.23076923076923"/>
         </scene>
     </scenes>
     <resources>
+        <image name="spin" width="113.33333587646484" height="42"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

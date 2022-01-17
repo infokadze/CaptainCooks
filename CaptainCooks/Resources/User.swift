@@ -18,13 +18,12 @@ struct UserDefault {
         }
     }
     
-    static var launchedFirstTime: Bool {
+    static var isLaunchedBefore: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "launchedFirstTime")
+            return UserDefaults.standard.bool(forKey: "isLaunchedBefore")
         }
-        
         set {
-            UserDefaults.standard.set(newValue, forKey: "launchedFirstTime")
+            UserDefaults.standard.set(newValue, forKey: "isLaunchedBefore")
         }
     }
     
@@ -50,29 +49,26 @@ struct UserDefault {
         get {
             return UserDefaults.standard.object(forKey: "currentDate") as! Date
         }
-        
         set {
             UserDefaults.standard.set(newValue, forKey: "currentDate")
         }
     }
     
-    static var isMutedSound: Bool {
+    static var isSoundOn: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "isMutedSound")
+            return UserDefaults.standard.bool(forKey: "isSoundOn")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "isMutedSound")
+            UserDefaults.standard.set(newValue, forKey: "isSoundOn")
         }
     }
     
-    static var isMutedBackgroundMusic: Bool {
+    static var isBackgroundMusicOn: Bool {
         get {
-            return UserDefaults.standard.bool(forKey: "isMutedBackgroundMusic")
+            return UserDefaults.standard.bool(forKey: "isBackgroundMusicOn")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "isMutedBackgroundMusic")
+            UserDefaults.standard.set(newValue, forKey: "isBackgroundMusicOn")
         }
     }
-    
-    
 }

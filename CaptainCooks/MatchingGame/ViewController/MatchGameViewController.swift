@@ -23,11 +23,11 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
     
     //MARK: - @objc + helpers
     @IBAction func goToMainScreen(_ sender: UIButton) {
-        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: "MainVC") as! InitialViewController
+        let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
+        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+        
+        playBackgroundAudio(playerClassInstance: SoundManager.sharedAudioBackgroundObject, sound: .main)
         present(vc, animated: true)
-//        performSegue(withIdentifier: Key.segueID.mainVC, sender: sender)
-//        self.view.window?.rootViewController?.dismiss(animated: false)
     }
     
     
@@ -54,7 +54,9 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             }
         default:
             UIView.animate(withDuration: 0.6) {
-            labelText.text = "You earn \(result) coins! Congrats!"
+            labelText.text = "You earned \(result * 3) coins! Congrats!"
+                UserDefault.coins += (result * 3)
+#warning("set defaults win +=")
         }
     }
 }
@@ -74,16 +76,15 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        // Play shuffle sound
-        soundPlayer.playSound(effect: .shuffle)
+        super.viewDidAppear(animated)
+        // Play shuffle sound +
+        _ = SoundManager.sharedAudioBackgroundObject.audioEffectsPlayer?.fadeVolume(from: 1, to: 0, duration: 1, completion: {
+            SoundManager.sharedAudioBackgroundObject.audioEffectsPlayer?.stop()
+        })
         
-        #warning("Important to follow the logic of a-b-c below -> play sound, then adjust anything else")
-//        SoundManager.sharedInstance.playSound(effect: .harp)
-        SoundManager.sharedInstance.audioPlayer?.numberOfLoops = -1
-        SoundManager.sharedInstance.audioPlayer?.volume = 1
+        playSoundOneTimer(playerClassInstance: soundPlayer, sound: .shuffle)
     }
-    
-    
+
     // MARK: - Collection View Delegate Methods
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return number of cards
@@ -123,7 +124,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             //flip the card up
             cell?.flipUp()
             // Play flip sound
-            soundPlayer.playSound(effect: .flip)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .flip)
 
             //check if this is first card flipped or second card flipped
             if firstFlippedCardIndex == nil {
@@ -161,7 +162,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             //it not match
             
             // Play nomatch sound
-            soundPlayer.playSound(effect: .nomatch)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .nomatch)
             
             cardOne.isFlipped = false
             cardTwo.isFlipped = false
@@ -206,7 +207,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
         } else {
             //it not match
             // Play nomatch sound
-            soundPlayer.playSound(effect: .nomatch)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .nomatch)
             
             cardOne.isFlipped = false
             cardTwo.isFlipped = false
@@ -230,7 +231,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
         switch cardToCheck.imageName {
         case "card1":
             result = 100
-            soundPlayer.playSound(effect: .match)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .match)
             
             UIView.animate(withDuration: 1.1) {
                 self.getButton.isHidden = false
@@ -239,7 +240,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             }
         case "card2":
             result = 200
-            soundPlayer.playSound(effect: .match)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .match)
 
             UIView.animate(withDuration: 1.1) {
                 self.getButton.isHidden = false
@@ -248,7 +249,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             }
         case "card3":
             result = 500
-            soundPlayer.playSound(effect: .match)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .match)
 
             UIView.animate(withDuration: 1.1)  {
                 self.getButton.isHidden = false
@@ -257,7 +258,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             }
         case "card4":
             result = 0
-            soundPlayer.playSound(effect: .sad)
+            playSoundOneTimer(playerClassInstance: soundPlayer, sound: .sad)
 
             UIView.animate(withDuration: 1.1) {
                 self.getButton.isHidden = false
@@ -266,37 +267,8 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
             }
  
         default:
-            print("switch went wrong")
+            break
         }
-    }
-        
-    private func showAlert(title: String, message: String) {
-        //create alert
-        let alert = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-        
-        //add btn to user to dismiss it
-        let okAction = UIAlertAction(
-            title: "Ok",
-            style: .default,
-            handler: { _ in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let controller = storyboard.instantiateViewController(withIdentifier: "MainVC")
-                self.present(controller, animated: true, completion: nil)
-                
-            }
-        )
-        
-        alert.addAction(okAction)
-        present(
-            alert,
-            animated: true,
-            completion: nil
-            //show button
-        )
     }
 }
 

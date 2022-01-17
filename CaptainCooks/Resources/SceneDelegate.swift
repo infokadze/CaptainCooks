@@ -11,13 +11,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        setupUser(coins: UserDefault.coins, sound: UserDefault.isMutedSound, backMusic: UserDefault.isMutedBackgroundMusic)
+        setupUser()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -48,25 +47,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
     
-    private func setupUser(coins: Int, sound: Bool, backMusic: Bool) {
-        if !UserDefault.launchedFirstTime {
-            UserDefault.coins = coins
-            UserDefault.launchedFirstTime = true
-            UserDefault.isMutedSound = sound
-            UserDefault.isMutedBackgroundMusic = backMusic
-            UserDefault.currentDate = Date()
-            #warning("setup level if user already played")
-            
-        } else {
-            #warning("setup coins if user already played")
-            UserDefault.coins = 10_000
-            UserDefault.isMutedBackgroundMusic = true
-            UserDefault.isMutedSound = true
-            UserDefault.bonusLevelNumber = 1
+    private func setupUser() {
+        if  UserDefault.isLaunchedBefore == false {
             UserDefault.mainLevelNumber = 1
+            UserDefault.bonusLevelNumber = 1
+            UserDefault.coins = 10_000
+            UserDefault.isSoundOn = true
+            UserDefault.isBackgroundMusicOn = true
+            UserDefault.currentDate = Date()
+            UserDefault.isLaunchedBefore = true
         }
     }
-
-
 }
 
