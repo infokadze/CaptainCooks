@@ -105,9 +105,7 @@ class SettingsController: UIViewController {
     }
 
     @IBAction func dismissAction(_ sender: UIButton) {
-        self.dismiss(animated: true) {
-                self.presentingViewController?.dismiss(animated: false)
-            }
+        self.dismiss(animated: true)
         }
     
    

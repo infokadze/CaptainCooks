@@ -9,6 +9,8 @@ import UIKit
 
 class InitialViewController: UIViewController {
     
+    static var difference: Int? = 0
+    
     @IBOutlet weak var progressImageView: UIImageView! {
         didSet {
             switch UserDefault.mainLevelNumber {
@@ -31,7 +33,6 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var levelNumberLabel: UILabel! {
         didSet {
             _ = makeLabelChewyColor(label: levelNumberLabel, text: "\(UserDefault.mainLevelNumber)", size: 21)
-
     }
 }
     
@@ -40,6 +41,8 @@ class InitialViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
 
     @IBOutlet weak var getYourBonusView: UIView!
+    
+    @IBOutlet weak var gotItButton: UIButton!
     
     @IBOutlet weak var mainAdviceScreen: UIView!
        
@@ -65,11 +68,10 @@ class InitialViewController: UIViewController {
                 setMapLocksAndSkullExceptCurrent(indexException: 3)
             default:
                 setMapLocksAndSkullExceptCurrent(indexException: 4)
-
+                
             }
         }
     }
-    
     
     @IBOutlet weak var levelLabel: UILabel! {
         didSet {
@@ -82,12 +84,8 @@ class InitialViewController: UIViewController {
             _ = makeLabelChewyColor(label: balanceLabel, text: "Balance", size: 20)
         }
     }
-
-    @IBOutlet weak var getYourBonusButton: UIButton! {
-        didSet {
-            getYourBonusButton.startShimmeringAnimation(animationSpeed: 3, direction: .leftToRight, repeatCount: .infinity)
-        }
-    }
+    
+    @IBOutlet weak var getYourBonusButton: UIButton!
     
     @IBOutlet weak var amountLabel: UILabel! {
         didSet {
@@ -99,72 +97,130 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        getYourBonusView.isHidden = true
         
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(applicationWillTerminate),
+//                                               name: UIApplication.willTerminateNotification,
+//                                               object: nil)
     }
+    
+//    @objc func applicationWillTerminate() {
+        
+//        let calendar = Calendar.current
+//        let dateToCompare = UserDefault.currentDate
+//
+//        if calendar.isDateInTomorrow(dateToCompare) {
+//            UserDefault.currentDate = Date()
+//        } else {
+//            UserDefault.currentDate = Date()
+//        }
+//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        checkIfBonusScreenAvailable()
-//        checkLevel()
-//        checkCoins()
+        checkIfBonusScreenAvailable()
+        checkMainLevel()
         
         mainVCLevelButtons.forEach {
-                $0.layer.add(createIconShakeAnimation(fromValue: -0.5, toValue: 0.5, speed: 0.8), forKey: "iconShakeAnimation")
-            }
-    
-        treasureImageView.doGlowAnimation(withColor: Constants.goldColor, withEffect: .big)
-        
-    }
-
-    
-    private func setMapLocksAndSkullExceptCurrent(indexException: Int) {
-        let buttons = mainVCLevelButtons.sorted { $0.tag < $1.tag }.enumerated()
-        
-        for (index, value) in buttons where index != indexException {
-            value.setImage(UIImage(named: "closedLevelLock"), for: .normal)
-        
-            let activeLevel = mainVCLevelButtons[indexException]
-            activeLevel.setImage(UIImage(named: "skullOnMap"), for: .normal)
-        
+            $0.layer.add(createIconShakeAnimation(fromValue: -0.5, toValue: 0.5, speed: 0.8), forKey: "iconShakeAnimation")
         }
         
+        treasureImageView.doGlowAnimation(withColor: Constants.goldColor, withEffect: .bigger)
+        getYourBonusButton.startShimmeringAnimation(animationSpeed: 3, direction: .leftToRight, repeatCount: .infinity)
     }
+    
+    private func levelButtonsTouchCheck(sender: UIButton) {
+        
+        for _ in mainVCLevelButtons.sorted(by: { $0.tag < $1.tag }) {
+            
+            if sender.tag == UserDefault.mainLevelNumber {
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateLabelOnTheSameLevel"), object: nil)
+                
+                let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.notEnoughID) as! NotEnoughCoinsVC
+                
+                if let presented = self.presentedViewController {
+                    presented.removeFromParent()
+                }
+                
+                present(vc, animated: true)
+                
+            } else if UserDefault.mainLevelNumber  > sender.tag {
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateLabelAlreadyPassedLevel"), object: nil)
+                
+                let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.notEnoughID) as! NotEnoughCoinsVC
+                
+                if let presented = self.presentedViewController {
+                        presented.removeFromParent()
+                    }
+                
+                present(vc, animated: true)
+                
+            } else if sender.tag > UserDefault.mainLevelNumber {
+
+                let currentCoins = UserDefault.coins
+
+                let coinsPoolforLevelReference = [currentCoins, 12_000, 14_000, 16_000, 18_000]
+                
+                InitialViewController.difference  =  coinsPoolforLevelReference[sender.tag - 1] - currentCoins
+                
+                NotificationCenter.default.post(name: Notification.Name(rawValue: "updateLabelNotEnoughCoinsLevel"), object: nil)
+                
+                let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.notEnoughID) as! NotEnoughCoinsVC
+                
+                if let presented = self.presentedViewController {
+                        presented.removeFromParent()
+                    }
+        
+                present(vc, animated: true)
+            }
+        }
+    }
+    
+    @IBAction func mainVCLevelButtonsActions(_ sender: UIButton) {
+        levelButtonsTouchCheck(sender: sender)
+    }
+
         
     @IBAction func gotItAction(_ sender: UIButton) {
 
-        performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
-//        performSegue(withIdentifier: Constants.segueID.slotsVC, sender: sender)
+//        performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
+        performSegue(withIdentifier: Constants.segueID.slotsVC, sender: sender)
     }
     
     @IBAction func settingsOrInfoButtonTapped(_ sender: UIButton) {
-                performSegue(withIdentifier: Constants.segueID.settingsOrInfoVC, sender: sender)
+        performSegue(withIdentifier: Constants.segueID.settingsOrInfoVC, sender: sender)
     }
     
     @IBAction func getYourBonusButton(_ sender: Any) {
+        
+        _ = checkIfBonusLevelsAreReset()
+        
         performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
+        
+        UserDefault.currentDate = Date()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == Constants.segueID.bonusGameVC {
-            guard segue.destination is MatchGameViewController else { return }
-        }
-        
-        else if segue.identifier == Constants.segueID.bonusMapVC {
+
+        if segue.identifier == Constants.segueID.bonusMapVC {
             guard segue.destination is BonusMapController else { return }
-        
+
         }
-        
+
         else if segue.identifier == Constants.segueID.settingsOrInfoVC && sender as? NSObject == settingsButton {
             guard segue.destination is SettingsController else { return }
             if let vc = segue.destination as? SettingsController {
                 vc.mainVCSettingsButtonState = true
 
             }
-            
+
         }  else if  segue.identifier == Constants.segueID.settingsOrInfoVC && sender as? NSObject == infoButton {
             if let vc = segue.destination as? SettingsController {
                 vc.mainVCSettingsButtonState = false
@@ -173,70 +229,68 @@ class InitialViewController: UIViewController {
         }
     }
     
-    #warning("update coins func + not enough coins")
-    func checkCoins() {
-        switch UserDefault.coins {
-        case 10_000..<12_000:
-            print("level 1")
-                //change progress image + level number
-        case 12_000..<14_000:
-            print("level 2")
-            //change progress image + level number
-        case 14_000..<16_000:
-            print("level 3")
-            //change progress image + level number
-        case 16_000..<18_000:
-            print("level 4")
-            //change progress image + level number
-        case 18_000..<20_000:
-            print("level 5")
-            //change progress image + level number
-        default: break
-        }
-    }
-    
-    #warning("update level")
-    func checkLevel() {
+    private func setMapLocksAndSkullExceptCurrent(indexException: Int) {
+        let buttons = mainVCLevelButtons.sorted { $0.tag < $1.tag }.enumerated()
         
-        switch UserDefault.mainLevelNumber {
-        case 10_000..<12_000:
-            print("level 1")
-                //change progress image + level number
+        for (index, value) in buttons where index != indexException {
+            value.setImage(UIImage(named: "closedLevelLock"), for: .normal)
+            
+            let activeLevel = mainVCLevelButtons[indexException]
+            activeLevel.setImage(UIImage(named: "skullOnMap"), for: .normal)
+            
+        }
+    }
+        
+    private func checkMainLevel() {
+        switch UserDefault.coins {
+        case 0..<12_000:
+            UserDefault.mainLevelNumber = 1
         case 12_000..<14_000:
-            print("level 2")
-            //change progress image + level number
+            UserDefault.mainLevelNumber = 2
         case 14_000..<16_000:
-            print("level 3")
-            //change progress image + level number
+            UserDefault.mainLevelNumber = 3
         case 16_000..<18_000:
-            print("level 4")
-            //change progress image + level number
+            UserDefault.mainLevelNumber = 4
         case 18_000..<20_000:
-            print("level 5")
-            //change progress image + level number
-        default: break
+            UserDefault.mainLevelNumber = 5
+        default:
+            print("wow")
         }
     }
     
-#warning("update checkDate to present bonuses")
-    func checkIfBonusScreenAvailable() {
-        if let date = UserDefault.currentDate as? Date {
-            if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff > 24 {
-                getYourBonusView.isHidden = false
-                mainAdviceScreen.isHidden = true
-                
-            } else {
-                getYourBonusView.isHidden = true
-                mainAdviceScreen.isHidden = false
-            }
+   private func checkIfBonusScreenAvailable() {
+        
+        let calendar = Calendar.current
+        let dateToCompare = UserDefault.currentDate
+
+        switch calendar.isDateInToday(dateToCompare) {
+        case true:
+            getYourBonusView.isHidden = true
+            mainAdviceScreen.isHidden = false
+            gotItButton.isHidden = false
+        case false:
+            getYourBonusView.isHidden = false
+            mainAdviceScreen.isHidden = true
+            gotItButton.isHidden = true
         }
     }
     
+   private func checkIfBonusLevelsAreReset() -> Bool {
+       
+        let interval = Date() - UserDefault.currentDate
+        
+        switch interval.hour! {
+            
+        case (0..<24):
+            return false
     
-    
+        case (24...):
+            UserDefault.bonusLevelNumber = 1
+            return true
+            
+        default:
+            print("checkIfBonusLevelsAreReset is not working properly")
+            return false
+        }
+    }
 }
-
-
-
-
-

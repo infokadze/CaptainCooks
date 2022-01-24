@@ -54,9 +54,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             UserDefault.coins = 10_000
             UserDefault.isSoundOn = true
             UserDefault.isBackgroundMusicOn = true
-            UserDefault.currentDate = Date()
             UserDefault.isLaunchedBefore = true
+            UserDefault.currentDate = Date()
         }
     }
 }
-

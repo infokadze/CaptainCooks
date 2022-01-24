@@ -28,6 +28,7 @@ struct Constants {
         static let bonusMap = "BonusMapStoryboard"
         static let matchGame = "MatchingGameBoard"
         static let slots = "SlotsVC"
+        static let notEnoughID = "NotEnoughCoinsBoard"
     }
     
     struct storyboardName {
@@ -63,13 +64,9 @@ This EULA (“User License Agreement”, “License Agreement”, “Terms of Us
         
         static let mainScreenText: [String] =
         ["When you see someone putting on his Big Boots, you can be pretty sure that an Adventure is going to happen", "Every man can transform the world from one of monotony and drabness to one of excitement and adventure", "It’s a dangerous business, Frodo, going out your door. You step onto the road, and if you don’t keep your feet, there’s no knowing where you might be swept off to", "The purpose of life, after all, is to live it, to taste experience to the utmost, to reach out eagerly and without fear for newer and richer experience", "Earth and sky, woods and fields, lakes and rivers, the mountain and the sea, are excellent schoolmasters, and teach some of us more that what we could learn from books"]
-        
-        #warning("check coins no enough logic")
-        static let notEnoughCoins = """
-To play this location you need to earn \(UserDefault.coins) coins. Try again when you've got enough coins
-"""
     }
     
     static let goldColor = UIColor.rgbColor(red: 234, green: 180, blue: 55, alpha: 1)
 }
+
 

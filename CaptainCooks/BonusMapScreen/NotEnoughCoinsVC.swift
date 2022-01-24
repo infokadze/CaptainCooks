@@ -13,14 +13,43 @@ class NotEnoughCoinsVC: UIViewController {
     
     @IBAction func gotItAction(_ sender: UIButton) {
         dismiss(animated: true) {
-            
-//            _ = SoundManager.sharedInstance.audioPlayer!.fadeVolume(from: 0, to: 1, duration: 2, completion: nil)
-            
+                        
         }
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        
+    }
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        labelText.text = Constants.Text.notEnoughCoins
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLabelOnTheSameLevel), name: Notification.Name(rawValue: "updateLabelOnTheSameLevel") , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLabelAlreadyPassedLevel), name: Notification.Name(rawValue: "updateLabelAlreadyPassedLevel") , object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(updateLabelNotEnoughCoinsLevel), name: Notification.Name(rawValue: "updateLabelNotEnoughCoinsLevel") , object: nil)
+
     }
+    
+    @objc func updateLabelOnTheSameLevel() {
+        labelText.text = """
+        You are already located on this point of the map! Keep spinning to achieve new level!
+        """
+    }
+    
+    @objc func updateLabelAlreadyPassedLevel() {
+        labelText.text = """
+        You already passed this level! You are able to earn more coins on your current location!
+        """
+    }
+    
+    @objc func updateLabelNotEnoughCoinsLevel() {
+        labelText.text = """
+        To play this location you need to earn \(abs(InitialViewController.difference!)) coins. Try again when you've got enough coins!
+        """
+    }
+    
 }

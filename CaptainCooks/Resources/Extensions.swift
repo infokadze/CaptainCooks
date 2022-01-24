@@ -8,6 +8,53 @@
 import UIKit
 import AVFoundation
 
+extension UIView {
+    func startRotating(duration: Double = 0.5, randomRotationPath: Bool = Bool.random()) {
+
+        let kAnimationKey = "rotation"
+        
+        if self.layer.animation(forKey: kAnimationKey) == nil {
+            
+            let animate = CABasicAnimation(keyPath: "transform.rotation")
+            animate.duration = duration
+            animate.autoreverses = true
+            animate.repeatCount = 0
+            
+            animate.speed = 1
+            animate.fromValue = 0
+            
+            if randomRotationPath {
+            animate.toValue = 1
+            } else {
+                animate.toValue = -1
+            }
+            self.layer.add(animate, forKey: kAnimationKey)
+            
+        }
+    }
+    
+    func stopRotating() {
+        let kAnimationKey = "rotation"
+         
+        if self.layer.animation(forKey: kAnimationKey) != nil {
+            self.layer.removeAnimation(forKey: kAnimationKey)
+        }
+    }
+}
+
+extension Date {
+    static func -(recent: Date, previous: Date) -> (month: Int?, day: Int?, hour: Int?, minute: Int?, second: Int?) {
+        let day = Calendar.current.dateComponents([.day], from: previous, to: recent).day
+        let month = Calendar.current.dateComponents([.month], from: previous, to: recent).month
+        let hour = Calendar.current.dateComponents([.hour], from: previous, to: recent).hour
+        let minute = Calendar.current.dateComponents([.minute], from: previous, to: recent).minute
+        let second = Calendar.current.dateComponents([.second], from: previous, to: recent).second
+
+        return (month: month, day: day, hour: hour, minute: minute, second: second)
+    }
+
+}
+
 extension Formatter {
     static let withSeparator: NumberFormatter = {
         let formatter = NumberFormatter()
@@ -200,7 +247,7 @@ extension UIView {
 
 extension UIView {
     enum GlowEffect: Float {
-        case small = 4, normal = 8, big = 15
+        case small = 4, normal = 8, big = 15, bigger = 25
     }
 
     func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal, duration: CFTimeInterval? = nil) {

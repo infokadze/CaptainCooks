@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "iPhone 11 Pro Max - 2.png",
+      "filename" : "slots.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iPhone 11 Pro Max - 2@2x.png",
+      "filename" : "slots@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iPhone 11 Pro Max - 2@3x.png",
+      "filename" : "slots@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

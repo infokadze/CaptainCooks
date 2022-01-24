@@ -238,24 +238,45 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="skullOnMap"/>
+                                <connections>
+                                    <action selector="mainVCLevelButtonsActions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yw6-Lk-5Cf"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WxB-01-GgF" userLabel="levelButton1">
                                 <rect key="frame" x="312" y="143" width="44" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
+                                <connections>
+                                    <action selector="mainVCLevelButtonsActions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="NcF-tE-jK2"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C8l-Hx-qqO" userLabel="levelButton2">
                                 <rect key="frame" x="252" y="210" width="44" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
+                                <connections>
+                                    <action selector="mainVCLevelButtonsActions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k8h-gT-wZQ"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="4" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jip-O9-Lzp" userLabel="levelButton3">
                                 <rect key="frame" x="288" y="306" width="44" height="51"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
+                                <connections>
+                                    <action selector="mainVCLevelButtonsActions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XIY-sE-Oag"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqM-ZM-oPb" userLabel="levelButton4">
+                                <rect key="frame" x="371" y="309" width="61" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
+                                <connections>
+                                    <action selector="mainVCLevelButtonsActions:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hcH-9J-7Gl"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lWJ-Bk-wL7" userLabel="settingsButton">
                                 <rect key="frame" x="798" y="17" width="54" height="58"/>
@@ -327,12 +348,6 @@
                                     <action selector="gotItAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="S7X-vV-xCW"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" tag="5" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XqM-ZM-oPb" userLabel="levelButton4">
-                                <rect key="frame" x="371" y="309" width="61" height="31"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="closedLevelLock"/>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -365,8 +380,9 @@
                         <outlet property="adviceTextView" destination="TaQ-MU-GMv" id="Uxd-ta-2gh"/>
                         <outlet property="amountLabel" destination="5Y1-RW-LtS" id="H0Y-k8-a6k"/>
                         <outlet property="balanceLabel" destination="O91-Wg-C6u" id="RdY-lD-1u6"/>
-                        <outlet property="getYourBonusButton" destination="xct-sD-uCh" id="d5W-kF-1Mc"/>
+                        <outlet property="getYourBonusButton" destination="xct-sD-uCh" id="Mbg-K9-ZPk"/>
                         <outlet property="getYourBonusView" destination="5V5-Bz-RFb" id="rrF-Hz-YPU"/>
+                        <outlet property="gotItButton" destination="mey-lz-x9a" id="ytk-Th-nJj"/>
                         <outlet property="infoButton" destination="RCP-BG-5Im" id="8pc-v6-Lo0"/>
                         <outlet property="levelLabel" destination="7w7-zG-4gL" id="Qp0-F6-Jf7"/>
                         <outlet property="levelNumberLabel" destination="9So-9d-IvS" id="lPl-kk-iJL"/>

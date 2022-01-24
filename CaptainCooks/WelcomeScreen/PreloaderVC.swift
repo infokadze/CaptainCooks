@@ -16,6 +16,7 @@ class PreloaderVC: UIViewController {
             mainLabel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .big)
         }
     }
+
     
     @IBOutlet weak var backgroundImage: UIImageView! {
         didSet {
