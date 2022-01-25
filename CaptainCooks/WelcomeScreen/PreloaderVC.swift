@@ -12,7 +12,7 @@ class PreloaderVC: UIViewController {
     @IBOutlet weak var mainLabel: UILabel! {
         didSet {
             mainLabel.textAlignment = .center
-            _ = makeLabelChewyColor(label: mainLabel, text: "Captain Cooks", size: 41)
+            _ = makeLabelChewyColor(label: mainLabel, text: "Captain Cooks", size: 41, color: Constants.purpleColor)
             mainLabel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .big)
         }
     }
@@ -28,8 +28,8 @@ class PreloaderVC: UIViewController {
         didSet {
             progressBar.layer.cornerRadius = 8
             progressBar.layer.masksToBounds = true
-            progressBar.trackTintColor = UIColor.rgbColor(red: 63, green: 26, blue: 24, alpha: 1)
-            progressBar.progressTintColor = UIColor.rgbColor(red: 234, green: 180, blue: 55, alpha: 1)
+            progressBar.trackTintColor = UIColor.gray
+            progressBar.progressTintColor = Constants.goldColor
             progressBar.setProgress(0.0, animated: false)
             progressBar.progressViewStyle = .default
             //            important layout setting

@@ -148,7 +148,18 @@ final class BonusMapController: UIViewController {
     }
     
     @IBAction func firstLevelBonusButton(_ sender: UIButton) {
-        performSegue(withIdentifier: Constants.segueID.mainVC, sender: sender)
+        
+        let alert = UIAlertController(title: "Congratulations!", message: "Your have found a secret treasure, which allowed you to gain extra 1000 coins to your balance!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Great", style: .default) { _ in
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+            self.present(vc, animated: true)
+            
+            }
+        
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+
         UserDefault.coins += 1_000
     }
     
@@ -157,7 +168,16 @@ final class BonusMapController: UIViewController {
     }
     
     @IBAction func thirdLevelBonusButton(_ sender: UIButton) {
-        performSegue(withIdentifier: Constants.segueID.mainVC, sender: sender)
+        
+        let alert = UIAlertController(title: "Marvelous!", message: "It has been your lucky day since you have found a secret treasure, which allowed you to gain additional 2500 coins! Let's spin the lucky slots, shall we?", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "That's right", style: .default) { _ in
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+            self.present(vc, animated: true)
+            }
+        
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
         UserDefault.coins += 2_500
     }
     
@@ -166,7 +186,15 @@ final class BonusMapController: UIViewController {
     }
     
     @IBAction func fifthLevelBonusButton(_ sender: UIButton) {
-        performSegue(withIdentifier: Constants.segueID.mainVC, sender: sender)
+        let alert = UIAlertController(title: "Gorgeous!", message: "It has been the luckiest day since you started to hunt for a treasure! You got additional 5000 coins! Let's try ou luck on a new level, shall we?", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Let's do it!", style: .default) { _ in
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+            self.present(vc, animated: true)
+            }
+        
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
         UserDefault.coins += 5_000
     }
 }

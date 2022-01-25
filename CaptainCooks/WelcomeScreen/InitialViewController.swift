@@ -32,7 +32,7 @@ class InitialViewController: UIViewController {
     
     @IBOutlet weak var levelNumberLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: levelNumberLabel, text: "\(UserDefault.mainLevelNumber)", size: 21)
+            _ = makeLabelChewyColor(label: levelNumberLabel, text: "\(UserDefault.mainLevelNumber)", size: 21, color: Constants.purpleColor)
     }
 }
     
@@ -75,13 +75,13 @@ class InitialViewController: UIViewController {
     
     @IBOutlet weak var levelLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: levelLabel, text: "Level", size: 20)
+            _ = makeLabelChewyColor(label: levelLabel, text: "Level", size: 20, color: Constants.purpleColor)
         }
     }
     
     @IBOutlet weak var balanceLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: balanceLabel, text: "Balance", size: 20)
+            _ = makeLabelChewyColor(label: balanceLabel, text: "Balance", size: 20, color: Constants.purpleColor)
         }
     }
     
@@ -97,29 +97,13 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkIfBonusScreenAvailable()
         
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(applicationWillTerminate),
-//                                               name: UIApplication.willTerminateNotification,
-//                                               object: nil)
     }
-    
-//    @objc func applicationWillTerminate() {
-        
-//        let calendar = Calendar.current
-//        let dateToCompare = UserDefault.currentDate
-//
-//        if calendar.isDateInTomorrow(dateToCompare) {
-//            UserDefault.currentDate = Date()
-//        } else {
-//            UserDefault.currentDate = Date()
-//        }
-//    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        checkIfBonusScreenAvailable()
         checkMainLevel()
         
         mainVCLevelButtons.forEach {
@@ -202,8 +186,6 @@ class InitialViewController: UIViewController {
         _ = checkIfBonusLevelsAreReset()
         
         performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
-        
-        UserDefault.currentDate = Date()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -254,7 +236,7 @@ class InitialViewController: UIViewController {
         case 18_000..<20_000:
             UserDefault.mainLevelNumber = 5
         default:
-            print("wow")
+            break
         }
     }
     
@@ -272,6 +254,8 @@ class InitialViewController: UIViewController {
             getYourBonusView.isHidden = false
             mainAdviceScreen.isHidden = true
             gotItButton.isHidden = true
+            UserDefault.currentDate = Date()
+            
         }
     }
     

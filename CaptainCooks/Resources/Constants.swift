@@ -67,6 +67,7 @@ This EULA (“User License Agreement”, “License Agreement”, “Terms of Us
     }
     
     static let goldColor = UIColor.rgbColor(red: 234, green: 180, blue: 55, alpha: 1)
+    static let purpleColor = UIColor.rgbColor(red: 136, green: 50, blue: 54, alpha: 1)
 }
 
 

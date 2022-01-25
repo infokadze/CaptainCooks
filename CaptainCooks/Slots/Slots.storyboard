@@ -8,6 +8,11 @@
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Chewy-Regular.ttf">
+            <string>Chewy-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Slots Controller-->
         <scene sceneID="s0d-6b-0kx">
@@ -23,11 +28,11 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lmd-n8-N3W" userLabel="SlotsView">
                                 <rect key="frame" x="90.666666666666686" y="18" width="625" height="378"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slotsBox" translatesAutoresizingMaskIntoConstraints="NO" id="bff-Wu-sEv">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="slotsBox1" translatesAutoresizingMaskIntoConstraints="NO" id="bff-Wu-sEv">
                                         <rect key="frame" x="0.0" y="0.0" width="625" height="378"/>
                                     </imageView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="pn3-2D-bQr">
-                                        <rect key="frame" x="70" y="78" width="490" height="250"/>
+                                        <rect key="frame" x="62" y="78" width="493" height="250"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="d9F-kM-4Wk">
                                             <size key="itemSize" width="100" height="100"/>
@@ -96,13 +101,13 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="pn3-2D-bQr" secondAttribute="bottom" constant="50" id="6aO-tv-V8O"/>
-                                    <constraint firstItem="pn3-2D-bQr" firstAttribute="leading" secondItem="Lmd-n8-N3W" secondAttribute="leading" constant="70" id="9GL-uu-bAP"/>
+                                    <constraint firstItem="pn3-2D-bQr" firstAttribute="leading" secondItem="Lmd-n8-N3W" secondAttribute="leading" constant="62" id="9GL-uu-bAP"/>
                                     <constraint firstItem="bff-Wu-sEv" firstAttribute="top" secondItem="Lmd-n8-N3W" secondAttribute="top" id="C6g-N1-EX1"/>
                                     <constraint firstItem="pn3-2D-bQr" firstAttribute="top" secondItem="Lmd-n8-N3W" secondAttribute="top" constant="78" id="Wnv-8D-uPg"/>
                                     <constraint firstItem="bff-Wu-sEv" firstAttribute="leading" secondItem="Lmd-n8-N3W" secondAttribute="leading" id="lmB-uc-2kR"/>
                                     <constraint firstAttribute="width" secondItem="Lmd-n8-N3W" secondAttribute="height" multiplier="625:378" id="pOm-rz-FLM"/>
                                     <constraint firstAttribute="bottom" secondItem="bff-Wu-sEv" secondAttribute="bottom" id="qLh-lU-0L0"/>
-                                    <constraint firstAttribute="trailing" secondItem="pn3-2D-bQr" secondAttribute="trailing" constant="65" id="qr8-z7-Yar"/>
+                                    <constraint firstAttribute="trailing" secondItem="pn3-2D-bQr" secondAttribute="trailing" constant="70" id="qr8-z7-Yar"/>
                                     <constraint firstAttribute="trailing" secondItem="bff-Wu-sEv" secondAttribute="trailing" id="zHX-3P-6co"/>
                                 </constraints>
                             </view>
@@ -120,8 +125,8 @@
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cxj-Vl-ore">
                                                         <rect key="frame" x="90" y="10" width="60" height="78.333333333333329"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" systemColor="systemPinkColor"/>
+                                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="20"/>
+                                                        <color key="textColor" systemColor="systemYellowColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -144,9 +149,9 @@
                                                         <rect key="frame" x="15" y="0.0" width="130" height="98.333333333333329"/>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W2b-hy-7vI" userLabel="totalBetLabel">
-                                                        <rect key="frame" x="80" y="9.9999999999999929" width="70" height="78.333333333333314"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" systemColor="systemRedColor"/>
+                                                        <rect key="frame" x="85" y="9.9999999999999929" width="65" height="78.333333333333314"/>
+                                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="20"/>
+                                                        <color key="textColor" systemColor="systemYellowColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -157,7 +162,7 @@
                                                     <constraint firstAttribute="trailing" secondItem="W2b-hy-7vI" secondAttribute="trailing" constant="10" id="EPC-xJ-Qn0"/>
                                                     <constraint firstAttribute="trailing" secondItem="Mdb-YC-0bP" secondAttribute="trailing" constant="15" id="Fvc-lO-XKn"/>
                                                     <constraint firstItem="W2b-hy-7vI" firstAttribute="top" secondItem="Tb1-1S-zl6" secondAttribute="top" constant="10" id="h9m-oT-DsF"/>
-                                                    <constraint firstItem="W2b-hy-7vI" firstAttribute="leading" secondItem="Tb1-1S-zl6" secondAttribute="leading" constant="80" id="hnl-ch-Iq5"/>
+                                                    <constraint firstItem="W2b-hy-7vI" firstAttribute="leading" secondItem="Tb1-1S-zl6" secondAttribute="leading" constant="85" id="hnl-ch-Iq5"/>
                                                     <constraint firstItem="Mdb-YC-0bP" firstAttribute="top" secondItem="Tb1-1S-zl6" secondAttribute="top" id="xUH-AZ-G8N"/>
                                                     <constraint firstAttribute="bottom" secondItem="Mdb-YC-0bP" secondAttribute="bottom" id="zPQ-jX-Q1q"/>
                                                 </constraints>
@@ -170,8 +175,8 @@
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M4O-mk-LNf">
                                                         <rect key="frame" x="80" y="10" width="60" height="78"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                        <color key="textColor" systemColor="systemRedColor"/>
+                                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="20"/>
+                                                        <color key="textColor" systemColor="systemYellowColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
@@ -190,28 +195,38 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rcI-6a-waM">
                                                 <rect key="frame" x="0.0" y="144.66666666666666" width="160" height="98.333333333333343"/>
                                                 <subviews>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="7lK-NT-Bqa">
+                                                    <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="7lK-NT-Bqa">
                                                         <rect key="frame" x="0.0" y="20" width="160" height="78.333333333333329"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnb-Bd-ygT">
-                                                                <rect key="frame" x="0.0" y="0.0" width="55.333333333333336" height="78.333333333333329"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDr-te-f6H">
+                                                                <rect key="frame" x="0.0" y="0.0" width="53.333333333333336" height="78.333333333333329"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gnb-Bd-ygT">
+                                                                        <rect key="frame" x="11.000000000000002" y="28.333333333333343" width="31.666666666666671" height="22"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" image="buttonMinus"/>
+                                                                        <connections>
+                                                                            <action selector="minusCoins:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ddw-1m-PKr"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="buttonMinus"/>
-                                                                <connections>
-                                                                    <action selector="minusCoins:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Ddw-1m-PKr"/>
-                                                                </connections>
-                                                            </button>
+                                                                <constraints>
+                                                                    <constraint firstItem="Gnb-Bd-ygT" firstAttribute="centerY" secondItem="fDr-te-f6H" secondAttribute="centerY" id="XZf-a1-16E"/>
+                                                                    <constraint firstItem="Gnb-Bd-ygT" firstAttribute="centerX" secondItem="fDr-te-f6H" secondAttribute="centerX" id="Z0g-BY-xFX"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K3F-Sl-Drm">
-                                                                <rect key="frame" x="55.333333333333371" y="0.0" width="49.333333333333343" height="78.333333333333329"/>
+                                                                <rect key="frame" x="53.333333333333371" y="0.0" width="53.333333333333343" height="78.333333333333329"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="betBox" translatesAutoresizingMaskIntoConstraints="NO" id="bkw-bG-9ZF">
-                                                                        <rect key="frame" x="-0.33333333333337123" y="21.666666666666686" width="50.333333333333336" height="35"/>
+                                                                        <rect key="frame" x="1.6666666666666288" y="21.666666666666686" width="50.333333333333336" height="35"/>
                                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Jm-JR-Mem" userLabel="betLabel">
-                                                                        <rect key="frame" x="4" y="29" width="41.333333333333336" height="20.333333333333329"/>
-                                                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                        <rect key="frame" x="4.6666666666666288" y="26.333333333333343" width="44" height="25.666666666666671"/>
+                                                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="20"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
@@ -224,15 +239,25 @@
                                                                     <constraint firstItem="5Jm-JR-Mem" firstAttribute="centerY" secondItem="K3F-Sl-Drm" secondAttribute="centerY" id="mhA-UL-UqW"/>
                                                                 </constraints>
                                                             </view>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-ks-JHk">
-                                                                <rect key="frame" x="104.66666666666661" y="0.0" width="55.333333333333329" height="78.333333333333329"/>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="47e-2R-EvK">
+                                                                <rect key="frame" x="106.66666666666661" y="0.0" width="53.333333333333329" height="78.333333333333329"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SLK-ks-JHk">
+                                                                        <rect key="frame" x="11.000000000000002" y="28.333333333333343" width="31.666666666666671" height="22"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                        <state key="normal" image="buttonPlus"/>
+                                                                        <connections>
+                                                                            <action selector="plusCoins:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ccQ-yY-8jJ"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <buttonConfiguration key="configuration" style="plain" image="buttonPlus"/>
-                                                                <connections>
-                                                                    <action selector="plusCoins:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="ccQ-yY-8jJ"/>
-                                                                </connections>
-                                                            </button>
+                                                                <constraints>
+                                                                    <constraint firstItem="SLK-ks-JHk" firstAttribute="centerY" secondItem="47e-2R-EvK" secondAttribute="centerY" id="mhL-E0-r2B"/>
+                                                                    <constraint firstItem="SLK-ks-JHk" firstAttribute="centerX" secondItem="47e-2R-EvK" secondAttribute="centerX" id="rpE-nq-Kph"/>
+                                                                </constraints>
+                                                            </view>
                                                         </subviews>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </stackView>
@@ -298,8 +323,7 @@
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" image="buttonBack"/>
                                 <connections>
-                                    <action selector="backButton:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="Dab-ME-XTl"/>
-                                    <action selector="backButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="7Fi-xq-gsj"/>
+                                    <action selector="backButtonAction:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="EFn-WJ-4aa"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -325,13 +349,18 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backButton" destination="goM-7i-O8C" id="YFD-Nd-WSb"/>
                         <outlet property="balanceLabel" destination="cxj-Vl-ore" id="1tB-k8-PHc"/>
                         <outlet property="characterImageView" destination="6sM-a6-mcx" id="Ujc-Mi-lCs"/>
                         <outlet property="collectionView" destination="pn3-2D-bQr" id="tuZ-UD-eNO"/>
+                        <outlet property="currentBetLabel" destination="5Jm-JR-Mem" id="bPa-Jd-b6i"/>
+                        <outlet property="minusButton" destination="Gnb-Bd-ygT" id="tQQ-P8-nXf"/>
+                        <outlet property="plusButton" destination="SLK-ks-JHk" id="MQg-NH-Blc"/>
                         <outlet property="slotBox" destination="bff-Wu-sEv" id="fPb-vu-tk8"/>
                         <outlet property="slotsImageView" destination="U5D-ab-hSJ" id="6Im-So-RGE"/>
                         <outlet property="totalBetLabel" destination="W2b-hy-7vI" id="yxw-se-fZE"/>
                         <outlet property="wheelImageView" destination="Wao-F7-xRL" id="SyN-om-kAv"/>
+                        <outlet property="winLabel" destination="M4O-mk-LNf" id="tCL-Ak-EO6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -347,7 +376,7 @@
         <image name="buttonPlus" width="31.666666030883789" height="22"/>
         <image name="character1" width="185" height="243"/>
         <image name="slotScreen1" width="896" height="414"/>
-        <image name="slotsBox" width="625.33331298828125" height="378.33334350585938"/>
+        <image name="slotsBox1" width="625.33331298828125" height="378.33334350585938"/>
         <image name="spin" width="113.33333587646484" height="42"/>
         <image name="totalBet" width="132" height="38"/>
         <image name="wheel" width="153" height="153"/>
@@ -355,11 +384,8 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

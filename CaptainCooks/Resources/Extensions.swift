@@ -69,9 +69,12 @@ extension Numeric {
 }
 
 extension UIViewController {
-    func makeLabelChewyColor(label: UILabel, text: String, size: CGFloat) -> UILabel {
+    
+  
+    
+    func makeLabelChewyColor(label: UILabel, text: String, size: CGFloat, color: UIColor) -> UILabel {
         let labelChanged = label
-        let color = UIColor.rgbColor(red: 136, green: 50, blue: 54, alpha: 1)
+        let color = color
         let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -4.0,
                                                           .strokeColor: UIColor.white,
                                                           .foregroundColor: color]
@@ -247,7 +250,7 @@ extension UIView {
 
 extension UIView {
     enum GlowEffect: Float {
-        case small = 4, normal = 8, big = 15, bigger = 25
+        case small = 4, normal = 8, big = 15, bigger = 25, evenBigger = 50
     }
 
     func doGlowAnimation(withColor color: UIColor, withEffect effect: GlowEffect = .normal, duration: CFTimeInterval? = nil) {
@@ -330,6 +333,17 @@ extension UIView {
 
         layer.position = position
         layer.anchorPoint = point
+    }
+}
+
+extension Int {
+    static func random(in range: ClosedRange<Int>, excluding x: Int) -> Int {
+        if range.contains(x) {
+            let r = Int.random(in: Range(uncheckedBounds: (range.lowerBound, range.upperBound)))
+            return r == x ? range.upperBound : r
+        } else {
+            return Int.random(in: range)
+        }
     }
 }
 

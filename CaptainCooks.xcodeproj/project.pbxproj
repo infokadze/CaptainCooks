@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D028065279ED57D00AB97C2 /* ImagesModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D028064279ED57D00AB97C2 /* ImagesModelData.swift */; };
 		2D028067279EE19300AB97C2 /* Draft.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2D028066279EE19300AB97C2 /* Draft.rtf */; };
+		2D02806A279F04ED00AB97C2 /* SlotCombinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D028069279F04ED00AB97C2 /* SlotCombinations.swift */; };
 		2D7FCD93278C598D00B6DCB5 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCD92278C598D00B6DCB5 /* Constants.swift */; };
 		2D7FCD95278C778800B6DCB5 /* gradientInfo.png in Resources */ = {isa = PBXBuildFile; fileRef = 2D7FCD94278C778800B6DCB5 /* gradientInfo.png */; };
 		2D7FCD97278D8DAC00B6DCB5 /* PrivacyPolicyAndTermsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D7FCD96278D8DAC00B6DCB5 /* PrivacyPolicyAndTermsVC.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		2D028064279ED57D00AB97C2 /* ImagesModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesModelData.swift; sourceTree = "<group>"; };
 		2D028066279EE19300AB97C2 /* Draft.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Draft.rtf; sourceTree = "<group>"; };
+		2D028069279F04ED00AB97C2 /* SlotCombinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotCombinations.swift; sourceTree = "<group>"; };
 		2D7FCD92278C598D00B6DCB5 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		2D7FCD94278C778800B6DCB5 /* gradientInfo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gradientInfo.png; sourceTree = "<group>"; };
 		2D7FCD96278D8DAC00B6DCB5 /* PrivacyPolicyAndTermsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyAndTermsVC.swift; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				2DC04C41279076B000C0A027 /* SlotsController.swift */,
+				2D028069279F04ED00AB97C2 /* SlotCombinations.swift */,
 				2DA27609279EBC050052FC2D /* CustomTableViewCell.swift */,
 				2DA2760B279EBD810052FC2D /* CustomCollectionViewCell.swift */,
 				2DC04C43279076C100C0A027 /* Slots.storyboard */,
@@ -367,6 +370,7 @@
 				2DC98D7A2785E6B300CC9C4C /* BonusMapController.swift in Sources */,
 				2D8B7768279049990043404A /* PreloaderVC.swift in Sources */,
 				2DC98D3D2784407C00CC9C4C /* InitialViewController.swift in Sources */,
+				2D02806A279F04ED00AB97C2 /* SlotCombinations.swift in Sources */,
 				2DC98D6F27848C8300CC9C4C /* SoundManager.swift in Sources */,
 				2DC98D872786E78E00CC9C4C /* NotEnoughCoinsVC.swift in Sources */,
 				2DC98D7627848C8300CC9C4C /* CardModel.swift in Sources */,

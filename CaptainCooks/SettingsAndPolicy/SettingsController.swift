@@ -27,15 +27,15 @@ class SettingsController: UIViewController {
         
         switch mainVCSettingsButtonState {
         case true:
-            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Sound", size: 41)
-            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Music", size: 41)
+            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Sound", size: 41, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Music", size: 41, color: Constants.purpleColor)
             
             privacyButton.isHidden = true
             termsButton.isHidden = true
             
         case false:
-            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Privacy Policy", size: 30)
-            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Terms of Use", size: 30)
+            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Privacy Policy", size: 30, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Terms of Use", size: 30, color: Constants.purpleColor)
             _ =  makeSettingsButtonImage(button: privacyButton, image: UIImage(named: "chevronRight")!, needsRendering: true)
             _ =  makeSettingsButtonImage(button: termsButton, image: UIImage(named: "chevronRight")!, needsRendering: true)
             
