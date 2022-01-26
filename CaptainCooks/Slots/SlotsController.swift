@@ -23,14 +23,12 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     
     @IBOutlet weak var slotsImageView: UIImageView! {
         didSet {
-
             slotsImageView.image = UIImage(named: "slotScreen1")
         }
     }
     
     @IBOutlet weak var characterImageView: UIImageView! {
         didSet {
-
             characterImageView.image = UIImage(named: "character1")
             characterImageView.layer.zPosition = 5
         }
@@ -44,7 +42,6 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     @IBOutlet weak var slotBox: UIImageView! {
         didSet {
             slotBox.image = UIImage(named: "slotsBox1")
-            
         }
     }
 
@@ -67,9 +64,15 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         }
     }
     
+    private var winRound: Int = 0 {
+        didSet {
+            winLabel.text = "\(winRound.formattedWithSeparator)"
+        }
+    }
+    
     @IBOutlet weak var winLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: winLabel, text: "###", size: 20, color: Constants.goldColor)
+            _ = makeLabelChewyColor(label: winLabel, text: "0", size: 20, color: Constants.goldColor)
         }
     }
     
@@ -78,13 +81,13 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
             totalBetLabel.text = "\(totalBet)"
         }
     }
+    
     @IBOutlet weak var totalBetLabel: UILabel! {
         didSet {
             _ = makeLabelChewyColor(label: totalBetLabel, text: "0", size: 20, color: Constants.goldColor)
         }
     }
  
-    
     @IBAction func plusCoins(_ sender: UIButton) {
         if betIndex < betValues.count - 1 {
             minusButton.isEnabled = true
@@ -110,7 +113,7 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         } else {
             sender.isEnabled = false
             let alert = UIAlertController(title: "Sorry!", message: "You can't bet less than 25!", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            let okButton = UIAlertAction(title: "Okay", style: .destructive, handler: nil)
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         }
@@ -122,15 +125,12 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
             UserDefault.coins = balance
         }
     }
-    
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         collectionView.delegate = self
         collectionView.dataSource = self
         slotsUpDownAutoscroll = true
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -141,15 +141,27 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         winLabel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .evenBigger)
         balanceLabel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .evenBigger)
         
-        
         loadMainLevelAttributes()
     }
     
+    func updateBank(multiplyBy: Int) {
+        //adding another bet value is due to "-" coins bet operations done by each spin
+        winAmount = (betValues[betIndex] * multiplyBy + betValues[betIndex])
+        UserDefault.coins += winAmount
+        winRound += (winAmount - betValues[betIndex])
+        
+        let alert = UIAlertController(title: "Congratulations!", message: "Your luck smiled at you, which allowed you to gain extra \(winAmount - betValues[betIndex]) coins to your balance!", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "Continue", style: .cancel) { _ in
+            }
+        alert.addAction(okButton)
+        present(alert, animated: true, completion: nil)
+        balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
+    }
     
     @IBAction func spinAction(_ sender: UIButton) {
         
         totalBet += betValues[betIndex]
-//      totalBetLabel.text = "\(abs((UserDefault.coins - (balance + (betValues[betIndex])))))"
+        //      totalBetLabel.text = "\(abs((UserDefault.coins - (balance + (betValues[betIndex])))))"
         
         if betValues[betIndex] > UserDefault.coins {
             let alert = UIAlertController(title: "Sorry!", message: "Your bet is bigger than your current balance", preferredStyle: .alert)
@@ -157,8 +169,8 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         } else {
-        
-        wheelImageView.startRotating()
+            
+            wheelImageView.startRotating()
             sender.isEnabled = false
             backButton.isEnabled = false
             
@@ -167,92 +179,46 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
                 self.backButton.isEnabled = true
             }
             
-        UserDefault.coins -= betValues[betIndex]
-        balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
-        
-        switch self.slotsUpDownAutoscroll {
+            UserDefault.coins -= betValues[betIndex]
+            balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
             
-        case true:
-            
-            for element in 0..<self.dataModel.count {
-                let c = self.collectionView.cellForItem(at: IndexPath(row: element, section: 0)) as! CustomCollectionViewCell
+            switch self.slotsUpDownAutoscroll {
                 
-                c.setTableViewDelegate(delegate: self, forItem: element)
+            case true:
+                for element in 0..<self.dataModel.count {
+                    let c = self.collectionView.cellForItem(at: IndexPath(row: element, section: 0)) as! CustomCollectionViewCell
+                    
+                    c.setTableViewDelegate(delegate: self, forItem: element)
+                    
+                    //in order to remove glitch of data model creation
+                    c.tableView.scrollToRow(at: IndexPath(row: 9, section: 0), at: .middle, animated: true)
+                    self.dataModel = generate2DArray(withRows: 15, itemInEachRow: 18)
+                    c.shuffleData(slotIndexPath: [0, 17])
+                }
                 
-                //in order to remove glitch of data model creation
+                self.slotsUpDownAutoscroll = false
+                self.checkWinComboFor17(isWin: true)
                 
-                c.tableView.scrollToRow(at: IndexPath(row: 9, section: 0), at: .middle, animated: true)
-                self.dataModel = generate2DArray(withRows: 15, itemInEachRow: 18)
-                c.shuffleData(slotIndexPath: [0, 17])
+            case false:
                 
+                for element in 0..<self.dataModel.count  {
+                    let c = self.collectionView.cellForItem(at: IndexPath(row: element, section: 0)) as! CustomCollectionViewCell
+                    c.setTableViewDelegate(delegate: self, forItem: element)
+                    
+                    //in order to remove glitch of data model creation
+                    c.tableView.scrollToRow(at: IndexPath(row: 9, section: 0), at: .middle, animated: true)
+                    self.dataModel = generate2DArray(withRows: 15, itemInEachRow: 18)
+                    c.shuffleData(slotIndexPath: [0, 0])
+                }
                 
-                #warning("!")
-                //check win combo with dispatch queau
+                self.slotsUpDownAutoscroll = true
+                self.checkWinComboFor0(isWin: true)
+         
+            default:
+                break
             }
-            
-            
-            self.slotsUpDownAutoscroll = false
-            print("RES17")
-            print(self.dataModel[0][17])
-            print(self.dataModel[1][17])
-            print(self.dataModel[2][17])
-            print(self.dataModel[3][17])
-            print(self.dataModel[4][17])
-            
-            print(self.dataModel[5][17])
-            print(self.dataModel[6][17])
-            print(self.dataModel[7][17])
-            print(self.dataModel[8][17])
-            print(self.dataModel[9][17])
-            
-            print(self.dataModel[10][17])
-            print(self.dataModel[11][17])
-            print(self.dataModel[12][17])
-            print(self.dataModel[13][17])
-            print(self.dataModel[14][17])
-            
-        case false:
-            
-            for element in 0..<self.dataModel.count  {
-                let c = self.collectionView.cellForItem(at: IndexPath(row: element, section: 0)) as! CustomCollectionViewCell
-                c.setTableViewDelegate(delegate: self, forItem: element)
-            
-                //in order to remove glitch of data model creation
-                
-                c.tableView.scrollToRow(at: IndexPath(row: 9, section: 0), at: .middle, animated: true)
-                self.dataModel = generate2DArray(withRows: 15, itemInEachRow: 18)
-                c.shuffleData(slotIndexPath: [0, 0])
-                
-                #warning("!")
-                //check win combo with dispatch queau
-            }
-            
-            self.slotsUpDownAutoscroll = true
-            
-            print("RES0")
-            print(self.dataModel[0][0])
-            print(self.dataModel[1][0])
-            print(self.dataModel[2][0])
-            print(self.dataModel[3][0])
-            print(self.dataModel[4][0])
-            
-            print(self.dataModel[5][0])
-            print(self.dataModel[6][0])
-            print(self.dataModel[7][0])
-            print(self.dataModel[8][0])
-            print(self.dataModel[9][0])
-            
-            print(self.dataModel[10][0])
-            print(self.dataModel[11][0])
-            print(self.dataModel[12][0])
-            print(self.dataModel[13][0])
-            print(self.dataModel[14][0])
-            
-        default:
-            break
         }
     }
-}
     
     
     @IBAction func backButtonAction(_ sender: UIButton) {
@@ -287,7 +253,6 @@ extension SlotsController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataModel[tableView.tag].count
-        //returns "itemInEachRow" of data model
         //  число тейбл вьюх внутри ячейки коллекции (15(принтов относительно ячейки коллекций) == 18(по тегам))
     }
 
@@ -324,6 +289,7 @@ extension SlotsController: UITableViewDelegate, UITableViewDataSource {
         return tableView.frame.height
     }
 }
+
     func generate2DArray(withRows: Int, itemInEachRow: Int) -> [[Int]] {
         let numberOfRows = withRows
         let numberOfItemsInEachRow = itemInEachRow
@@ -352,7 +318,6 @@ extension SlotsController: UICollectionViewDelegateFlowLayout {
 }
 
 extension SlotsController {
-    
     func loadMainLevelAttributes () {
         
         switch UserDefault.coins {
@@ -381,8 +346,6 @@ extension SlotsController {
         default:
             break
         }
-        
-        
     }
 }
 
