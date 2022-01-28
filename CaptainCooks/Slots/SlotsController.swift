@@ -150,12 +150,15 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         UserDefault.coins += winAmount
         winRound += (winAmount - betValues[betIndex])
         
-        let alert = UIAlertController(title: "Congratulations!", message: "Your luck smiled at you, which allowed you to gain extra \(winAmount - betValues[betIndex]) coins to your balance!", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Continue", style: .cancel) { _ in
-            }
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-        balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            let alert = UIAlertController(title: "Congratulations!", message: "Your luck smiled at you, which allowed you to gain extra \(self.winAmount - self.betValues[self.betIndex]) coins to your balance!", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Continue", style: .cancel) { _ in
+                }
+            alert.addAction(okButton)
+            self.present(alert, animated: true, completion: nil)
+            self.balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
+        }
     }
     
     @IBAction func spinAction(_ sender: UIButton) {
@@ -173,6 +176,7 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
             wheelImageView.startRotating()
             sender.isEnabled = false
             backButton.isEnabled = false
+            backButton.alpha = 1
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.92) {
                 sender.isEnabled = true
@@ -263,19 +267,19 @@ extension SlotsController: UITableViewDelegate, UITableViewDataSource {
             
             switch UserDefault.coins {
             case 0..<12_000:
-                cell.imageView?.image = UIImage(named: "\(imageName)(1).png)")
+                cell.photoImageView?.image = UIImage(named: "\(imageName)(1).png)")
                 
             case 12_000..<14_000:
-                cell.imageView?.image = UIImage(named: "\(imageName)(2).png)")
+                cell.photoImageView?.image = UIImage(named: "\(imageName)(2).png)")
                 
             case 14_000..<16_000:
-                cell.imageView?.image = UIImage(named: "\(imageName)(3).png)")
+                cell.photoImageView?.image = UIImage(named: "\(imageName)(3).png)")
                 
             case 16_000..<18_000:
-                cell.imageView?.image = UIImage(named: "\(imageName)(4).png)")
+                cell.photoImageView?.image = UIImage(named: "\(imageName)(4).png)")
                 
             case 18_000... :
-                cell.imageView?.image = UIImage(named: "\(imageName)(5).png)")
+                cell.photoImageView?.image = UIImage(named: "\(imageName)(5).png)")
                 
             default:
                 break
@@ -309,7 +313,7 @@ extension SlotsController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let height = collectionView.frame.height / 3
-        let width = collectionView.frame.width / 5
+        let width = collectionView.frame.width / 5 
         print(height)
         print(width)
 

@@ -11,41 +11,29 @@ class InitialViewController: UIViewController {
     
     static var difference: Int? = 0
     
-    @IBOutlet weak var progressImageView: UIImageView! {
-        didSet {
-            switch UserDefault.mainLevelNumber {
-            case 1:
-                progressImageView.image = UIImage(named: "progressBarOne")
-            case 2:
-                progressImageView.image = UIImage(named: "progressBarTwo")
-            case 3:
-                progressImageView.image = UIImage(named: "progressBarThree")
-            case 4:
-                progressImageView.image = UIImage(named: "progressBarFour")
-            case 5:
-                progressImageView.image = UIImage(named: "progressBarFive")
-            default:
-                progressImageView.image = UIImage(named: "progressBarOne")
-            }
-        }
-    }
-    
-    @IBOutlet weak var levelNumberLabel: UILabel! {
-        didSet {
-            _ = makeLabelChewyColor(label: levelNumberLabel, text: "\(UserDefault.mainLevelNumber)", size: 21, color: Constants.purpleColor)
-    }
-}
-    
+    @IBOutlet weak var levelNumberLabel: UILabel!
     @IBOutlet weak var treasureImageView: UIImageView!
     @IBOutlet weak var infoButton: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
-
     @IBOutlet weak var getYourBonusView: UIView!
-    
     @IBOutlet weak var gotItButton: UIButton!
-    
     @IBOutlet weak var mainAdviceScreen: UIView!
-       
+    @IBOutlet weak var getYourBonusButton: UIButton!
+    
+    private var progressImageLevel: Int = 0 {
+        didSet {
+            progressImageView.image = UIImage(named: "\(progressImageLevel)progressBar")
+        }
+    }
+    
+    @IBOutlet weak var progressImageView: UIImageView!
+    
+    private var levelNumber: Int = 0 {
+        didSet {
+            _ = makeLabelChewyColor(label: levelNumberLabel, text: "\(levelNumber)", size: 24, color: Constants.purpleColor)
+        }
+    }
+
     @IBOutlet weak var adviceTextView: UILabel! {
         didSet {
             adviceTextView.text = Constants.Text.mainScreenText.randomElement()
@@ -55,37 +43,25 @@ class InitialViewController: UIViewController {
         }
     }
     
-    @IBOutlet var mainVCLevelButtons: [UIButton]! {
+    private var mainVCButtonsUserOnLevel: Int = UserDefault.mainLevelNumber {
         didSet {
-            switch UserDefault.mainLevelNumber {
-            case 1:
-                setMapLocksAndSkullExceptCurrent(indexException: 0)
-            case 2:
-                setMapLocksAndSkullExceptCurrent(indexException: 1)
-            case 3:
-                setMapLocksAndSkullExceptCurrent(indexException: 2)
-            case 4:
-                setMapLocksAndSkullExceptCurrent(indexException: 3)
-            default:
-                setMapLocksAndSkullExceptCurrent(indexException: 4)
-                
-            }
+            setMapLocksAndSkullExceptCurrent(indexException: mainVCButtonsUserOnLevel - 1)
         }
     }
     
+    @IBOutlet var mainVCLevelButtons: [UIButton]!
+ 
     @IBOutlet weak var levelLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: levelLabel, text: "Level", size: 20, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: levelLabel, text: "Level", size: 24, color: Constants.purpleColor)
         }
     }
     
     @IBOutlet weak var balanceLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: balanceLabel, text: "Balance", size: 20, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: balanceLabel, text: "Balance", size: 24, color: Constants.purpleColor)
         }
     }
-    
-    @IBOutlet weak var getYourBonusButton: UIButton!
     
     @IBOutlet weak var amountLabel: UILabel! {
         didSet {
@@ -105,6 +81,10 @@ class InitialViewController: UIViewController {
         super.viewWillAppear(animated)
         
         checkMainLevel()
+        progressImageLevel = UserDefault.mainLevelNumber
+        levelNumber = UserDefault.mainLevelNumber
+        mainVCButtonsUserOnLevel = UserDefault.mainLevelNumber
+        
         
         mainVCLevelButtons.forEach {
             $0.layer.add(createIconShakeAnimation(fromValue: -0.5, toValue: 0.5, speed: 0.8), forKey: "iconShakeAnimation")
@@ -128,7 +108,6 @@ class InitialViewController: UIViewController {
                 if let presented = self.presentedViewController {
                     presented.removeFromParent()
                 }
-                
                 present(vc, animated: true)
                 
             } else if UserDefault.mainLevelNumber  > sender.tag {
@@ -141,7 +120,6 @@ class InitialViewController: UIViewController {
                 if let presented = self.presentedViewController {
                         presented.removeFromParent()
                     }
-                
                 present(vc, animated: true)
                 
             } else if sender.tag > UserDefault.mainLevelNumber {
@@ -160,7 +138,6 @@ class InitialViewController: UIViewController {
                 if let presented = self.presentedViewController {
                         presented.removeFromParent()
                     }
-        
                 present(vc, animated: true)
             }
         }
@@ -172,7 +149,6 @@ class InitialViewController: UIViewController {
 
         
     @IBAction func gotItAction(_ sender: UIButton) {
-
 //        performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
         performSegue(withIdentifier: Constants.segueID.slotsVC, sender: sender)
     }
@@ -182,9 +158,7 @@ class InitialViewController: UIViewController {
     }
     
     @IBAction func getYourBonusButton(_ sender: Any) {
-        
         _ = checkIfBonusLevelsAreReset()
-        
         performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
     }
     

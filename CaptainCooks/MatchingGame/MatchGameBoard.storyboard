@@ -27,14 +27,14 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="o0l-r4-ID7">
                                         <rect key="frame" x="0.0" y="0.0" width="416" height="307"/>
                                     </imageView>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLb-ZN-WgW">
-                                        <rect key="frame" x="40" y="71" width="140" height="140"/>
+                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="eLb-ZN-WgW">
+                                        <rect key="frame" x="45" y="71" width="140" height="140"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="eLb-ZN-WgW" secondAttribute="height" multiplier="1:1" id="lVn-sQ-gZp"/>
                                         </constraints>
-                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZSP-lI-LM6">
-                                            <size key="itemSize" width="40" height="40"/>
+                                        <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="7" minimumInteritemSpacing="7" id="ZSP-lI-LM6">
+                                            <size key="itemSize" width="45" height="45"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -65,6 +65,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="FEi-5f-eU8" secondAttribute="trailing" id="ykU-wG-fek"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
+                                                <size key="customSize" width="40" height="40"/>
                                                 <connections>
                                                     <outlet property="backImageView" destination="U0O-i2-uV7" id="q4h-de-ntm"/>
                                                     <outlet property="frontImageView" destination="FEi-5f-eU8" id="rdC-Ca-hR4"/>
@@ -72,37 +73,42 @@
                                             </collectionViewCell>
                                         </cells>
                                     </collectionView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play and find 3 identical cards to win coins" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-be-cil">
-                                        <rect key="frame" x="206" y="71" width="170" height="88.5"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="170" id="KgS-vz-SNG"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="23"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhb-jQ-GAU">
-                                        <rect key="frame" x="201.5" y="167" width="174.5" height="65"/>
+                                        <rect key="frame" x="183" y="147" width="174.5" height="64"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="174.5" id="dBh-6Q-8zE"/>
+                                            <constraint firstAttribute="height" constant="64" id="p78-nZ-aEU"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="get"/>
                                         <connections>
                                             <action selector="goToMainScreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="aFt-Bl-AHd"/>
                                         </connections>
                                     </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play and find 3 identical cards to win coins" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="BSn-be-cil">
+                                        <rect key="frame" x="166" y="47" width="225" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="BSn-be-cil" secondAttribute="height" multiplier="85:44" constant="31.818181818181813" id="B4W-fD-JlQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="25"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="eLb-ZN-WgW" firstAttribute="leading" secondItem="MVG-ch-xPo" secondAttribute="leading" constant="40" id="61e-L2-V53"/>
-                                    <constraint firstItem="BSn-be-cil" firstAttribute="top" secondItem="eLb-ZN-WgW" secondAttribute="top" id="Evz-i9-rNU"/>
+                                    <constraint firstItem="BSn-be-cil" firstAttribute="height" secondItem="MVG-ch-xPo" secondAttribute="height" multiplier="0.31383" constant="11.5" id="3EK-AY-ACR"/>
+                                    <constraint firstItem="eLb-ZN-WgW" firstAttribute="leading" secondItem="MVG-ch-xPo" secondAttribute="leading" constant="45" id="61e-L2-V53"/>
+                                    <constraint firstItem="Yhb-jQ-GAU" firstAttribute="centerX" secondItem="MVG-ch-xPo" secondAttribute="centerX" multiplier="1.4" constant="-20.949999999999989" id="6PZ-7m-YMQ"/>
                                     <constraint firstItem="eLb-ZN-WgW" firstAttribute="centerY" secondItem="MVG-ch-xPo" secondAttribute="centerY" id="HQB-33-r85"/>
                                     <constraint firstItem="eLb-ZN-WgW" firstAttribute="height" secondItem="MVG-ch-xPo" secondAttribute="height" multiplier="0.496454" id="TdY-aB-Rue"/>
                                     <constraint firstAttribute="trailing" secondItem="o0l-r4-ID7" secondAttribute="trailing" id="XFV-C3-L1a"/>
                                     <constraint firstItem="o0l-r4-ID7" firstAttribute="bottom" secondItem="MVG-ch-xPo" secondAttribute="bottom" constant="25" id="aef-op-b5L"/>
                                     <constraint firstItem="o0l-r4-ID7" firstAttribute="leading" secondItem="MVG-ch-xPo" secondAttribute="leading" id="b2Q-WO-LSa"/>
-                                    <constraint firstItem="Yhb-jQ-GAU" firstAttribute="bottom" secondItem="eLb-ZN-WgW" secondAttribute="bottom" constant="21" id="hSp-25-004"/>
-                                    <constraint firstItem="BSn-be-cil" firstAttribute="trailing" secondItem="Yhb-jQ-GAU" secondAttribute="trailing" id="oHa-dR-KDF"/>
+                                    <constraint firstItem="Yhb-jQ-GAU" firstAttribute="bottom" secondItem="eLb-ZN-WgW" secondAttribute="bottom" id="efs-ll-cKh"/>
+                                    <constraint firstItem="BSn-be-cil" firstAttribute="centerY" secondItem="MVG-ch-xPo" secondAttribute="centerY" multiplier="0.8" constant="-15.800000000000011" id="gya-oq-X4F"/>
+                                    <constraint firstItem="BSn-be-cil" firstAttribute="centerX" secondItem="MVG-ch-xPo" secondAttribute="centerX" multiplier="1.4" constant="-12.699999999999989" id="muM-0D-BSW"/>
                                     <constraint firstItem="o0l-r4-ID7" firstAttribute="top" secondItem="MVG-ch-xPo" secondAttribute="top" id="vWq-WB-JdB"/>
-                                    <constraint firstAttribute="trailing" secondItem="Yhb-jQ-GAU" secondAttribute="trailing" constant="40" id="xjm-k9-Ff1"/>
                                 </constraints>
                             </view>
                         </subviews>

@@ -14,7 +14,7 @@ class PrivacyPolicyAndTermsVC: UIViewController {
     
     @IBOutlet weak var backButton: UIButton! {
         didSet {
-            _ =  makeSettingsButtonImage(button: backButton, image: UIImage(named: "buttonBack")!, needsRendering: false)
+            _ =  makeSettingsButtonImage(button: backButton, image: UIImage(named: "buttonBackfromSettings")!, needsRendering: false)
         }
     }
     

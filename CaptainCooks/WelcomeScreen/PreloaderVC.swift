@@ -28,7 +28,7 @@ class PreloaderVC: UIViewController {
         didSet {
             progressBar.layer.cornerRadius = 8
             progressBar.layer.masksToBounds = true
-            progressBar.trackTintColor = UIColor.gray
+            progressBar.trackTintColor = UIColor.rgbColor(red: 63, green: 26, blue: 24, alpha: 1)
             progressBar.progressTintColor = Constants.goldColor
             progressBar.setProgress(0.0, animated: false)
             progressBar.progressViewStyle = .default

@@ -1,8 +1,22 @@
 {
   "images" : [
     {
-      "filename" : "Frame 45.png",
       "idiom" : "universal"
+    },
+    {
+      "filename" : "Ресурс 3@4x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Ресурс 3@4x@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Ресурс 3@4x@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
     }
   ],
   "info" : {
