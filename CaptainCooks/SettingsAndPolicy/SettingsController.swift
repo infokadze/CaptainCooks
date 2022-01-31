@@ -11,7 +11,7 @@ import AVFoundation
 class SettingsController: UIViewController {
     
     var mainVCSettingsButtonState: Bool?
-
+    
     @IBOutlet weak var soundAndPrivacyLabel: UILabel!
     @IBOutlet weak var musicAndTermsLabel: UILabel!
     
@@ -27,6 +27,7 @@ class SettingsController: UIViewController {
         setupSettingButtons()
         
         switch mainVCSettingsButtonState {
+            
         case true:
             _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Sound", size: 35, color: Constants.purpleColor)
             _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Music", size: 35, color: Constants.purpleColor)
@@ -47,16 +48,16 @@ class SettingsController: UIViewController {
             break
         }
     }
-      
+    
     @IBAction func soundButtonTapped(_ sender: UIButton) {
         sender.blink()
-
-        switch UserDefault.isSoundOn {
         
+        switch UserDefault.isSoundOn {
+            
         case true:
             sender.setImage(UIImage(named: "buttonOff"), for: .normal)
             UserDefault.isSoundOn = false
-        
+            
         case false:
             sender.setImage(UIImage(named: "buttonOn"), for: .normal)
             UserDefault.isSoundOn = true
@@ -67,7 +68,7 @@ class SettingsController: UIViewController {
     @IBAction func musicButtonTapped(_ sender: UIButton) {
         sender.blink()
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-
+        
         
         switch UserDefault.isBackgroundMusicOn {
         case true:
@@ -94,7 +95,7 @@ class SettingsController: UIViewController {
         UserDefault.isBackgroundMusicOn ? musicButton.setImage(UIImage(named: "buttonOn"), for: .normal): musicButton.setImage(UIImage(named: "buttonOff"), for: .normal)
         
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == Constants.segueID.privacyAndTermsVC && (sender as? UIButton) == privacyButton {
@@ -109,16 +110,16 @@ class SettingsController: UIViewController {
             }
         }
     }
-
+    
     @IBAction func dismissAction(_ sender: UIButton) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
             self.dismiss(animated: true)
-
+            
         }
     }
     
-   
+    
 }
 

@@ -51,7 +51,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         if  UserDefault.isLaunchedBefore == false {
             UserDefault.mainLevelNumber = 1
             UserDefault.bonusLevelNumber = 1
-            UserDefault.coins = 12_000
+            UserDefault.coins = 10_000
             UserDefault.isSoundOn = true
             UserDefault.isBackgroundMusicOn = true
             UserDefault.isLaunchedBefore = true
