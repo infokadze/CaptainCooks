@@ -37,21 +37,18 @@ class PopUpVC: UIViewController {
     }
     
     @objc func updateLabelOnTheSameLevel() {
-
         labelText.text = """
         You are already located on this point of the map! Keep spinning to achieve new level!
         """
     }
     
     @objc func updateLabelAlreadyPassedLevel() {
-
         labelText.text = """
         You already passed this level! You are able to earn more coins on your current location!
         """
     }
     
     @objc func updateLabelNotEnoughCoinsLevel() {
-
         labelText.text = """
         To play this location you need to earn \(abs(InitialViewController.difference!).formattedWithSeparator) coins. Try again when you've got enough coins!
         """

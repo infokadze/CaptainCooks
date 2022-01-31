@@ -49,7 +49,6 @@ class PrivacyPolicyAndTermsVC: UIViewController {
         case false:
             _ = makeLabelChewyColor(label: privacyLabel, text: "Terms of Use", size: 41, color: Constants.purpleColor)
             _ = makeChewyTextView(textView: textView, text: Constants.Text.termsOfUseText, size: 22)
-
         
         default:
             break

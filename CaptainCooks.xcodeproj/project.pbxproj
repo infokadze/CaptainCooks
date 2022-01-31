@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2D028065279ED57D00AB97C2 /* ImagesModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D028064279ED57D00AB97C2 /* ImagesModelData.swift */; };
 		2D028067279EE19300AB97C2 /* Draft.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 2D028066279EE19300AB97C2 /* Draft.rtf */; };
 		2D02806A279F04ED00AB97C2 /* SlotCombinations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D028069279F04ED00AB97C2 /* SlotCombinations.swift */; };
 		2D7BA1F927A7FABF00FA5207 /* click2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 2D7BA1F827A7FABF00FA5207 /* click2.wav */; };
@@ -45,7 +44,6 @@
 		2DC98D852786E6A500CC9C4C /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D842786E6A500CC9C4C /* SettingsController.swift */; };
 		2DC98D872786E78E00CC9C4C /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DC98D862786E78E00CC9C4C /* PopUpVC.swift */; };
 		2DFAC9B92795A8F700F15D69 /* Animation(declined).swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFAC9B82795A8F700F15D69 /* Animation(declined).swift */; };
-		2DFAC9BB2795BF3500F15D69 /* SlotsModel (depricated).swift in Sources */ = {isa = PBXBuildFile; fileRef = 2DFAC9BA2795BF3500F15D69 /* SlotsModel (depricated).swift */; };
 		4A473C622788C3C60005059F /* Links.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 4A473C612788C3C60005059F /* Links.rtf */; };
 		4A473C6B2788FCBB0005059F /* main.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A473C692788FCB90005059F /* main.wav */; };
 		4A473C6C2788FCBB0005059F /* slots.wav in Resources */ = {isa = PBXBuildFile; fileRef = 4A473C6A2788FCBB0005059F /* slots.wav */; };
@@ -55,7 +53,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2D028064279ED57D00AB97C2 /* ImagesModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesModelData.swift; sourceTree = "<group>"; };
 		2D028066279EE19300AB97C2 /* Draft.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Draft.rtf; sourceTree = "<group>"; };
 		2D028069279F04ED00AB97C2 /* SlotCombinations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SlotCombinations.swift; sourceTree = "<group>"; };
 		2D7BA1F827A7FABF00FA5207 /* click2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = click2.wav; sourceTree = "<group>"; };
@@ -95,7 +92,6 @@
 		2DC98D842786E6A500CC9C4C /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		2DC98D862786E78E00CC9C4C /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		2DFAC9B82795A8F700F15D69 /* Animation(declined).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Animation(declined).swift"; sourceTree = "<group>"; };
-		2DFAC9BA2795BF3500F15D69 /* SlotsModel (depricated).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SlotsModel (depricated).swift"; sourceTree = "<group>"; };
 		4A473C612788C3C60005059F /* Links.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Links.rtf; sourceTree = "<group>"; };
 		4A473C692788FCB90005059F /* main.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = main.wav; sourceTree = "<group>"; };
 		4A473C6A2788FCBB0005059F /* slots.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = slots.wav; sourceTree = "<group>"; };
@@ -121,8 +117,6 @@
 				4A473C612788C3C60005059F /* Links.rtf */,
 				2D7FCD94278C778800B6DCB5 /* gradientInfo.png */,
 				2D028066279EE19300AB97C2 /* Draft.rtf */,
-				2D028064279ED57D00AB97C2 /* ImagesModelData.swift */,
-				2DFAC9BA2795BF3500F15D69 /* SlotsModel (depricated).swift */,
 				2DFAC9B82795A8F700F15D69 /* Animation(declined).swift */,
 			);
 			path = Other;
@@ -379,7 +373,6 @@
 			files = (
 				2DC98D7527848C8300CC9C4C /* MatchGameViewController.swift in Sources */,
 				2DA2760A279EBC050052FC2D /* CustomTableViewCell.swift in Sources */,
-				2DFAC9BB2795BF3500F15D69 /* SlotsModel (depricated).swift in Sources */,
 				2DC98D852786E6A500CC9C4C /* SettingsController.swift in Sources */,
 				4ABE997F2792265E00798C8A /* Vibro.swift in Sources */,
 				2DFAC9B92795A8F700F15D69 /* Animation(declined).swift in Sources */,
@@ -392,7 +385,6 @@
 				2DC98D7627848C8300CC9C4C /* CardModel.swift in Sources */,
 				2D7FCD93278C598D00B6DCB5 /* Constants.swift in Sources */,
 				2D8B7766278EDF790043404A /* User.swift in Sources */,
-				2D028065279ED57D00AB97C2 /* ImagesModelData.swift in Sources */,
 				4AAC0D6F2789C81200B3E79B /* Extensions.swift in Sources */,
 				2DC98D392784407C00CC9C4C /* AppDelegate.swift in Sources */,
 				2DC98D7027848C8300CC9C4C /* CardCollectionViewCell.swift in Sources */,
