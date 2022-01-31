@@ -45,6 +45,16 @@ struct UserDefault {
         }
     }
     
+    static var slotsLevelNumber: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "slotsLevelNumber")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "slotsLevelNumber")
+        }
+    }
+    
+    
     static var currentDate: Date {
         get {
             return UserDefaults.standard.object(forKey: "currentDate") as! Date

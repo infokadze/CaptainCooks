@@ -30,7 +30,11 @@ class PrivacyPolicyAndTermsVC: UIViewController {
     }
     
     @IBAction func backButton(_ sender: UIButton) {
-        dismiss(animated: true)
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.dismiss(animated: true)
+        }
+        
     }
     
     override func viewDidLoad() {
@@ -40,11 +44,11 @@ class PrivacyPolicyAndTermsVC: UIViewController {
         
         case true:
             _ = makeLabelChewyColor(label: privacyLabel, text: "Privacy Policy", size: 41, color: Constants.purpleColor)
-            _ = makeChewyTextView(textView: textView, text: Constants.Text.privacyPolicyText, size: 16)
+            _ = makeChewyTextView(textView: textView, text: Constants.Text.privacyPolicyText, size: 22)
 
         case false:
             _ = makeLabelChewyColor(label: privacyLabel, text: "Terms of Use", size: 41, color: Constants.purpleColor)
-            _ = makeChewyTextView(textView: textView, text: Constants.Text.termsOfUseText, size: 16)
+            _ = makeChewyTextView(textView: textView, text: Constants.Text.termsOfUseText, size: 22)
 
         
         default:

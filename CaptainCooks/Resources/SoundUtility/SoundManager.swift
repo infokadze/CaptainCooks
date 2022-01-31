@@ -10,6 +10,7 @@ import AVFoundation
 final class SoundManager {
     
     static let sharedAudioBackgroundObject = SoundManager()
+    static let sharedAudioOneTimerObject = SoundManager()
     
     var audioEffectsPlayer: AVAudioPlayer?
     
@@ -21,6 +22,10 @@ final class SoundManager {
         case sad
         case main
         case slots
+        case click
+        case coins
+        case spin
+        case plusOrMinus
     }
     
     func playSoundEffect(effect: SoundEffect) {
@@ -48,7 +53,14 @@ final class SoundManager {
                 break
             case .slots:
                 soundFileName = "slots"
-                
+            case .click:
+                soundFileName = "click2"
+            case .coins:
+                soundFileName = "coins"
+            case .spin:
+                soundFileName = "spin"
+            case . plusOrMinus:
+                soundFileName = "plusOrMinus"
             }
             
             let bundlePath = Bundle.main.path(forResource: soundFileName, ofType: ".wav")

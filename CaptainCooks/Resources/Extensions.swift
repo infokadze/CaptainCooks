@@ -69,9 +69,6 @@ extension Numeric {
 }
 
 extension UIViewController {
-    
-  
-    
     func makeLabelChewyColor(label: UILabel, text: String, size: CGFloat, color: UIColor) -> UILabel {
         let labelChanged = label
         let color = color
@@ -86,8 +83,8 @@ extension UIViewController {
     
     func makeChewyTextView(textView: UITextView, text: String, size: CGFloat) -> UITextView {
         let textForView = textView
-        let color = UIColor.black
-        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -5.0,
+        let color = Constants.purpleColor
+        let attributes: [NSAttributedString.Key : Any] = [.strokeWidth: -4.0,
                                                           .strokeColor: UIColor.white,
                                                           .foregroundColor: color]
         let attributedString = NSAttributedString(string: text, attributes: attributes)

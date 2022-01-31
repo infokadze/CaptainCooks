@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVFoundation
 
 class SettingsController: UIViewController {
     
@@ -27,15 +28,15 @@ class SettingsController: UIViewController {
         
         switch mainVCSettingsButtonState {
         case true:
-            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Sound", size: 41, color: Constants.purpleColor)
-            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Music", size: 41, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Sound", size: 35, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Music", size: 35, color: Constants.purpleColor)
             
             privacyButton.isHidden = true
             termsButton.isHidden = true
             
         case false:
-            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Privacy Policy", size: 30, color: Constants.purpleColor)
-            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Terms of Use", size: 30, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: soundAndPrivacyLabel, text: "Privacy Policy", size: 35, color: Constants.purpleColor)
+            _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Terms of Use", size: 35, color: Constants.purpleColor)
             _ =  makeSettingsButtonImage(button: privacyButton, image: UIImage(named: "chevronRight")!, needsRendering: true)
             _ =  makeSettingsButtonImage(button: termsButton, image: UIImage(named: "chevronRight")!, needsRendering: true)
             
@@ -49,7 +50,7 @@ class SettingsController: UIViewController {
       
     @IBAction func soundButtonTapped(_ sender: UIButton) {
         sender.blink()
-        
+
         switch UserDefault.isSoundOn {
         
         case true:
@@ -59,11 +60,14 @@ class SettingsController: UIViewController {
         case false:
             sender.setImage(UIImage(named: "buttonOn"), for: .normal)
             UserDefault.isSoundOn = true
+            playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         }
     }
     
     @IBAction func musicButtonTapped(_ sender: UIButton) {
         sender.blink()
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+
         
         switch UserDefault.isBackgroundMusicOn {
         case true:
@@ -75,10 +79,12 @@ class SettingsController: UIViewController {
             sender.setImage(UIImage(named: "buttonOn"), for: .normal)
             UserDefault.isBackgroundMusicOn = true
             playBackgroundAudio(playerClassInstance: .sharedAudioBackgroundObject, sound: .main)
+            playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         }
     }
     
     @IBAction func termsOrPolicyVC(_ sender: UIButton) {
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         performSegue(withIdentifier: Constants.segueID.privacyAndTermsVC, sender: sender)
     }
     
@@ -105,8 +111,13 @@ class SettingsController: UIViewController {
     }
 
     @IBAction func dismissAction(_ sender: UIButton) {
-        self.dismiss(animated: true)
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.dismiss(animated: true)
+
         }
+    }
     
    
 }

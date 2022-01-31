@@ -2,7 +2,7 @@
 //  ViewController.swift
 //  CardMatchGame
 //
-//  Created by LiewSyetChau on 8/12/21.
+//  Created by Ihor Prokopenko on 8/12/21.
 //
 
 import UIKit

@@ -58,9 +58,10 @@ class PreloaderVC: UIViewController {
                 progressView.setProgress(1.0, animated: true)
             } completion: { _ in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) {
-                    
+                    self.dismiss(animated: false, completion: nil)
                     self.performSegue(withIdentifier: Constants.segueID.fromPreloaderVC, sender: self)
                     self.playBackgroundAudio(playerClassInstance: SoundManager.sharedAudioBackgroundObject, sound: .main)
+                    
                 }
             }
         }

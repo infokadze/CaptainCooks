@@ -8,7 +8,7 @@
 import Foundation
 
 extension SlotsController {
-
+    
     func checkWinComboFor17(isWin: Bool) {
         
         switch isWin {
@@ -32,7 +32,7 @@ extension SlotsController {
             dataModel[14][17] == dataModel[8][17] && dataModel[8][17] == dataModel[7][17] && dataModel[7][17] == dataModel[6][17] && dataModel[6][17] == dataModel[10][17] ||
             dataModel[14][17] == dataModel[8][17] && dataModel[8][17] == dataModel[7][17] && dataModel[7][17] == dataModel[6][17] && dataModel[6][17] == dataModel[0][17] ||
             
-
+            
             dataModel[14][17] == dataModel[8][17] && dataModel[8][17] == dataModel[7][17] && dataModel[7][17] == dataModel[6][17] && dataModel[6][17] == dataModel[1][17] ||
             dataModel[14][17] == dataModel[8][17] && dataModel[8][17] == dataModel[7][17] && dataModel[7][17] == dataModel[6][17] && dataModel[6][17] == dataModel[5][17] ||
             dataModel[4][17] == dataModel[8][17] && dataModel[8][17] == dataModel[7][17] && dataModel[7][17] == dataModel[6][17] && dataModel[6][17] == dataModel[10][17] ||
@@ -41,7 +41,7 @@ extension SlotsController {
             dataModel[4][17] == dataModel[8][17] && dataModel[8][17] == dataModel[7][17] && dataModel[7][17] == dataModel[6][17] && dataModel[6][17] == dataModel[0][17] :
             print("update bank x5 -> Combination V diagonal for 5 rows")
             updateBank(multiplyBy: 5)
-            #warning("@")
+#warning("@")
             
             // 3
         case dataModel[0][17] == dataModel[6][17] && dataModel[6][17] == dataModel[12][17] && dataModel[12][17] == dataModel[8][17] && dataModel[8][17] == dataModel[4][17] ||
@@ -88,7 +88,7 @@ extension SlotsController {
             
             //
             dataModel[9][17] == dataModel[8][17] && dataModel[8][17] == dataModel[2][17] && dataModel[2][17] == dataModel[6][17] ||
-
+            
             
             //
             
@@ -122,7 +122,7 @@ extension SlotsController {
             dataModel[4][17] == dataModel[9][17] && dataModel[9][17] == dataModel[14][17]:
             print("update bank x3 -> Combination vertical 0/1/2/3/4 rows")
             updateBank(multiplyBy: 3)
-
+            
             // 8
         case dataModel[0][17] == dataModel[6][17] && dataModel[6][17] == dataModel[12][17] ||
             dataModel[12][17] == dataModel[8][17] && dataModel[8][17] == dataModel[4][17] ||
@@ -159,9 +159,9 @@ extension SlotsController {
             // 3
         case dataModel[0][0] == dataModel[6][0] && dataModel[6][0] == dataModel[12][0] && dataModel[12][0] == dataModel[8][0] && dataModel[8][0] == dataModel[4][0] ||
             dataModel[0][0] == dataModel[6][0] && dataModel[6][0] == dataModel[7][0] && dataModel[7][0] == dataModel[13][0] && dataModel[13][0] == dataModel[14][0] ||
-
+            
             dataModel[14][0] == dataModel[8][0] && dataModel[8][0] == dataModel[7][0] && dataModel[7][0] == dataModel[6][0] && dataModel[6][0] == dataModel[0][0] ||
-
+            
             
             dataModel[10][0] == dataModel[6][0] && dataModel[6][0] == dataModel[2][0] && dataModel[2][0] == dataModel[8][0] && dataModel[8][0] == dataModel[14][0] :
             print("update bank x5 -> Combination V for 5 rows")
@@ -176,10 +176,10 @@ extension SlotsController {
             dataModel[4][0] == dataModel[8][0] && dataModel[8][0] == dataModel[7][0] && dataModel[7][0] == dataModel[6][0] && dataModel[6][0] == dataModel[10][0] ||
             dataModel[4][0] == dataModel[8][0] && dataModel[8][0] == dataModel[7][0] && dataModel[7][0] == dataModel[6][0] && dataModel[6][0] == dataModel[5][0] ||
             dataModel[4][0] == dataModel[8][0] && dataModel[8][0] == dataModel[7][0] && dataModel[7][0] == dataModel[6][0] && dataModel[6][0] == dataModel[0][0] :
-
+            
             print("update bank x5 -> Combination V diagonal for 5 rows")
             updateBank(multiplyBy: 5)
-            #warning("!")
+#warning("!")
             // 4
         case dataModel[0][0] == dataModel[1][0] && dataModel[1][0] == dataModel[2][0] && dataModel[2][0] == dataModel[3][0] || dataModel[1][0] == dataModel[2][0] && dataModel[2][0] == dataModel[3][0] && dataModel[3][0] == dataModel[4][0] ||
             // top x4
@@ -241,7 +241,7 @@ extension SlotsController {
             dataModel[4][0] == dataModel[9][0] && dataModel[9][0] == dataModel[14][0]:
             print("update bank x3 -> Combination vertical 0/1/2/3/4 rows")
             updateBank(multiplyBy: 3)
- 
+            
             // 8
         case dataModel[0][0] == dataModel[6][0] && dataModel[6][0] == dataModel[12][0] ||
             dataModel[12][0] == dataModel[8][0] && dataModel[8][0] == dataModel[4][0] ||

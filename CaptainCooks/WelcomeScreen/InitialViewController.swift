@@ -101,9 +101,8 @@ class InitialViewController: UIViewController {
             if sender.tag == UserDefault.mainLevelNumber {
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "updateLabelOnTheSameLevel"), object: nil)
-                
                 let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.notEnoughID) as! NotEnoughCoinsVC
+                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
                 
                 if let presented = self.presentedViewController {
                     presented.removeFromParent()
@@ -113,27 +112,24 @@ class InitialViewController: UIViewController {
             } else if UserDefault.mainLevelNumber  > sender.tag {
                 
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "updateLabelAlreadyPassedLevel"), object: nil)
-                
                 let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.notEnoughID) as! NotEnoughCoinsVC
+                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
                 
                 if let presented = self.presentedViewController {
                         presented.removeFromParent()
                     }
+                
                 present(vc, animated: true)
                 
             } else if sender.tag > UserDefault.mainLevelNumber {
 
                 let currentCoins = UserDefault.coins
-
                 let coinsPoolforLevelReference = [currentCoins, 12_000, 14_000, 16_000, 18_000]
-                
                 InitialViewController.difference  =  coinsPoolforLevelReference[sender.tag - 1] - currentCoins
-                
                 NotificationCenter.default.post(name: Notification.Name(rawValue: "updateLabelNotEnoughCoinsLevel"), object: nil)
                 
                 let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.notEnoughID) as! NotEnoughCoinsVC
+                let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
                 
                 if let presented = self.presentedViewController {
                         presented.removeFromParent()
@@ -150,15 +146,18 @@ class InitialViewController: UIViewController {
         
     @IBAction func gotItAction(_ sender: UIButton) {
 //        performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         performSegue(withIdentifier: Constants.segueID.slotsVC, sender: sender)
     }
     
     @IBAction func settingsOrInfoButtonTapped(_ sender: UIButton) {
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         performSegue(withIdentifier: Constants.segueID.settingsOrInfoVC, sender: sender)
     }
     
     @IBAction func getYourBonusButton(_ sender: Any) {
         _ = checkIfBonusLevelsAreReset()
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
     }
     
@@ -245,9 +244,8 @@ class InitialViewController: UIViewController {
         case (24...):
             UserDefault.bonusLevelNumber = 1
             return true
-            
+    
         default:
-            print("checkIfBonusLevelsAreReset is not working properly")
             return false
         }
     }

@@ -8,17 +8,17 @@
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
-        
+    
     @IBOutlet weak var tableView: UITableView!
     
     
-func setTableViewDelegate<D: UITableViewDelegate & UITableViewDataSource>(delegate: D, forItem item: Int) {
+    func setTableViewDelegate<D: UITableViewDelegate & UITableViewDataSource>(delegate: D, forItem item: Int) {
         tableView.dataSource = delegate
         tableView.delegate = delegate
         tableView.tag = item
         tableView.reloadData()
     }
- 
+    
      func shuffleData(slotIndexPath: IndexPath) {
         switch tableView.tag {
         case 0, 5, 10:

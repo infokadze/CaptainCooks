@@ -33,24 +33,18 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSr-lv-oe9" userLabel="privacyButton">
-                                        <rect key="frame" x="240" y="67.333333333333329" width="51" height="51"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="FSr-lv-oe9" secondAttribute="height" multiplier="1:1" id="ocu-93-d2G"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="card1"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSr-lv-oe9" userLabel="privacyButton">
+                                        <rect key="frame" x="245.33333333333331" y="74.666666666666671" width="40" height="40"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="card1"/>
                                         <connections>
                                             <action selector="termsOrPolicyVC:" destination="z4u-dy-IFM" eventType="touchUpInside" id="GCB-Ps-OhA"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4Z-Kl-wdp" userLabel="soundButton">
-                                        <rect key="frame" x="240" y="67.333333333333329" width="51" height="51"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="E4Z-Kl-wdp" secondAttribute="height" multiplier="1:1" id="kIk-XQ-d2b"/>
-                                        </constraints>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="card1"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4Z-Kl-wdp" userLabel="soundButton">
+                                        <rect key="frame" x="245.33333333333331" y="72.999999999999986" width="40" height="40"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="card1"/>
                                         <connections>
                                             <action selector="soundButtonTapped:" destination="z4u-dy-IFM" eventType="touchUpInside" id="52G-Fv-nq0"/>
                                         </connections>
@@ -88,31 +82,25 @@
                                             <action selector="dismissAction:" destination="z4u-dy-IFM" eventType="touchUpInside" id="pKA-09-S0j"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncX-3U-wwE" userLabel="termsButton">
-                                        <rect key="frame" x="233" y="141" width="64" height="51"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" image="card1"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ncX-3U-wwE" userLabel="termsButton">
+                                        <rect key="frame" x="245.33333333333331" y="149.33333333333331" width="40" height="40"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" image="card1"/>
                                         <connections>
                                             <action selector="termsOrPolicyVC:" destination="z4u-dy-IFM" eventType="touchUpInside" id="mcY-sS-HWF"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="leading" secondItem="IN9-f6-UKi" secondAttribute="leading" constant="-7" id="24U-2f-MGE"/>
-                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="height" secondItem="E4Z-Kl-wdp" secondAttribute="height" id="29x-l3-kXB"/>
                                     <constraint firstItem="74d-rA-I7J" firstAttribute="top" secondItem="OoV-8p-IJd" secondAttribute="bottom" constant="20" id="2Z7-Td-SnW"/>
-                                    <constraint firstItem="E4Z-Kl-wdp" firstAttribute="height" secondItem="lBb-BA-BTC" secondAttribute="height" multiplier="0.188192" id="3oM-uf-9CR"/>
                                     <constraint firstItem="IN9-f6-UKi" firstAttribute="centerY" secondItem="74d-rA-I7J" secondAttribute="centerY" id="47a-Nv-GN6"/>
-                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="firstBaseline" secondItem="IN9-f6-UKi" secondAttribute="firstBaseline" id="CTb-Xt-Vsf"/>
-                                    <constraint firstItem="FSr-lv-oe9" firstAttribute="trailing" secondItem="E4Z-Kl-wdp" secondAttribute="trailing" id="FZV-1k-a03"/>
+                                    <constraint firstItem="FSr-lv-oe9" firstAttribute="centerY" secondItem="Gkq-M2-Vu6" secondAttribute="centerY" multiplier="0.7" id="BcK-4N-lDj"/>
                                     <constraint firstItem="IN9-f6-UKi" firstAttribute="centerX" secondItem="lBb-BA-BTC" secondAttribute="centerX" multiplier="1.45" id="LGI-vE-KSE"/>
                                     <constraint firstItem="E4Z-Kl-wdp" firstAttribute="centerY" secondItem="OoV-8p-IJd" secondAttribute="centerY" id="LIe-EN-3im"/>
-                                    <constraint firstItem="FSr-lv-oe9" firstAttribute="leading" secondItem="E4Z-Kl-wdp" secondAttribute="leading" id="LQr-iP-HBv"/>
-                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="width" secondItem="E4Z-Kl-wdp" secondAttribute="width" multiplier="1.2549" id="Psr-7G-ZWM"/>
                                     <constraint firstItem="E4Z-Kl-wdp" firstAttribute="centerX" secondItem="lBb-BA-BTC" secondAttribute="centerX" multiplier="1.45" id="QA7-Jv-lSU"/>
                                     <constraint firstItem="IN9-f6-UKi" firstAttribute="height" secondItem="lBb-BA-BTC" secondAttribute="height" multiplier="0.188192" id="Qur-b6-Q8o"/>
                                     <constraint firstItem="OoV-8p-IJd" firstAttribute="leading" secondItem="Gkq-M2-Vu6" secondAttribute="leading" constant="48" id="RhH-l2-bv3"/>
-                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="baseline" secondItem="IN9-f6-UKi" secondAttribute="baseline" id="UAk-Ri-qbV"/>
+                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="centerX" secondItem="Gkq-M2-Vu6" secondAttribute="centerX" multiplier="1.45" id="Tf6-4F-kOc"/>
                                     <constraint firstItem="74d-rA-I7J" firstAttribute="leading" secondItem="Gkq-M2-Vu6" secondAttribute="leading" constant="48" id="Vks-WL-fpE"/>
                                     <constraint firstItem="lBb-BA-BTC" firstAttribute="top" secondItem="Gkq-M2-Vu6" secondAttribute="top" id="XOR-w9-JpF"/>
                                     <constraint firstAttribute="width" constant="366" id="Ylc-6C-n6U"/>
@@ -120,12 +108,12 @@
                                     <constraint firstAttribute="bottom" secondItem="lBb-BA-BTC" secondAttribute="bottom" id="dl4-Ds-65K"/>
                                     <constraint firstItem="Y8m-DL-asM" firstAttribute="top" secondItem="Gkq-M2-Vu6" secondAttribute="top" constant="8" id="fG1-He-QOS"/>
                                     <constraint firstAttribute="bottom" secondItem="IN9-f6-UKi" secondAttribute="bottom" constant="79" id="fGs-0Y-Ddp"/>
+                                    <constraint firstItem="FSr-lv-oe9" firstAttribute="centerX" secondItem="Gkq-M2-Vu6" secondAttribute="centerX" multiplier="1.45" id="giG-Th-X7U"/>
                                     <constraint firstItem="lBb-BA-BTC" firstAttribute="leading" secondItem="Gkq-M2-Vu6" secondAttribute="leading" id="h7e-8n-JsR"/>
-                                    <constraint firstItem="FSr-lv-oe9" firstAttribute="centerY" secondItem="E4Z-Kl-wdp" secondAttribute="centerY" id="iwv-Zi-Wu0"/>
-                                    <constraint firstItem="FSr-lv-oe9" firstAttribute="width" secondItem="FSr-lv-oe9" secondAttribute="height" multiplier="1:1" id="jpo-CH-EYM"/>
                                     <constraint firstAttribute="trailing" secondItem="Y8m-DL-asM" secondAttribute="trailing" id="lrW-mT-fRZ"/>
                                     <constraint firstAttribute="height" constant="271" id="pHO-Mh-Pfc"/>
                                     <constraint firstAttribute="trailing" secondItem="lBb-BA-BTC" secondAttribute="trailing" id="rpx-lS-83v"/>
+                                    <constraint firstItem="ncX-3U-wwE" firstAttribute="centerY" secondItem="Gkq-M2-Vu6" secondAttribute="centerY" multiplier="1.25" id="syi-9m-AOr"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -148,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cF2-c7-pAZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="558" y="1023"/>
+            <point key="canvasLocation" x="557.8125" y="1021.7391304347827"/>
         </scene>
         <!--Initial View Controller-->
         <scene sceneID="tne-QT-ifu">
@@ -219,7 +207,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="Hwn-zv-JDh">
                                         <rect key="frame" x="0.0" y="0.0" width="300" height="221"/>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust text in code" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.80000000000000004" translatesAutoresizingMaskIntoConstraints="NO" id="TaQ-MU-GMv" userLabel="adviceTextLabel">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust text in code" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TaQ-MU-GMv" userLabel="adviceTextLabel">
                                         <rect key="frame" x="30" y="20" width="240" height="181"/>
                                         <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="26"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
