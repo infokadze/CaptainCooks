@@ -61,7 +61,6 @@ final class BonusMapController: UIViewController {
         case 1:
             filteredButtonsAndCrossesAnimatingWithGlow(buttonAndCrossIndexExclusion: 1)
             buttonsDisableInteractonExcept(indexActive: 1)
-            
             UserDefault.bonusLevelNumber = level + 1
             
         case 2:
@@ -83,7 +82,8 @@ final class BonusMapController: UIViewController {
             value.image = UIImage(named: "crossActive")
             }
             
-            UserDefault.bonusLevelNumber = level + 1
+             UserDefault.bonusLevelNumber = level + 1
+             UserDefault.currentDate = Date()
             
         case 3:
             filteredButtonsAndCrossesAnimatingWithGlow(buttonAndCrossIndexExclusion: 3)
@@ -113,6 +113,7 @@ final class BonusMapController: UIViewController {
             }
             
             UserDefault.bonusLevelNumber = level + 1
+            UserDefault.currentDate = Date()
             
         case 4:
             
@@ -151,6 +152,7 @@ final class BonusMapController: UIViewController {
             }
             
             UserDefault.bonusLevelNumber = level + 1
+            UserDefault.currentDate = Date()
             
         case 5:
             filteredButtonsAndCrossesAnimatingWithGlow(buttonAndCrossIndexExclusion: 5)
@@ -197,6 +199,7 @@ final class BonusMapController: UIViewController {
             }
             
             UserDefault.bonusLevelNumber = level + 1
+            UserDefault.currentDate = Date()
             
         default:
         
@@ -204,6 +207,7 @@ final class BonusMapController: UIViewController {
             buttonsDisableInteractonExcept(indexActive: 1)
             
             UserDefault.bonusLevelNumber = 1
+            UserDefault.currentDate = Date()
         }
     }
     

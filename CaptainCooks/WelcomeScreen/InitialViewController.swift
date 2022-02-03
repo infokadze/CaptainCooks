@@ -91,7 +91,9 @@ class InitialViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        checkIfBonusLevelsAreReset()
         checkIfBonusScreenAvailable()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -180,7 +182,8 @@ class InitialViewController: UIViewController {
     }
     
     @IBAction func getYourBonusButton(_ sender: Any) {
-        _ = checkIfBonusLevelsAreReset()
+        
+        
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         performSegue(withIdentifier: Constants.segueID.bonusMapVC, sender: sender)
     }
@@ -306,27 +309,17 @@ class InitialViewController: UIViewController {
             getYourBonusView.isHidden = false
             mainAdviceScreen.isHidden = true
             gotItButton.isHidden = true
-            UserDefault.currentDate = Date()
-            
         }
     }
-    
-    private func checkIfBonusLevelsAreReset() -> Bool {
-        let interval = Date() - UserDefault.currentDate
-        
-        switch interval.hour! {
-            
-        case (0..<24):
-            return false
-            
-        case (24...):
-            UserDefault.bonusLevelNumber = 1
-            return true
-            
-        default:
-            return false
+
+    private func checkIfBonusLevelsAreReset() {
+        if let date = UserDefault.currentDate as? Date {
+            if let diff = Calendar.current.dateComponents([.hour], from: date, to: Date()).hour, diff > 48 {
+                UserDefault.bonusLevelNumber = 0
+            }
         }
     }
+  
     
     private func setDefaultMapIcons(indexException: Int) {
         let buttons = mainVCLevelButtons.sorted { $0.tag < $1.tag }.enumerated()
