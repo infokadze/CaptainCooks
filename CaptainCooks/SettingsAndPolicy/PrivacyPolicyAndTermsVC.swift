@@ -28,18 +28,10 @@ class PrivacyPolicyAndTermsVC: UIViewController {
             textView.isEditable = false
         }
     }
-    
-    @IBAction func backButton(_ sender: UIButton) {
-        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-            self.dismiss(animated: true)
-        }
-        
-    }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         switch privacyPolicyTapped {
         
         case true:
@@ -51,7 +43,28 @@ class PrivacyPolicyAndTermsVC: UIViewController {
             _ = makeChewyTextView(textView: textView, text: Constants.Text.termsOfUseText, size: 22)
         
         default:
-            break
+            ()
+        }
+    }
+    
+    @IBAction func backButton(_ sender: UIButton) {
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.dismiss(animated: true)
+        }
+    }
+    
+    @objc func makePolicy() {
+        DispatchQueue.main.async {
+            _ = self.makeLabelChewyColor(label: self.privacyLabel, text: "Privacy Policy", size: 41, color: Constants.purpleColor)
+            _ = self.makeChewyTextView(textView: self.textView, text: Constants.Text.privacyPolicyText, size: 22)
+        }
+    }
+
+    @objc func makeTerms() {
+        DispatchQueue.main.async {
+            _ = self.makeLabelChewyColor(label: self.privacyLabel, text: "Terms of Use", size: 41, color: Constants.purpleColor)
+            _ = self.makeChewyTextView(textView: self.textView, text: Constants.Text.termsOfUseText, size: 22)
         }
     }
 }

@@ -24,8 +24,6 @@ class SettingsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        
         setupSettingButtons()
         
         switch mainVCSettingsButtonState {
@@ -45,17 +43,18 @@ class SettingsController: UIViewController {
             
             soundAndPrivacyLabel.isUserInteractionEnabled = true
             musicAndTermsLabel.isUserInteractionEnabled = true
-            
-            let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
-            
-            soundAndPrivacyLabel.addGestureRecognizer(tap)
-            musicAndTermsLabel.addGestureRecognizer(tap)
+
+            let tap1 = UITapGestureRecognizer(target: self, action: #selector(tapFunction1))
+            let tap2 = UITapGestureRecognizer(target: self, action: #selector(tapFunction2))
+
+            soundAndPrivacyLabel.addGestureRecognizer(tap1)
+            musicAndTermsLabel.addGestureRecognizer(tap2)
             
             musicButton.isHidden = true
             soundButton.isHidden = true
             
         default:
-            break
+            ()
         }
     }
     
@@ -99,9 +98,32 @@ class SettingsController: UIViewController {
         performSegue(withIdentifier: Constants.segueID.privacyAndTermsVC, sender: sender)
     }
     
-    @objc func tapFunction(sender: UITapGestureRecognizer) {
+    @objc func tapFunction1(sender: UITapGestureRecognizer) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-        performSegue(withIdentifier: Constants.segueID.privacyAndTermsVC, sender: sender)
+
+        let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: Bundle.main)
+        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.privacyPolicy) as! PrivacyPolicyAndTermsVC
+        vc.makePolicy()
+        
+        if let presented = self.presentedViewController {
+            presented.removeFromParent()
+        }
+        
+        present(vc, animated: true)
+    }
+       
+    @objc func tapFunction2(sender: UITapGestureRecognizer) {
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+    
+        let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: Bundle.main)
+        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.privacyPolicy) as! PrivacyPolicyAndTermsVC
+        vc.makeTerms()
+        
+        if let presented = self.presentedViewController {
+                   presented.removeFromParent()
+               }
+        
+        present(vc, animated: true)
     }
     
     private func setupSettingButtons() {
@@ -124,7 +146,22 @@ class SettingsController: UIViewController {
                 vc.privacyPolicyTapped = false
             }
         }
+        
+        
+//
+//        else if  segue.identifier == Constants.segueID.privacyAndTermsVC && (sender as? UILabel) == musicAndTermsLabel {
+//            if let vc = segue.destination as? PrivacyPolicyAndTermsVC {
+//                vc.makeTerms()
+//            }
+//        }
+//
+//        else if  segue.identifier == Constants.segueID.privacyAndTermsVC && (sender as? UILabel) == soundAndPrivacyLabel {
+//            if let vc = segue.destination as? PrivacyPolicyAndTermsVC {
+//                vc.makePolicy()
+//            }
+//        }
     }
+//
     
     @IBAction func dismissAction(_ sender: UIButton) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)

@@ -309,6 +309,8 @@ class InitialViewController: UIViewController {
             getYourBonusView.isHidden = false
             mainAdviceScreen.isHidden = true
             gotItButton.isHidden = true
+            UserDefault.currentDate = Date()
+
         }
     }
 
