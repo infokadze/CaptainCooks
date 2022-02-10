@@ -173,6 +173,11 @@ class InitialViewController: UIViewController {
     
     @IBAction func gotItAction(_ sender: UIButton) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+        
+        if let presented = self.presentedViewController {
+            presented.removeFromParent()
+        }
+        
         performSegue(withIdentifier: Constants.segueID.slotsVC, sender: sender)
     }
     
@@ -231,7 +236,7 @@ class InitialViewController: UIViewController {
             
             for (_, value) in mainVCLevelButtons.enumerated() {
                 if value.tag == 1 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 2 {
                     value.setImage(UIImage(named: "skullOnMap"), for: .normal)
                     value.doGlowAnimation(withColor: Constants.purpleColor, withEffect: .normal, duration: 1)
@@ -244,9 +249,9 @@ class InitialViewController: UIViewController {
             
             for (_, value) in mainVCLevelButtons.enumerated() {
                 if value.tag == 1 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 2 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 3 {
                     value.setImage(UIImage(named: "skullOnMap"), for: .normal)
                     value.doGlowAnimation(withColor: Constants.purpleColor, withEffect: .normal, duration: 1)
@@ -259,11 +264,11 @@ class InitialViewController: UIViewController {
             
             for (_, value) in mainVCLevelButtons.enumerated() {
                 if value.tag == 1 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 2 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 3 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 4 {
                     value.setImage(UIImage(named: "skullOnMap"), for: .normal)
                     value.doGlowAnimation(withColor: Constants.purpleColor, withEffect: .normal, duration: 1)
@@ -276,13 +281,13 @@ class InitialViewController: UIViewController {
             
             for (_, value) in mainVCLevelButtons.enumerated() {
                 if value.tag == 1 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 2 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 3 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 } else if value.tag == 4 {
-                    value.setImage(UIImage(named: "openedLevelLock"), for: .normal)
+                    value.setImage(UIImage(named: "levelEllipse"), for: .normal)
                 }
                 else if value.tag == 5 {
                     value.setImage(UIImage(named: "skullOnMap"), for: .normal)

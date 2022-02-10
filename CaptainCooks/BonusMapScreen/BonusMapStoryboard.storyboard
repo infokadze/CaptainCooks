@@ -27,8 +27,8 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="TXR-j9-eF6">
                                         <rect key="frame" x="0.0" y="0.0" width="408" height="310"/>
                                     </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust text in code" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="w8Z-Xc-QRi">
-                                        <rect key="frame" x="40" y="30" width="338" height="250"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adjust text in code" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="w8Z-Xc-QRi">
+                                        <rect key="frame" x="30" y="30" width="353" height="250"/>
                                         <fontDescription key="fontDescription" name="Chewy-Regular" family="Chewy" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -47,10 +47,10 @@
                                     <constraint firstItem="w8Z-Xc-QRi" firstAttribute="top" secondItem="irU-dh-Eo3" secondAttribute="top" constant="30" id="9rM-AR-vTJ"/>
                                     <constraint firstAttribute="bottom" secondItem="TXR-j9-eF6" secondAttribute="bottom" constant="64" id="HX7-HB-0cS"/>
                                     <constraint firstItem="qo8-cL-OOV" firstAttribute="centerX" secondItem="irU-dh-Eo3" secondAttribute="centerX" id="HYl-Ta-O9m"/>
-                                    <constraint firstItem="w8Z-Xc-QRi" firstAttribute="leading" secondItem="irU-dh-Eo3" secondAttribute="leading" constant="40" id="IZA-df-hko"/>
+                                    <constraint firstItem="w8Z-Xc-QRi" firstAttribute="leading" secondItem="irU-dh-Eo3" secondAttribute="leading" constant="30" id="IZA-df-hko"/>
                                     <constraint firstItem="TXR-j9-eF6" firstAttribute="leading" secondItem="irU-dh-Eo3" secondAttribute="leading" id="Jie-4s-6GH"/>
                                     <constraint firstItem="TXR-j9-eF6" firstAttribute="top" secondItem="irU-dh-Eo3" secondAttribute="top" id="PnR-mC-lKV"/>
-                                    <constraint firstAttribute="trailing" secondItem="w8Z-Xc-QRi" secondAttribute="trailing" constant="30" id="UPQ-0N-kv9"/>
+                                    <constraint firstAttribute="trailing" secondItem="w8Z-Xc-QRi" secondAttribute="trailing" constant="25" id="UPQ-0N-kv9"/>
                                     <constraint firstItem="qo8-cL-OOV" firstAttribute="top" secondItem="TXR-j9-eF6" secondAttribute="bottom" id="cbV-gQ-AwV"/>
                                     <constraint firstItem="qo8-cL-OOV" firstAttribute="top" secondItem="w8Z-Xc-QRi" secondAttribute="bottom" constant="30" id="grk-mI-dGq"/>
                                     <constraint firstAttribute="trailing" secondItem="TXR-j9-eF6" secondAttribute="trailing" id="pcr-md-mMa"/>

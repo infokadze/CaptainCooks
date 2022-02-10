@@ -81,8 +81,9 @@ class PopUpVC: UIViewController {
 }
     
     @objc func updateLabelNotEnoughCoinsLevel() {
+        labelText.textAlignment = .justified
         labelText.text = """
-        To play this location you need to earn \(abs(InitialViewController.levelCoinsDifference!).formattedWithSeparator) coins. Try again when you've got enough coins!
+        To play this location you need to earn \(abs(InitialViewController.levelCoinsDifference!)) coins. Try again when you've got enough coins!
         """
     }
     
@@ -111,7 +112,7 @@ class PopUpVC: UIViewController {
         DispatchQueue.main.async {
             self.gotItActionDismissState = false
             self.labelText.text = """
-                        You unlocked the forth fifth level! Check your bonus tomorrow if you need some extra coins boost!
+                        You unlocked the forth level! Check your bonus tomorrow if you need some extra coins boost!
                 """
         }
     }

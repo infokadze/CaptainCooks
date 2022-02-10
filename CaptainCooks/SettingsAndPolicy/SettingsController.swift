@@ -43,10 +43,10 @@ class SettingsController: UIViewController {
             
             soundAndPrivacyLabel.isUserInteractionEnabled = true
             musicAndTermsLabel.isUserInteractionEnabled = true
-
+            
             let tap1 = UITapGestureRecognizer(target: self, action: #selector(tapFunction1))
             let tap2 = UITapGestureRecognizer(target: self, action: #selector(tapFunction2))
-
+            
             soundAndPrivacyLabel.addGestureRecognizer(tap1)
             musicAndTermsLabel.addGestureRecognizer(tap2)
             
@@ -100,7 +100,7 @@ class SettingsController: UIViewController {
     
     @objc func tapFunction1(sender: UITapGestureRecognizer) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-
+        
         let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: Bundle.main)
         let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.privacyPolicy) as! PrivacyPolicyAndTermsVC
         vc.makePolicy()
@@ -111,17 +111,17 @@ class SettingsController: UIViewController {
         
         present(vc, animated: true)
     }
-       
+    
     @objc func tapFunction2(sender: UITapGestureRecognizer) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-    
+        
         let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: Bundle.main)
         let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.privacyPolicy) as! PrivacyPolicyAndTermsVC
         vc.makeTerms()
         
         if let presented = self.presentedViewController {
-                   presented.removeFromParent()
-               }
+            presented.removeFromParent()
+        }
         
         present(vc, animated: true)
     }
@@ -147,21 +147,7 @@ class SettingsController: UIViewController {
             }
         }
         
-        
-//
-//        else if  segue.identifier == Constants.segueID.privacyAndTermsVC && (sender as? UILabel) == musicAndTermsLabel {
-//            if let vc = segue.destination as? PrivacyPolicyAndTermsVC {
-//                vc.makeTerms()
-//            }
-//        }
-//
-//        else if  segue.identifier == Constants.segueID.privacyAndTermsVC && (sender as? UILabel) == soundAndPrivacyLabel {
-//            if let vc = segue.destination as? PrivacyPolicyAndTermsVC {
-//                vc.makePolicy()
-//            }
-//        }
     }
-//
     
     @IBAction func dismissAction(_ sender: UIButton) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
@@ -171,7 +157,5 @@ class SettingsController: UIViewController {
             
         }
     }
-    
-    
 }
 

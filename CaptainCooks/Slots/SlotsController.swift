@@ -33,10 +33,10 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
                 betValues = [25, 50, 75, 100, 150, 300]
             case 15_000..<20_000:
                 betValues = [25, 50, 75, 100, 150, 300, 500]
-            case 20_000..<25_000:
+            case 20_000... :
                 betValues = [25, 50, 75, 100, 150, 300, 500, 1000]
             default:
-                break
+                ()
             }
         }
     }
@@ -72,7 +72,6 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     private var winRound: Int = UserDefault.coinsEarned {
         didSet {
             winLabel.text = "\(winRound.formattedWithSeparator)"
-            UserDefault.coinsEarned = winRound
             wonCoinsLabelPerSpin.text = "+\((winAmount - betValues[betIndex]).formattedWithSeparator)"
         }
     }
@@ -157,6 +156,8 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         collectionView.dataSource = self
         slotsUpDownAutoscroll = true
         betValues = [Int]()
+        winLabel.text = "\(UserDefault.coinsEarned)"
+
         
     }
     
@@ -168,8 +169,6 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         loadMainLevelVisualAttributes()
         
         balanceLabel.text = "\(balance.formattedWithSeparator)"
-        winLabel.text = "\(UserDefault.coinsEarned)"
-        
         wonCoinsLabelPerSpin.alpha = 0
         
         
@@ -271,14 +270,9 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         
         let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+        let _ = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
         
-        if let presented = self.presentedViewController {
-                presented.removeFromParent()
-            }
-        
-        present(vc, animated: true)
-        
+        self.dismiss(animated: true, completion: nil)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

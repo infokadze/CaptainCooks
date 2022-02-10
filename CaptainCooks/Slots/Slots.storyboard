@@ -186,7 +186,7 @@
                                                             <constraint firstAttribute="width" secondItem="MmI-Aa-eCD" secondAttribute="height" multiplier="60:17" id="YlA-iJ-EBY"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4O-mk-LNf">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" minimumScaleFactor="0.59999999999999998" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="M4O-mk-LNf">
                                                         <rect key="frame" x="82.666666666666629" y="1.3333333333333428" width="51" height="23"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="M4O-mk-LNf" secondAttribute="height" multiplier="30:13" constant="-2.0769230769230731" id="UK8-MF-vLH"/>
