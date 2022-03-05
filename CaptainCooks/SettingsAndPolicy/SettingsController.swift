@@ -24,6 +24,8 @@ class SettingsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
+        
         setupSettingButtons()
         
         switch mainVCSettingsButtonState {
@@ -40,6 +42,14 @@ class SettingsController: UIViewController {
             _ = makeLabelChewyColor(label: musicAndTermsLabel, text: "Terms of Use", size: 35, color: Constants.purpleColor)
             _ =  makeSettingsButtonImage(button: privacyButton, image: UIImage(named: "chevronRight")!, needsRendering: true)
             _ =  makeSettingsButtonImage(button: termsButton, image: UIImage(named: "chevronRight")!, needsRendering: true)
+            
+            soundAndPrivacyLabel.isUserInteractionEnabled = true
+            musicAndTermsLabel.isUserInteractionEnabled = true
+            
+            let tap = UITapGestureRecognizer(target: self, action: #selector(tapFunction))
+            
+            soundAndPrivacyLabel.addGestureRecognizer(tap)
+            musicAndTermsLabel.addGestureRecognizer(tap)
             
             musicButton.isHidden = true
             soundButton.isHidden = true
@@ -85,6 +95,11 @@ class SettingsController: UIViewController {
     }
     
     @IBAction func termsOrPolicyVC(_ sender: UIButton) {
+        playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+        performSegue(withIdentifier: Constants.segueID.privacyAndTermsVC, sender: sender)
+    }
+    
+    @objc func tapFunction(sender: UITapGestureRecognizer) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
         performSegue(withIdentifier: Constants.segueID.privacyAndTermsVC, sender: sender)
     }

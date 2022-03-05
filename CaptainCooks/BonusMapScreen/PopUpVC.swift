@@ -10,15 +10,36 @@ import UIKit
 class PopUpVC: UIViewController {
     
     @IBOutlet weak var labelText: UILabel!
-    
+
+    var gotItActionDismissState: Bool = true
     
     @IBAction func gotItAction(_ sender: UIButton) {
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-        dismiss(animated: true) {
+        
+        switch gotItActionDismissState {
             
-            if let presented = self.presentedViewController {
+        case true:
+            
+            dismiss(animated: true) {
+                
+                if let presented = self.presentedViewController {
                     presented.removeFromParent()
                 }
+            }
+            
+        case false:
+            
+            gotItActionDismissState = true
+            
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+            
+            if let presented = self.presentedViewController {
+                presented.removeFromParent()
+            }
+            
+            present(vc, animated: true)
+            
         }
     }
     
@@ -29,70 +50,77 @@ class PopUpVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateLabelOnTheSameLevel), name: Notification.Name(rawValue: "updateLabelOnTheSameLevel") , object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(updateLabelAlreadyPassedLevel), name: Notification.Name(rawValue: "updateLabelAlreadyPassedLevel") , object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(updateLabelNotEnoughCoinsLevel), name: Notification.Name(rawValue: "updateLabelNotEnoughCoinsLevel") , object: nil)
     }
     
-    @objc func updateLabelOnTheSameLevel() {
-        labelText.text = """
-        You are already located on this point of the map! Keep spinning to achieve new level!
-        """
-    }
     
-    @objc func updateLabelAlreadyPassedLevel() {
-        labelText.text = """
-        You already passed this level! You are able to earn more coins on your current location!
+    // dispatch is fucking important!!! spent few days sorting out why the app wasn't able to load proper text via this funcs
+    
+    @objc func update1000Coins() {
+        DispatchQueue.main.async {
+            self.labelText.text = """
+        "Congratulations! You have found a secret treasure, which allowed you to gain extra 1000 coins to your balance!
         """
     }
+}
+
+    @objc func update2500Coins() {
+        DispatchQueue.main.async {
+            self.labelText.text = """
+        It has been your lucky day since you have found a secret treasure, which allowed you to gain additional 2500 coins! Let's spin the lucky slots, shall we?
+        """
+    }
+}
+    
+    @objc func update5000Coins() {
+        DispatchQueue.main.async {
+            self.labelText.text = """
+        It has been the luckiest day since you started to hunt for a treasure! You got additional 5000 coins! Let's try ou luck on a new level, shall we?
+        """
+    }
+}
     
     @objc func updateLabelNotEnoughCoinsLevel() {
         labelText.text = """
-        To play this location you need to earn \(abs(InitialViewController.difference!).formattedWithSeparator) coins. Try again when you've got enough coins!
+        To play this location you need to earn \(abs(InitialViewController.levelCoinsDifference!).formattedWithSeparator) coins. Try again when you've got enough coins!
         """
     }
     
     //MARK: - NotificationCentersForSlots
-    
-    @objc func updateToFirstLevel() {
-        DispatchQueue.main.async {
-            self.labelText.text = """
-        You are playing on the first level! Check your bonus tomorrow if you need some extra coins boost!
-        """
-        }
-    }
-    
+
     @objc func updateToSecondLevel() {
         DispatchQueue.main.async {
+            self.gotItActionDismissState = false
+            self.labelText.textAlignment = .justified
             self.labelText.text = """
-                    You are playing on the second level! Check your bonus tomorrow if you need some extra coins boost!
+                            You unlocked the second level! Check your bonus tomorrow if you need some extra coins boost!
                     """
         }
-        
     }
     
     @objc func updateToThirdLevel() {
         DispatchQueue.main.async {
+            self.gotItActionDismissState = false
             self.labelText.text = """
-                You are playing on the third level! Check your bonus tomorrow if you need some extra coins boost!
+                        You unlocked the third level! Check your bonus tomorrow if you need some extra coins boost!
                 """
         }
     }
     
     @objc func updateToForthLevel() {
         DispatchQueue.main.async {
+            self.gotItActionDismissState = false
             self.labelText.text = """
-                You are playing on the forth level! Check your bonus tomorrow if you need some extra coins boost!
+                        You unlocked the forth fifth level! Check your bonus tomorrow if you need some extra coins boost!
                 """
         }
     }
     
     @objc func updateToFifthLevel() {
         DispatchQueue.main.async {
+            self.gotItActionDismissState = false
             self.labelText.text = """
-                You are playing on the fifth final level! Check your bonus tomorrow if you need some extra coins boost!
+                        You unlocked the final fifth level! Enjoy various levels for different visual experience!
                 """
         }
     }

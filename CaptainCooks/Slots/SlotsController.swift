@@ -11,102 +11,37 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var slotsUpDownAutoscroll: Bool?
+    private var levelPassed: [Bool] = [false, false, false, false]
+
+    private var isComplete: [Bool] = [false, false, false, false]
     
-    var refferenceValueForLevelChange: Int?  {
+    private var slotsUpDownAutoscroll: Bool?
         
+    //rows - коллекции, items - ячейки с имеджами
+    var dataModel = generate2DArray(withRows: 15, itemInEachRow: 18)
+    
+    private var betIndex = 0
+    
+    private var betValues: [Int] = [Int]() {
         didSet {
-            if oldValue != refferenceValueForLevelChange {
-                
-                switch refferenceValueForLevelChange {
-                    
-                case 1:
-                    loadMainLevelVisualAttributes()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                        
-                        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
-                        vc.updateToFirstLevel()
-                        
-                        if let presented = self.presentedViewController {
-                            presented.removeFromParent()
-                        }
-                        self.present(vc, animated: true)
-                    }
-                    
-                case 2:
-                    loadMainLevelVisualAttributes()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                        
-                        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
-                        vc.updateToSecondLevel()
-                        
-                        if let presented = self.presentedViewController {
-                            presented.removeFromParent()
-                        }
-                        self.present(vc, animated: true)
-                    }
-                    
-                case 3:
-                    loadMainLevelVisualAttributes()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                        
-                        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
-                        vc.updateToThirdLevel()
-                        
-                        if let presented = self.presentedViewController {
-                            presented.removeFromParent()
-                        }
-                        self.present(vc, animated: true)
-                    }
-                case 4:
-                    loadMainLevelVisualAttributes()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                        
-                        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
-                        vc.updateToForthLevel()
-                        
-                        if let presented = self.presentedViewController {
-                            presented.removeFromParent()
-                        }
-                        self.present(vc, animated: true)
-                    }
-                case 5:
-                    loadMainLevelVisualAttributes()
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.75) {
-                        
-                        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
-                        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
-                        vc.updateToFifthLevel()
-                        
-                        if let presented = self.presentedViewController {
-                            presented.removeFromParent()
-                        }
-                        self.present(vc, animated: true)
-                    }
-                    
-                default:
-                    ()
-                }
+            switch UserDefault.coinsEarned {
+            case ..<5_000:
+                betValues = [25, 50, 75, 100]
+            case 5_000..<10_000:
+                betValues = [25, 50, 75, 100, 150]
+            case 10_000..<15_000:
+                betValues = [25, 50, 75, 100, 150, 300]
+            case 15_000..<20_000:
+                betValues = [25, 50, 75, 100, 150, 300, 500]
+            case 20_000..<25_000:
+                betValues = [25, 50, 75, 100, 150, 300, 500, 1000]
+            default:
+                break
             }
         }
     }
     
-    //rows - коллекции, items - ячейки с имеджами
-    var dataModel = generate2DArray(withRows: 15, itemInEachRow: 18)
-    
-    var betIndex = 0
-    let betValues = [25, 50, 75, 100, 150, 300, 500, 1000]
-    var winAmount = 0
-    
+    private var winAmount = UserDefault.coinsEarned
     
     @IBOutlet weak var slotsImageView: UIImageView!
     @IBOutlet weak var characterImageView: UIImageView!
@@ -124,7 +59,7 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     
     @IBOutlet weak var balanceLabel: UILabel! {
         didSet {
-            _ = makeLabelChewyColor(label: balanceLabel, text: "\(UserDefault.coins)", size: 20, color: Constants.goldColor)
+            _ = makeLabelChewyColor(label: balanceLabel, text: "\(UserDefault.totalCoins)", size: 20, color: Constants.goldColor)
         }
     }
     
@@ -134,15 +69,23 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         }
     }
     
-    private var winRound: Int = 0 {
+    private var winRound: Int = UserDefault.coinsEarned {
         didSet {
             winLabel.text = "\(winRound.formattedWithSeparator)"
+            UserDefault.coinsEarned = winRound
+            wonCoinsLabelPerSpin.text = "+\((winAmount - betValues[betIndex]).formattedWithSeparator)"
         }
     }
     
     @IBOutlet weak var winLabel: UILabel! {
         didSet {
             _ = makeLabelChewyColor(label: winLabel, text: "0", size: 20, color: Constants.goldColor)
+        }
+    }
+
+    @IBOutlet weak var wonCoinsLabelPerSpin: UILabel! {
+        didSet {
+            _ = makeLabelChewyColor(label: wonCoinsLabelPerSpin, text: "0", size: 23, color: Constants.goldColor)
         }
     }
     
@@ -168,10 +111,13 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
             currentBetLabel.text = "\(betValues[betIndex])"
             
         } else if betIndex == betValues.count - 1 {
+            playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .plusOrMinus)
             sender.isEnabled = false
             
-            let alert = UIAlertController(title: "Warning!", message: "Your maximum bet ammount is limited to 1000!", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            let alert = UIAlertController(title: "Warning!", message: "You reached your maximum bet ammount! Earn more to unlock next level and higher bet opportunity", preferredStyle: .alert)
+            let okButton = UIAlertAction(title: "Okay", style: .cancel, handler: { action in
+                self.playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+             })
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         }
@@ -179,24 +125,29 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     
     @IBAction func minusCoins(_ sender: UIButton) {
         if betIndex > 0 {
+            
             playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .plusOrMinus)
+            
             plusButton.isEnabled = true
             betIndex -= 1
             currentBetLabel.text = "\(betValues[betIndex])"
             
         } else {
+            playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .plusOrMinus)
             sender.isEnabled = false
             let alert = UIAlertController(title: "Sorry!", message: "You can't bet less than 25!", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Okay", style: .destructive, handler: nil)
+            let okButton = UIAlertAction(title: "Okay", style: .destructive, handler: { action in
+                self.playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+             })
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         }
     }
     
-    private var balance: Int = UserDefault.coins {
+    private var balance: Int = UserDefault.totalCoins {
         didSet {
             balanceLabel.text = "\(balance.formattedWithSeparator)"
-            UserDefault.coins = balance
+            UserDefault.totalCoins = balance
         }
     }
     
@@ -205,13 +156,22 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
         collectionView.delegate = self
         collectionView.dataSource = self
         slotsUpDownAutoscroll = true
-        checkForLevelChange()
+        betValues = [Int]()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         
+        setLevelPasses()
+        setIsCompleteBoolValues()
+        loadMainLevelVisualAttributes()
+        
         balanceLabel.text = "\(balance.formattedWithSeparator)"
+        winLabel.text = "\(UserDefault.coinsEarned)"
+        
+        wonCoinsLabelPerSpin.alpha = 0
+        
         
         totalBetLabel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .evenBigger)
         winLabel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .evenBigger)
@@ -220,35 +180,35 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
     
     func updateBank(multiplyBy: Int) {
         //adding another bet value is due to "-" coins bet operations done by each spin
-        
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .coins)
         
         winAmount = (betValues[betIndex] * multiplyBy + betValues[betIndex])
-        UserDefault.coins += winAmount
-        winRound += (winAmount - betValues[betIndex])
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-            let alert = UIAlertController(title: "Congratulations!", message: "Your luck smiled at you, which allowed you to gain extra \(self.winAmount - self.betValues[self.betIndex]) coins to your balance!", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Continue", style: .cancel) { _ in
-            }
-            alert.addAction(okButton)
-            self.present(alert, animated: true, completion: nil)
-            self.balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
+        UserDefault.totalCoins += winAmount
+        winRound += (winAmount - betValues[betIndex])
+        UserDefault.coinsEarned += (winAmount - betValues[betIndex])
+        
+        //animation of won amount
+        wonCoinsLabelPerSpin.fadeIn(duration: 0.3, delay: 0) { complete in
+            self.wonCoinsLabelPerSpin.fadeOut(duration: 2, delay: 0)
         }
+        
+        balanceLabel.text = "\(UserDefault.totalCoins.formattedWithSeparator)"
     }
     
     @IBAction func spinAction(_ sender: UIButton) {
         _ = Vibro.medium
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .spin)
         
-        
         totalBet += betValues[betIndex]
-        UserDefault.coins -= betValues[betIndex]
-        balanceLabel.text = "\(UserDefault.coins.formattedWithSeparator)"
+        UserDefault.totalCoins -= betValues[betIndex]
+        balanceLabel.text = "\(UserDefault.totalCoins.formattedWithSeparator)"
         
-        if betValues[betIndex] > UserDefault.coins {
+        if betValues[betIndex] > UserDefault.totalCoins {
             let alert = UIAlertController(title: "Sorry!", message: "Your bet is bigger than your current balance", preferredStyle: .alert)
-            let okButton = UIAlertAction(title: "Okay", style: .destructive, handler: nil)
+            let okButton = UIAlertAction(title: "Okay", style: .destructive, handler: { action in
+                self.playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
+             })
             alert.addAction(okButton)
             present(alert, animated: true, completion: nil)
         } else {
@@ -261,7 +221,6 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
                 sender.isEnabled = true
                 self.backButton.isEnabled = true
             }
-            
             
             switch self.slotsUpDownAutoscroll {
                 
@@ -277,9 +236,11 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
                     c.shuffleData(slotIndexPath: [0, 17])
                 }
                 
-                self.slotsUpDownAutoscroll = false
-                self.checkWinComboFor17(isWin: true)
-                self.checkForLevelChange()
+                slotsUpDownAutoscroll = false
+                checkWinComboFor17(isWin: true)
+                
+                setLevelPasses()
+                isLevelFinished()
                 
             case false:
                 
@@ -293,24 +254,29 @@ class SlotsController : UIViewController, UICollectionViewDelegate, UICollection
                     c.shuffleData(slotIndexPath: [0, 0])
                 }
                 
-                self.slotsUpDownAutoscroll = true
-                self.checkWinComboFor0(isWin: true)
-                self.checkForLevelChange()
+                slotsUpDownAutoscroll = true
+                checkWinComboFor0(isWin: true)
+
+                setLevelPasses()
+                isLevelFinished()
                 
             default:
-                break
+                ()
             }
         }
     }
     
     @IBAction func backButtonAction(_ sender: UIButton) {
         
-        //        presentingViewController?.dismiss(animated: true, completion: nil)
         playSoundOneTimer(playerClassInstance: .sharedAudioOneTimerObject, sound: .click)
-        
         
         let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
         let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
+        
+        if let presented = self.presentedViewController {
+                presented.removeFromParent()
+            }
+        
         present(vc, animated: true)
         
     }
@@ -349,21 +315,21 @@ extension SlotsController: UITableViewDelegate, UITableViewDataSource {
             
             let imageName = dataModel[tableView.tag][indexPath.item]
             
-            switch UserDefault.coins {
+            switch UserDefault.levelNumberPicked {
                 
-            case 0..<12_000:
+            case 1:
                 cell.photoImageView?.image = UIImage(named: "\(imageName)(1).png)")
                 
-            case 12_000..<14_000:
+            case 2:
                 cell.photoImageView?.image = UIImage(named: "\(imageName)(2).png)")
                 
-            case 14_000..<16_000:
+            case 3:
                 cell.photoImageView?.image = UIImage(named: "\(imageName)(3).png)")
                 
-            case 16_000..<18_000:
+            case 4:
                 cell.photoImageView?.image = UIImage(named: "\(imageName)(4).png)")
                 
-            case 18_000... :
+            case 5:
                 cell.photoImageView?.image = UIImage(named: "\(imageName)(5).png)")
                 
             default:
@@ -405,137 +371,144 @@ extension SlotsController: UICollectionViewDelegateFlowLayout {
 }
 
 extension SlotsController {
-    func loadMainLevelVisualAttributes () {
+    
+   private func loadMainLevelVisualAttributes () {
         
-        switch UserDefault.coins {
+        switch UserDefault.levelNumberPicked {
             
-        case 0..<12_000:
-            UIView.transition(with: self.characterImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.characterImageView.image = UIImage(named: "character1") },
-                              completion: nil)
+        case 1:
+            characterImageView.image = UIImage(named: "character1")
+            slotsImageView.image = UIImage(named: "slotScreen1")
+            slotBox.image = UIImage(named: "slotsBox1")
             
-            UIView.transition(with: self.slotsImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotsImageView.image = UIImage(named: "slotScreen1") },
-                              completion: nil)
+        case 2:
+            characterImageView.image = UIImage(named: "character2")
+            slotsImageView.image = UIImage(named: "slotScreen2")
+            slotBox.image = UIImage(named: "slotsBox2")
             
-            UIView.transition(with: self.slotBox,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotBox.image = UIImage(named: "slotsBox1") },
-                              completion: nil)
+        case 3:
+            characterImageView.image = UIImage(named: "character3")
+            slotsImageView.image = UIImage(named: "slotScreen3")
+            slotBox.image = UIImage(named: "slotsBox3")
             
-        case 12_000..<14_000:
-            UIView.transition(with: self.characterImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.characterImageView.image = UIImage(named: "character2") },
-                              completion: nil)
+        case 4:
+            characterImageView.image = UIImage(named: "character4")
+            slotsImageView.image = UIImage(named: "slotScreen4")
+            slotBox.image = UIImage(named: "slotsBox4")
             
-            UIView.transition(with: self.slotsImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotsImageView.image = UIImage(named: "slotScreen2") },
-                              completion: nil)
+        case 5:
+            characterImageView.image = UIImage(named: "character5")
+            slotsImageView.image = UIImage(named: "slotScreen5")
+            slotBox.image = UIImage(named: "slotsBox5")
             
-            UIView.transition(with: self.slotBox,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotBox.image = UIImage(named: "slotsBox2") },
-                              completion: nil)
-            
-            
-        case 14_000..<16_000:
-            UIView.transition(with: characterImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.characterImageView.image = UIImage(named: "character3") },
-                              completion: nil)
-            
-            UIView.transition(with: slotsImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotsImageView.image = UIImage(named: "slotScreen3") },
-                              completion: nil)
-            
-            UIView.transition(with: slotBox,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotBox.image = UIImage(named: "slotsBox3") },
-                              completion: nil)
-            
-        case 16_000..<18_000:
-            UIView.transition(with: characterImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.characterImageView.image = UIImage(named: "character4") },
-                              completion: nil)
-            
-            UIView.transition(with: slotsImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotsImageView.image = UIImage(named: "slotScreen4") },
-                              completion: nil)
-            
-            UIView.transition(with: slotBox,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotBox.image = UIImage(named: "slotsBox4") },
-                              completion: nil)
-            
-        case 18_000...:
-            UIView.transition(with: characterImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.characterImageView.image = UIImage(named: "character5") },
-                              completion: nil)
-            
-            UIView.transition(with: slotsImageView,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotsImageView.image = UIImage(named: "slotScreen5") },
-                              completion: nil)
-            
-            UIView.transition(with: slotBox,
-                              duration: 1.2,
-                              options: .transitionCrossDissolve,
-                              animations: { self.slotBox.image = UIImage(named: "slotsBox5") },
-                              completion: nil)
         default:
             ()
         }
     }
     
-    func checkForLevelChange() {
-        switch UserDefault.coins {
-        case ..<12_000:
-            refferenceValueForLevelChange = 1
+    
+    private func isLevelFinished() {
+        
+        if 0...UserDefault.coinsEarned ~= 5_000 && levelPassed[0] == true && isComplete[0] == false {
             
-        case 12_000..<14_000:
-            refferenceValueForLevelChange = 2
+            isComplete[0] = true
             
-        case 14_000..<16_000:
-            refferenceValueForLevelChange = 3
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateToSecondLevel"), object: nil)
             
-        case 16_000..<18_000:
-            refferenceValueForLevelChange = 4
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
             
-        case 18_000...:
-            refferenceValueForLevelChange = 5
+            if let presented = self.presentedViewController {
+                presented.removeFromParent()
+            }
             
+            present(vc, animated: true)
+            vc.updateToSecondLevel()
+            
+        }
+        
+        else if 0...UserDefault.coinsEarned ~= 10_000 && levelPassed[1] == true && isComplete[1] == false {
+            
+            isComplete[0] = true
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateToThirdLevel"), object: nil)
+            
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
+            
+            if let presented = self.presentedViewController {
+                presented.removeFromParent()
+            }
+            
+            present(vc, animated: true)
+            vc.updateToThirdLevel()
+            
+        }
+        
+        else if 0...UserDefault.coinsEarned ~= 15_000 && levelPassed[2] == true && isComplete[2] == false {
+
+            isComplete[2] = true
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateToForthLevel"), object: nil)
+            
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
+            
+            if let presented = self.presentedViewController {
+                presented.removeFromParent()
+            }
+            
+            present(vc, animated: true)
+            vc.updateToForthLevel()
+            
+        }
+        
+        else if 0...UserDefault.coinsEarned ~= 20_000 && levelPassed[3] == true && isComplete[3] == false {
+
+            isComplete[3] = false
+            
+            NotificationCenter.default.post(name: Notification.Name(rawValue: "updateToFifthLevel"), object: nil)
+            
+            let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
+            
+            if let presented = self.presentedViewController {
+                presented.removeFromParent()
+            }
+            
+            present(vc, animated: true)
+            vc.updateToFifthLevel()
+            
+        }        
+    }
+    
+    private func setLevelPasses() {
+        switch UserDefault.coinsEarned {
+        case 5_000..<10_000:
+            levelPassed[0] = true
+        case 10_000..<15_000:
+            levelPassed[1] = true
+        case 15_000..<20_000:
+            levelPassed[2] = true
+        case 20_000...:
+            levelPassed[3] = true
         default:
-            break
+            ()
+        }
+    }
+    
+    private func setIsCompleteBoolValues() {
+        switch UserDefault.coinsEarned {
+        case 5_000..<10_000:
+            isComplete[0] = true
+        case 10_000..<15_000:
+            isComplete[1] = true
+        case 15_000..<20_000:
+            isComplete[2] = true
+        case 20_000...:
+            isComplete[3] = true
+        default:
+            ()
         }
     }
 }
-
-
-
-    
-    
-
-
-

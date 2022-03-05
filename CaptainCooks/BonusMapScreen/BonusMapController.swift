@@ -29,21 +29,8 @@ final class BonusMapController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        switch UserDefault.bonusLevelNumber {
-        case 1:
-            loadBonusLevel(level: 1)
-        case 2:
-            loadBonusLevel(level: 2)
-        case 3:
-            loadBonusLevel(level: 3)
-        case 4:
-            loadBonusLevel(level: 4)
-        case 5:
-            loadBonusLevel(level: 5)
-        default:
-            loadBonusLevel(level: 1)
-        }
+        loadBonusLevel(level: UserDefault.bonusLevelNumber)
+
     }
     
     private func buttonsDisableInteractonExcept(indexActive: Int) {
@@ -67,13 +54,6 @@ final class BonusMapController: UIViewController {
             let activeLevel = levelButtons[buttonAndCrossIndexExclusion - 1]
             activeLevel.doGlowAnimation(withColor: Constants.goldColor, withEffect: .big)
         }
-    }
-    
-    private func restartApplication () {
-        let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
-        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.preloader) as! PreloaderVC
-        UserDefault.bonusLevelNumber = 1
-        present(vc, animated: true)
     }
     
     private func loadBonusLevel(level: Int) {
@@ -219,7 +199,11 @@ final class BonusMapController: UIViewController {
             UserDefault.bonusLevelNumber = level + 1
             
         default:
-            self.restartApplication()
+        
+            filteredButtonsAndCrossesAnimatingWithGlow(buttonAndCrossIndexExclusion: 1)
+            buttonsDisableInteractonExcept(indexActive: 1)
+            
+            UserDefault.bonusLevelNumber = 1
         }
     }
     
@@ -229,19 +213,20 @@ final class BonusMapController: UIViewController {
     }
     
     @IBAction func firstLevelBonusButton(_ sender: UIButton) {
+                
+        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
+        vc.gotItActionDismissState = false
+        vc.update1000Coins()
         
-        let alert = UIAlertController(title: "Congratulations!", message: "Your have found a secret treasure, which allowed you to gain extra 1000 coins to your balance!", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Great", style: .default) { _ in
-            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
-            self.present(vc, animated: true)
-            
-            }
+        if let presented = self.presentedViewController {
+            presented.removeFromParent()
+        }
         
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-
-        UserDefault.coins += 1_000
+        UserDefault.totalCoins += 1_000
+        UserDefault.coinsEarned += 1_000
+        
+        present(vc, animated: true)
     }
     
     @IBAction func secondLevelBonusButton(_ sender: UIButton) {
@@ -249,17 +234,20 @@ final class BonusMapController: UIViewController {
     }
     
     @IBAction func thirdLevelBonusButton(_ sender: UIButton) {
+                
+        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
+        vc.gotItActionDismissState = false
+        vc.update2500Coins()
         
-        let alert = UIAlertController(title: "Marvelous!", message: "It has been your lucky day since you have found a secret treasure, which allowed you to gain additional 2500 coins! Let's spin the lucky slots, shall we?", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "That's right", style: .default) { _ in
-            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
-            self.present(vc, animated: true)
-            }
+        if let presented = self.presentedViewController {
+            presented.removeFromParent()
+        }
         
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-        UserDefault.coins += 2_500
+        UserDefault.totalCoins += 2_500
+        UserDefault.coinsEarned += 2_500
+        
+        present(vc, animated: true)
     }
     
     @IBAction func forthLevelBonusButton(_ sender: UIButton) {
@@ -267,15 +255,19 @@ final class BonusMapController: UIViewController {
     }
     
     @IBAction func fifthLevelBonusButton(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Gorgeous!", message: "It has been the luckiest day since you started to hunt for a treasure! You got additional 5000 coins! Let's try ou luck on a new level, shall we?", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "Let's do it!", style: .default) { _ in
-            let storyBoard = UIStoryboard(name: Constants.storyboardName.mainName, bundle: nil)
-            let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.main) as! InitialViewController
-            self.present(vc, animated: true)
-            }
+                
+        let storyBoard = UIStoryboard(name: Constants.storyboardName.bonusName, bundle: Bundle.main)
+        let vc = storyBoard.instantiateViewController(withIdentifier: Constants.storyboardID.popUpID) as! PopUpVC
+        vc.gotItActionDismissState = false
+        vc.update5000Coins()
+
+        if let presented = self.presentedViewController {
+            presented.removeFromParent()
+        }
         
-        alert.addAction(okButton)
-        present(alert, animated: true, completion: nil)
-        UserDefault.coins += 5_000
+        UserDefault.totalCoins += 5_000
+        UserDefault.coinsEarned += 5_000
+        
+        present(vc, animated: true)
     }
 }

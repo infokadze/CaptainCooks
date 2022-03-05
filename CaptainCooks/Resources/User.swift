@@ -9,12 +9,12 @@ import UIKit
 
 struct UserDefault {
     
-    static var coins: Int {
+    static var totalCoins: Int {
         get {
-            return UserDefaults.standard.integer(forKey: "coins")
+            return UserDefaults.standard.integer(forKey: "totalCoins")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "coins")
+            UserDefaults.standard.set(newValue, forKey: "totalCoins")
         }
     }
     
@@ -26,6 +26,8 @@ struct UserDefault {
             UserDefaults.standard.set(newValue, forKey: "isLaunchedBefore")
         }
     }
+    
+    
     
     static var mainLevelNumber: Int {
         get {
@@ -45,16 +47,24 @@ struct UserDefault {
         }
     }
     
-    static var slotsLevelNumber: Int {
+    static var levelNumberPicked: Int {
         get {
-            return UserDefaults.standard.integer(forKey: "slotsLevelNumber")
+            return UserDefaults.standard.integer(forKey: "levelNumberPicked")
         }
         set {
-            UserDefaults.standard.set(newValue, forKey: "slotsLevelNumber")
+            UserDefaults.standard.set(newValue, forKey: "levelNumberPicked")
         }
     }
     
-    
+    static var coinsEarned: Int {
+        get {
+            return UserDefaults.standard.integer(forKey: "coinsEarned")
+        }
+        set {
+            UserDefaults.standard.set(newValue, forKey: "coinsEarned")
+        }
+    }
+   
     static var currentDate: Date {
         get {
             return UserDefaults.standard.object(forKey: "currentDate") as! Date

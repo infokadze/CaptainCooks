@@ -55,7 +55,7 @@ final class MatchGameViewController: UIViewController, UICollectionViewDataSourc
         default:
             UIView.animate(withDuration: 0.6) {
             labelText.text = "You earned \(result * 3) coins! Congrats!"
-                UserDefault.coins += (result * 3)
+                UserDefault.totalCoins += (result * 3)
 
         }
     }
